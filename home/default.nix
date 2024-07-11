@@ -75,11 +75,21 @@
     ocenaudio
     kdePackages.kdenlive
     frei0r
+    highlight
   ];
 
   programs.fzf = {
-  enable = true;
-  defaultCommand = "--preview cat {}";
+    enable = true;
+    enableFishIntegration = true;
+  };
+  programs.gh.gitCredentialHelper.enable = false;
+  programs.git.extraConfig.credential = {
+    "https://github.com" = {
+      helper = "!gh auth git-credential";
+    };
+    "https://gist.github.com" = {
+      helper = "!gh auth git-credential";
+    };
   };
 
   programs.nixvim = {
