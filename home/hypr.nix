@@ -18,7 +18,7 @@
         ",preferred,auto,1"
       ];
       bind = [
-"$mod, S, exec, rofi -show drun -show-icons"
+	"$mod, S, exec, rofi -show drun -show-icons"
       ];
       env = [
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -28,6 +28,11 @@
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
 	"NIXOS_OZONE_WL=1"
+	"WLR_NO_HARDWARE_CURSORS=1"
+	"QT_QPA_PLATFORM,wayland"
+	"QT_STYLE_OVERRIDE,kvantum"
+	"QT_QPA_PLATFORMTHEME,gt5ct"
+
       ];
 
       exec-once = [
@@ -131,49 +136,10 @@
       #       workspace_swipe = true;
       #       workspace_swipe_forever = true;
       #     };
-      plugin = {
-        hyprbars = {
-          bar_height = 20;
-          bar_precedence_over_border = true;
-          # order is right-to-left
-          hyprbars-button = [
-            # close
-            "rgb(ff0000), 15, , hyprctl dispatch killactive"
-            # maximize
-            "rgb(ffff00), 15, , hyprctl dispatch fullscreen 1"
-          ];
-        };
-        hyprexpo = {
-          columns = 3;
-          gap_size = 4;
-          bg_col = "rgb(000000)";
-          enable_gesture = true;
-          gesture_distance = 300;
-          gesture_positive = false;
-	};
-      };
-    };
-};
-# services.hypridle = {
-#  enable = true;
+      #plugin = {
 
-#  settings = {
-#    general = {
-#      after_sleep_cmd = "hyprctl dispatch dpms on";
-#      ignore_dbus_inhibit = false;
-#      lock_cmd = "hyprlock";
-#    };
-#    listener = [
-#      {
-#        timeout = 900;
-#        on-timeout = "hyprlock";
-#      }
-#      {
-#        timeout = 1200;
-#        on-timeout = "hyprctl dispatch dpms off";
-#        on-resume = "hyprctl dispatch dpms on";
-#      }
-#    ];
-#  };
+      #};
+    };
+  };
 }
 

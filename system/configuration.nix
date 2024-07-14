@@ -43,6 +43,7 @@
   environment.systemPackages = with pkgs; [
     home-manager
     fish
+    sddm-sugar-dark
   ];
   xdg.portal = {
     enable = true;
@@ -93,8 +94,6 @@
   };
 
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
   sound.enable = true;
@@ -122,19 +121,17 @@
     # NVIDIA drivers are unfree.
     videoDrivers = [ "nvidia" ];
   };
-  #programs.neovim.enable = true;
-  # hyprland
-  programs.hyprland = {
-    enable = true;
-    #xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    #nvidiaPatches = true; # ONLY use this line if you have an nvidia card
-  };
 
-  programs.hyprlock = {
-    enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
-  };
+services.displayManager.sddm = {
+  enable = true;
+  theme = "sddm-sugar-dark";
+};
+
+programs.hyprland = {
+  enable = true;
+  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+};
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -150,7 +147,7 @@
     # Select the appropriate driver version for your specific GPU
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
+#  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
 
 #  nix =
 #    let
@@ -158,8 +155,6 @@
 #    in
 #    {
 #      settings = {
-        # Enable flakes and new 'nix' command
-#        experimental-features = "nix-command flakes";
         # Opinionated: disable global registry
 #        flake-registry = "";
 
@@ -173,7 +168,6 @@
 #      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
 #      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 #    };
-  # Add stuff for your user as you see fit:
 
 programs.fish.enable = true;
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
@@ -195,12 +189,15 @@ programs.fish.enable = true;
     };
   };
 };
+
+
+
   home-manager = {
-  	extraSpecialArgs = { inherit inputs; };
-	backupFileExtension = "backup";
-	users = {
-		"andrec" = import ../home/default.nix;
-	};
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
+    users = {
+      "andrec" = import ../home/default.nix;
+    };
   };
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

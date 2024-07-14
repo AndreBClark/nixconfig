@@ -35,6 +35,12 @@
   };
 
   qt.enable = true;
+  qt.platformTheme.name = "gtk";
+  qt.style.name = "adwaita-dark";
+  gtk.enable = true;
+  gtk.theme.name = "tokyonight-gtk";
+  gtk.theme.package = pkgs.tokyonight-gtk-theme;
+
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -68,7 +74,7 @@
     playerctl
     pavucontrol
     dunst
-    libsForQt5.dolphin
+    kdePackages.dolphin
     kitty
     rofi-wayland
     unzip
@@ -76,6 +82,11 @@
     kdePackages.kdenlive
     frei0r
     highlight
+    unixtools.whereis
+    tokyonight-gtk-theme
+    kdePackages.kservice
+    kdePackages.qtstyleplugin-kvantum
+    sddm-sugar-dark
   ];
 
   programs.fzf = {
@@ -109,36 +120,36 @@
     terminal = "alacritty";
     package = pkgs.rofi-wayland;
   };
+  programs.hyprlock = {
+    enable = true;
+  };
+
 services.hyprpaper = {
   enable = true;
   settings = {
     splash = false;
-    preload = ["~/Pictures/Wallpapers/FallingFrontier/berwick.titan.png"];
-    wallpaper = [",~/Pictures/Wallpapers/FallingFrontier/berwick.titan.png"];
+    preload = ["/home/andrec/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
+    wallpaper = [",fill:/home/andrec/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
   };
 };
 
-#services.hypridle = {
-#  enable = true;
-#  settings = {
-#    general = {
-#      after_sleep_cmd = "hyprctl dispatch dpms on";
-#      ignore_dbus_inhibit = false;
-#      lock_cmd = "hyprlock";
-#    };
-#    listener = [
-#      {
-#        timeout = 900;
-#	on-timeout = "hyprlock";
-#      }
-#      {
-#        timeout = 1200;
-#	on-timeout = "hyprctl dispatch dpms off";
-#	on-resume = "hyprctl dispatch dpms on";
-#      }
-#    ];
-#  };
-#};
+services.hypridle = {
+  enable = true;
+  settings = {
+    general = {
+      after_sleep_cmd = "hyprctl dispatch dpms on";
+      ignore_dbus_inhibit = false;
+      lock_cmd = "hyprlock";
+    };
+    listener = [
+      {
+        timeout = 1200;
+	on-timeout = "hyprctl dispatch dpms off";
+	on-resume = "hyprctl dispatch dpms on";
+      }
+    ];
+  };
+};
   
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
