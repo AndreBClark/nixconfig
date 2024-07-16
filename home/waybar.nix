@@ -89,6 +89,7 @@
           	border-radius: 100px;
           	padding: 0 20px;
           }
+
     '';
     settings = [{
       height = 48;

@@ -9,6 +9,7 @@
 
   nixpkgs = {
     # You can add overlays here
+
     # Configure your nixpkgs instance
     config = {
       boot.loader.grub.device = "nodev";
@@ -96,7 +97,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  sound.enable = true;
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -122,10 +122,6 @@
     videoDrivers = [ "nvidia" ];
   };
 
-services.displayManager.sddm = {
-  enable = true;
-  theme = "sddm-sugar-dark";
-};
 
 programs.hyprland = {
   enable = true;
@@ -148,26 +144,6 @@ programs.hyprland = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 #  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
-
-#  nix =
-#    let
-#      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-#    in
-#    {
-#      settings = {
-        # Opinionated: disable global registry
-#        flake-registry = "";
-
-        # Workaround for https://github.com/NixOS/nix/issues/9574
-#        nix-path = config.nix.nixPath;
-#      };
-      # Opinionated: disable channels
-#      channel.enable = false;
-
-      # Opinionated: make flake registry and nix path match flake inputs
-#      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-#      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-#    };
 
 programs.fish.enable = true;
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
@@ -196,7 +172,7 @@ programs.fish.enable = true;
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "backup";
     users = {
-      "andrec" = import ../home/default.nix;
+      "andrec" = import ../home;
     };
   };
   # This setups a SSH server. Very important if you're setting up a headless system.

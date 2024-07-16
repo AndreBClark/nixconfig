@@ -4,7 +4,7 @@
   inputs = {
     # global, so they can be `.follow`ed
     systems.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     flake-compat.url = "github:edolstra/flake-compat";
 
@@ -64,15 +64,18 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-colors-adapters.url = "gitlab:vfosnar/nix-colors-adapters";
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix?ref=aa0ee1f130914978a79411760b72ad51abba4745";
+      inputs.nixpkgs.follows ="nixpkgs";
+    };
   };
 
-  outputs = inputs@
+  outputs = 
     {
       self,
       nixpkgs,
       ...
-    }:
+    } @inputs:
     let
     	system = "x86_64-linux";
 	pkgs = nixpkgs.legacyPackages.${system};
@@ -82,11 +85,11 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations."seadragon" = nixpkgs.lib.nixosSystem {
 	specialArgs = {inherit inputs;};
-         modules = [
-              ./system/configuration.nix
-	      inputs.home-manager.nixosModules.default
-            ];
-          };
+        modules = [
+	  ./system/configuration.nix
+	  ./sddm/default.nix
+        ];
+      };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
@@ -95,7 +98,7 @@
 	extraSpecialArgs = {inherit inputs;};
         # > Our main home-manager configuration file <
         modules = [
-          ./home/default.nix
+          ./home
         ];
       };
     };

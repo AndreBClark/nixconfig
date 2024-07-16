@@ -34,10 +34,8 @@
     };
   };
 
-  qt.enable = true;
-  qt.platformTheme.name = "gtk";
-  qt.style.name = "adwaita-dark";
   gtk.enable = true;
+  qt.style.name = "adwaita-dark";
   gtk.theme.name = "tokyonight-gtk";
   gtk.theme.package = pkgs.tokyonight-gtk-theme;
 
@@ -57,7 +55,8 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [
+  home.packages = 
+    with pkgs;  [
     fish
     fzf
     starship
@@ -70,23 +69,23 @@
     nixpkgs-fmt
     hyprpaper
     hypridle
-    hyprlock
     playerctl
     pavucontrol
     dunst
     kdePackages.dolphin
+    kdePackages.dolphin-plugins
     kitty
     rofi-wayland
     unzip
     ocenaudio
-    kdePackages.kdenlive
+    kdenlive
     frei0r
     highlight
     unixtools.whereis
     tokyonight-gtk-theme
     kdePackages.kservice
-    kdePackages.qtstyleplugin-kvantum
-    sddm-sugar-dark
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.konsole
   ];
 
   programs.fzf = {
@@ -120,16 +119,13 @@
     terminal = "alacritty";
     package = pkgs.rofi-wayland;
   };
-  programs.hyprlock = {
-    enable = true;
-  };
 
 services.hyprpaper = {
   enable = true;
   settings = {
     splash = false;
-    preload = ["/home/andrec/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
-    wallpaper = [",fill:/home/andrec/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
+    preload = ["~/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
+    wallpaper = [",~/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
   };
 };
 
