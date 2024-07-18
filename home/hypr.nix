@@ -1,10 +1,12 @@
-{ inputs
+{ 
+  inputs
 , pkgs
+, config
 , ...
 }:
 
 {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = with config.colorScheme.palette; {
     enable = true;
     settings = {
       "$mod" = "SUPER";
@@ -45,10 +47,10 @@
 
       general = {
         gaps_in = 5;
-        gaps_out = 5;
-        border_size = 3;
-        "col.active_border" = "rgba(bd93f988)";
-        "col.inactive_border" = "rgba(282a3688)";
+        gaps_out = 0;
+        border_size = 4;
+        "col.active_border" = "rgba(${base0E}FF)";
+        "col.inactive_border" = "rgba(${base08}33)";
 
         allow_tearing = true;
         resize_on_border = true;
@@ -63,25 +65,21 @@
         blur = {
           enabled = true;
           brightness = 1.0;
-          contrast = 1.0;
-          noise = 0.01;
+          contrast = 0.5;
+          noise = 0.05;
 
           vibrancy = 0.2;
           vibrancy_darkness = 0.5;
 
-          passes = 4;
-          size = 7;
+          passes = 2;
+          size = 2;
 
           popups = true;
-          popups_ignorealpha = 0.2;
+          popups_ignorealpha = 0.5;
         };
 
-        drop_shadow = true;
-        shadow_ignore_window = true;
-        shadow_offset = "0 2";
-        shadow_range = 20;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(00000055)";
+        drop_shadow = false;
+        shadow_ignore_window = false;
       };
 
       animations = {
@@ -97,7 +95,7 @@
       group = {
         groupbar = {
           font_size = 10;
-          gradients = false;
+          gradients = true;
         };
       };
 

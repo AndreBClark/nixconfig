@@ -3,39 +3,31 @@
 { inputs
 , pkgs
 , ...
-}: let colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
- in {
+}: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
-    #    inputs.anyrun.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
-    inputs.tokyonight.homeManagerModules.default
+#    inputs.tokyonight.homeManagerModules.default
     inputs.nix-colors.homeManagerModules.default
     #inputs.nix-colors-adapters.homeManagerModules.default
-    ./terminal.nix
+    ./services.nix
+    ./starship.nix
+    ./neovim.nix
     ./hypr.nix
     ./binds.nix
     ./waybar.nix
     ./spotify.nix
   ];
   programs.home-manager.enable = true;
-
-  tokyonight = {
-    enable= true;
-    style = "night";
-  };
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
+#  tokyonight = {
+#    enable= true;
+#    style = "night";
+#  };
   programs.git.enable = true;
-  programs.fish.enable = true;
-  programs.kitty = {
-    enable = true;
-    settings = {
-      background = "#${colorScheme.palette.base00}";
-    };
-  };
 
   gtk.enable = true;
-  qt.style.name = "adwaita-dark";
   gtk.theme.name = "tokyonight-gtk";
   gtk.theme.package = pkgs.tokyonight-gtk-theme;
 
@@ -55,15 +47,11 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = 
+  home.packages =
     with pkgs;  [
-    fish
-    fzf
-    starship
-    zoxide
     firefox-devedition
-    alacritty
     obsidian
+    steam
     gh
     vscode
     nixpkgs-fmt
@@ -72,9 +60,9 @@
     playerctl
     pavucontrol
     dunst
-    kdePackages.dolphin
+    dolphin
+    libsForQt5.breeze-gtk
     kdePackages.dolphin-plugins
-    kitty
     rofi-wayland
     unzip
     ocenaudio
@@ -88,10 +76,6 @@
     kdePackages.konsole
   ];
 
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
-  };
   programs.gh.gitCredentialHelper.enable = false;
   programs.git.extraConfig.credential = {
     "https://github.com" = {
@@ -102,51 +86,13 @@
     };
   };
 
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-      opts = {
-	number = true;
-  	relativenumber = true;
-  	shiftwidth = 2;
-      };
-  	plugins.lightline.enable = true;
-  	colorschemes.tokyonight.enable = true;
-  };
-
   programs.rofi = {
     enable = true;
     terminal = "alacritty";
     package = pkgs.rofi-wayland;
   };
 
-services.hyprpaper = {
-  enable = true;
-  settings = {
-    splash = false;
-    preload = ["~/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
-    wallpaper = [",~/Pictures/Wallpapers/FF.violet/Titan_Caligula.png"];
-  };
-};
 
-services.hypridle = {
-  enable = true;
-  settings = {
-    general = {
-      after_sleep_cmd = "hyprctl dispatch dpms on";
-      ignore_dbus_inhibit = false;
-      lock_cmd = "hyprlock";
-    };
-    listener = [
-      {
-        timeout = 1200;
-	on-timeout = "hyprctl dispatch dpms off";
-	on-resume = "hyprctl dispatch dpms on";
-      }
-    ];
-  };
-};
-  
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 

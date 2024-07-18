@@ -1,96 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  programs.waybar = {
+  programs.waybar = with config.colorScheme.palette; {
     enable = true;
     systemd.enable = true;
-    style = ''
-          	@define-color background-darker rgba(30, 31, 41, 230);
-          	@define-color background #282a36;
-          	@define-color selection #44475a;
-          	@define-color foreground #f8f8f2;
-          	@define-color comment #6272a4;
-          	@define-color cyan #8be9fd;
-          	@define-color green #50fa7b;
-          	@define-color orange #ffb86c;
-          	@define-color pink #ff79c6;
-          	@define-color purple #bd93f9;
-          	@define-color red #ff5555;
-          	@define-color yellow #f1fa8c;
-
-                window#waybar {
-                  background: transparent;
-                  border-bottom: none;
-                }
-          * {
-              border: none;
-              border-radius: 0;
-              font-family: Inter;
-              font-size: 11pt;
-              min-height: 0;
-          }
-          window#waybar {
-              color: @foreground;
-          }
-          #window {
-          	margin: 10px 0;
-          	padding: 10px;
-          	border-radius: 100px;
-          	background: @background;
-          }
-
-          #workspaces button {
-              padding: 0 20px 0 15px;
-              margin: 10px 5px 10px 5px;
-              border-radius: 100px;
-              background: @background;
-              color: @foreground;
-          }
-          #workspaces button:hover {
-              box-shadow: inherit;
-              text-shadow: inherit;
-              background-image: linear-gradient(0deg, @selection, @background-darker);
-          }
-          #workspaces button.active {
-              background: @purple;
-          }
-          #workspaces button.urgent {
-              background: @background-darker;
-          }
-          #taskbar button {
-          	background: @background;
-          	border-radius: 100px;
-          	margin: 10px 5px;
-          	padding: 0 10px;
-          }
-          #taskbar button.active {
-              background: @background-darker;
-          }
-      #clock, #clock#time, #clock#date {
-              padding: 0 16px;
-              border-radius: 100px;
-              background: @purple;
-              color: @background-darker;
-              margin: 10px 0;
-
-          }
-          #pulseaudio, #tray {
-          	background: @background;
-          	padding: 0 10px;
-          	margin: 10px 0;
-          	border-radius: 100px;
-          }
-          box.module {
-          border-radius: 100px;
-          padding: 0 5px;
-          }
-          box.modules-right, box.modules-left, box.modules-center {
-          	background: @background-darker;
-          	border-radius: 100px;
-          	padding: 0 20px;
-          }
-
-    '';
     settings = [{
       height = 48;
       layer = "top";
@@ -117,8 +30,9 @@
         on-click-middle = "close";
       };
       "custom/logo" = {
-        format = "<big><big> </big></big>";
+        format = "<big> </big>";
 	on-click = "rofi -show drun -show-icons";
+	on-hover = "";
 
       };
       "custom/spotify" = {
@@ -215,12 +129,103 @@
         format-source-muted = "";
         on-click = "pavucontrol";
       };
-      #"hyprland/mode" = { format = ''<span style="italic">{}</span>''; };
-      #temperature = {
-      #  critical-threshold = 80;
-      #  format = "{temperatureC}°C {icon}";
-      #  format-icons = [ "" "" "" ];
-      #};
     }];
+    style = ''
+      @define-color background-darker #${base01};
+      @define-color background #${base02};
+      @define-color selection #44475a;
+      @define-color foreground #${base05};
+      @define-color comment #6272a4;
+      @define-color cyan #${base0C};
+      @define-color green #${base0B};
+      @define-color orange #ffb86c;
+      @define-color pink #ff79c6;
+      @define-color purple #${base0E};
+      @define-color red #${base0F};
+      @define-color yellow #f1fa8c;
+
+      window#waybar {
+	background: transparent;
+	border-bottom: none;
+      }
+      * {
+	border: none;
+	border-radius: 0;
+	font-family: Inter;
+	font-size: 11pt;
+	min-height: 0;
+      }
+      window#waybar {
+	color: @foreground;
+      }
+      #window {
+	margin: 10px 0;
+	padding: 10px;
+	border-radius: 100px;
+	background: @background;
+      }
+
+      #workspaces button {
+	  padding: 0 20px 0 15px;
+	  margin: 10px 5px 10px 5px;
+	  border-radius: 100px;
+	  background: @background;
+	  color: @foreground;
+      }
+      #workspaces button:hover {
+	  box-shadow: inherit;
+	  text-shadow: inherit;
+	  background-color: @selection; 
+	  color: @background-darker;
+      }
+      #workspaces button.active {
+	  background: @purple;
+	  color: @background;
+      }
+      #workspaces button.urgent {
+	  background: @background-darker;
+      }
+      #taskbar button {
+	    background: @background;
+	    border-radius: 100px;
+	    margin: 10px 5px;
+	    padding: 0 10px;
+      }
+      #taskbar button.active {
+	  background: @background-darker;
+      }
+      #clock, #clock#time, #clock#date {
+	  padding: 0 16px;
+	  border-radius: 100px;
+	  background: @purple;
+	  color: @background-darker;
+	  margin: 10px 0;
+
+      }
+
+      #pulseaudio, #tray {
+	background: @background;
+	padding: 0 10px;
+	margin: 10px 0;
+	border-radius: 100px;
+      }
+      box.module {
+        border-radius: 100px;
+        padding: 0 5px;
+      }
+      box.modules-right, box.modules-left, box.modules-center {
+	    background: @background;
+	    padding: 0 20px;
+      }
+      box.modules-right {
+	border-radius: 100px 0 0 100px;
+      }
+      box.modules-left {
+	border-radius: 0 100px 100px 0;
+      }
+      box.modules-center {
+	border-radius: 100px;
+      }
+    '';
   };
 }
