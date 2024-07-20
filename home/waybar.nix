@@ -131,101 +131,113 @@
       };
     }];
     style = ''
-      @define-color background-darker #${base01};
-      @define-color background #${base02};
-      @define-color selection #44475a;
-      @define-color foreground #${base05};
-      @define-color comment #6272a4;
+      @define-color background-darker #${base00};
+      @define-color background #${base01};
+      @define-color selection #${base03};
+      @define-color foreground #${base07};
+      @define-color comment #${base05};
       @define-color cyan #${base0C};
       @define-color green #${base0B};
       @define-color orange #ffb86c;
       @define-color pink #ff79c6;
       @define-color purple #${base0E};
       @define-color red #${base0F};
-      @define-color yellow #f1fa8c;
+      @define-color yellow #${base0C};
 
-      window#waybar {
-	background: transparent;
-	border-bottom: none;
-      }
       * {
-	border: none;
-	border-radius: 0;
-	font-family: Inter;
-	font-size: 11pt;
-	min-height: 0;
+        border: none;
+        border-radius: 0;
+        font-family: Inter;
+        font-size: 16px;
+        min-height: 0;
       }
-      window#waybar {
-	color: @foreground;
-      }
+
+
       #window {
-	margin: 10px 0;
-	padding: 10px;
-	border-radius: 100px;
-	background: @background;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 100px;
+        background: @background;
       }
 
-      #workspaces button {
-	  padding: 0 20px 0 15px;
-	  margin: 10px 5px 10px 5px;
-	  border-radius: 100px;
-	  background: @background;
-	  color: @foreground;
-      }
-      #workspaces button:hover {
-	  box-shadow: inherit;
-	  text-shadow: inherit;
-	  background-color: @selection; 
-	  color: @background-darker;
-      }
-      #workspaces button.active {
-	  background: @purple;
-	  color: @background;
-      }
-      #workspaces button.urgent {
-	  background: @background-darker;
-      }
-      #taskbar button {
-	    background: @background;
-	    border-radius: 100px;
-	    margin: 10px 5px;
-	    padding: 0 10px;
-      }
-      #taskbar button.active {
-	  background: @background-darker;
-      }
-      #clock, #clock#time, #clock#date {
-	  padding: 0 16px;
-	  border-radius: 100px;
-	  background: @purple;
-	  color: @background-darker;
-	  margin: 10px 0;
-
+      window#waybar {
+      	background: transparent;
+        border-bottom: none;
+        font-size: 16px;
       }
 
-      #pulseaudio, #tray {
-	background: @background;
-	padding: 0 10px;
-	margin: 10px 0;
-	border-radius: 100px;
-      }
       box.module {
         border-radius: 100px;
         padding: 0 5px;
+        background-color: @background-darker;
       }
+
       box.modules-right, box.modules-left, box.modules-center {
-	    background: @background;
-	    padding: 0 20px;
+        background: @background;
+        padding: 0 20px;
       }
+
       box.modules-right {
-	border-radius: 100px 0 0 100px;
+        border-radius: 100px 0 0 100px;
       }
+
       box.modules-left {
-	border-radius: 0 100px 100px 0;
+        border-radius: 0 100px 100px 0;
       }
+
       box.modules-center {
-	border-radius: 100px;
+      	border-radius: 100px;
       }
+      #workspaces button {
+        padding: 0 20px 0 15px;
+        margin: 10px 5px 10px 5px;
+        border-radius: 100px;
+        background: @background;
+        color: @foreground;
+      }
+
+      #workspaces button:hover {
+        box-shadow: inherit;
+        text-shadow: inherit;
+        background-color: @selection;
+        color: @background-darker;
+      }
+
+      #workspaces button.active {
+        background: @purple;
+        color: @background;
+      }
+
+      #workspaces button.urgent {
+        background: @background-darker;
+      }
+
+      #taskbar button {
+        background: @background;
+        border-radius: 100px;
+        margin: 10px 5px;
+        padding: 0 10px;
+      }
+
+      #taskbar button.active {
+        background: @background-darker;
+      }
+
+      #clock, #clock#time, #clock#date {
+        padding: 0 16px;
+        border-radius: 100px;
+        background: @purple;
+        color: @background-darker;
+        margin: 10px 0;
+      }
+
+      #pulseaudio, #tray {
+        background: @background;
+        padding: 0 10px;
+        margin: 10px 0;
+        border-radius: 100px;
+      }
+
     '';
   };
 }

@@ -13,6 +13,7 @@
     zoxide
     alacritty
     starship
+    tmux
   ];
 
   programs.fish = {
@@ -33,6 +34,11 @@
       background = "#${config.colorScheme.palette.base03}";
     };
   };
+  programs.tmux = {
+    enable = true;
+    shell = "${pkgs.fish}/bin/fish";
+    terminal = "alacritty";
+  };
 
   programs.zoxide.enable = true;
 
@@ -52,39 +58,33 @@
     enableFishIntegration = true;
     settings = with config.colorScheme.palette; {
 
+      add_newline = false;
       format = lib.concatStrings [
 "$os"
-"[ ](fg:#${base02} bg:#${base05})"
+"[ ](fg:#${base01} bg:#${base0C})"
 "$directory"
-"[ ](fg:#${base05} bg:#${base0E})"
+"[ ](fg:#${base0C} bg:#${base02})"
 "$git_branch"
 "$git_status"
-"[ ](fg:#${base0E} bg:#${base03})"
+"[ ](fg:#${base02} bg:#${base0E})"
 "$nodejs"
 "$rust"
 "$golang"
 "$php"
-"[ ](fg:#${base03})"
-"$shell"
-"$status"
-"$username"
-"$hostname"
-"$localip"
+"[ ](fg:#${base0E})"
       ];
-
-      add_newline = false;
 
       os = {
         disabled = false;
-        style =  "bg:#${base02} fg:#${base0C}";
+        style =  "bg:#${base01} fg:#${base0C}";
         format = "[ $symbol]($style)";
       };
 
       directory = {
-        style = "fg:#${base02} bg:#${base08}";
+        style = "fg:#${base02} bg:#${base0C}";
         format = "[$path ]($style)";
       #      before_repo_root_style = "fg:#${base03} bg:#${base0C}";
-        repo_root_style = "fg:#${base02} bg:#${base08}";
+        repo_root_style = "fg:#${base02} bg:#${base0C}";
         repo_root_format ="[ $repo_root]($repo_root_style)[$path]($style)";
         substitutions = {
           "GitHub" = " ";
@@ -96,12 +96,12 @@
 
       git_branch = {
         symbol = "";
-        style = "fg:#${base02} bg:#${base0E}";
+        style = "fg:#${base0C} bg:#${base02}";
         format = "[ $symbol $branch ]($style)";
       };
 
       git_status = {
-        style = "fg:#${base02} bg:#${base0E}";
+        style = "fg:#${base0C} bg:#${base02}";
         format = "[($all_status$ahead_behind )]($style)";
       };
 

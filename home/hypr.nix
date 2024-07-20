@@ -1,4 +1,4 @@
-{ 
+{
   inputs
 , pkgs
 , config
@@ -15,8 +15,8 @@
       "$browser" = "firefox-devedition";
       monitor = [
         "Unknown-1,disable"
-        "DP-2,2560x1440@75,1920x-540,1"
-        "HDMI-A-1,1920x1080@60,0x0,1"
+        "DP-2,2560x1440@74.92,0x0,1"
+        "HDMI-A-1,1920x1080@60,-1920x640,1"
         ",preferred,auto,1"
       ];
       bind = [
@@ -29,21 +29,14 @@
         "XDG_SESSION_TYPE,wayland"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-	"NIXOS_OZONE_WL=1"
-	"WLR_NO_HARDWARE_CURSORS=1"
-	"QT_QPA_PLATFORM,wayland"
-	"QT_STYLE_OVERRIDE,kvantum"
-	"QT_QPA_PLATFORMTHEME,gt5ct"
-
+        "NIXOS_OZONE_WL=1"
+        "WLR_NO_HARDWARE_CURSORS=1"
       ];
 
       exec-once = [
       	"hyprpaper"
-        "[workspace 2 silent] $terminal"
-        "[workspace 2 silent] $browser"
         "[workspace 1 silent] spotify"
       ];
-
 
       general = {
         gaps_in = 5;
@@ -60,6 +53,9 @@
         "workspace 2, class:(alacritty)"
         "workspace 2, class:(Firefox)"
       ];
+      master = {
+        no_gaps_when_only = 1;
+      };
       decoration = {
         rounding = 10;
         blur = {
@@ -71,8 +67,8 @@
           vibrancy = 0.2;
           vibrancy_darkness = 0.5;
 
-          passes = 2;
-          size = 2;
+          passes = 4;
+          size = 1;
 
           popups = true;
           popups_ignorealpha = 0.5;
@@ -140,4 +136,3 @@
     };
   };
 }
-

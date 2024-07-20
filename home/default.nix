@@ -8,7 +8,7 @@
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     inputs.nixvim.homeManagerModules.nixvim
-#    inputs.tokyonight.homeManagerModules.default
+    inputs.tokyonight.homeManagerModules.default
     inputs.nix-colors.homeManagerModules.default
     #inputs.nix-colors-adapters.homeManagerModules.default
     ./services.nix
@@ -21,10 +21,10 @@
   ];
   programs.home-manager.enable = true;
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
-#  tokyonight = {
-#    enable= true;
-#    style = "night";
-#  };
+  tokyonight = {
+    enable= true;
+    style = "night";
+  };
   programs.git.enable = true;
 
   gtk.enable = true;
@@ -75,6 +75,23 @@
     kdePackages.kdegraphics-thumbnailers
     kdePackages.konsole
   ];
+
+
+  programs.firefox = {
+    package = pkgs.firefox-devedition;
+    profiles.andrec = {
+      userChrome = ''
+        #appcontent {
+          background: transparent !important;
+        }
+      '';
+      preferences = {
+        toolkit.legacyUserProfileCustomizations.stylesheets = true;
+        gfx.webrender.all = true;
+      };
+    };
+  };
+
 
   programs.gh.gitCredentialHelper.enable = false;
   programs.git.extraConfig.credential = {

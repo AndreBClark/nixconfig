@@ -45,7 +45,12 @@
     home-manager
     fish
     sddm-sugar-dark
+    steam
   ];
+
+  programs.steam.enable = true;
+
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -58,7 +63,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
-  
+
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
