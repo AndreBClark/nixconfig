@@ -20,7 +20,7 @@ let
           background:                  rgba ( ${toRgbList base00}, 100 % );
           background-color:            rgba ( ${toRgbList base00}, 0 % );
           separatorcolor:              @foreground;
-          border-color:                @foreground;
+          border-color:                @background;
           selected-normal-foreground:  @lightbg;
           selected-normal-background:  @lightfg;
           selected-active-foreground:  @background;
@@ -165,4 +165,3 @@ in
     programs.rofi.theme = pathToConfig;
   };
 }
-

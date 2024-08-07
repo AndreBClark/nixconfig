@@ -11,8 +11,8 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
-      "$file-explorer" = "dolphin";
-      "$browser" = "firefox-devedition";
+      "$file-explorer" = "nautilus";
+      "$browser" = "firefox";
       monitor = [
         "Unknown-1,disable"
         "DP-2,2560x1440@74.92,0x0,1"
@@ -23,18 +23,31 @@
 	"$mod, S, exec, rofi -show drun -show-icons"
       ];
       env = [
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "WLR_DRM_DEVICES=/dev/dri/card1"
-        "LIBVA_DRIVER_NAME,nvidia"
+        #Qt vars
+        "QT_QPA_PLATFORM,wayland;xcb"
+#        "QT_QPA_PLATFORMTHEME,qt5ct"
+#        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+
+        #XDG vars
         "XDG_SESSION_TYPE,wayland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        #NVIDIA vars
         "GBM_BACKEND,nvidia-drm"
-        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "NIXOS_OZONE_WL=1"
-        "WLR_NO_HARDWARE_CURSORS=1"
+        "LIBVA_DRIVER_NAME,nvidia"
+#        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+#        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+
+        #wayland?
+        "WLR_DRM_DEVICES=/dev/dri/card1"
+
+        "GDK_BACKEND,wayland,x11,*"
       ];
 
       exec-once = [
-      	"hyprpaper"
+        "hyprpaper"
+        "dunst"
+        "xdg-desktop-portal-hyprland"
         "[workspace 1 silent] spotify"
       ];
 
@@ -60,18 +73,17 @@
         rounding = 10;
         blur = {
           enabled = true;
-          brightness = 1.0;
+          brightness = 0.8;
           contrast = 0.5;
-          noise = 0.05;
+          noise = 0.06;
 
           vibrancy = 0.2;
           vibrancy_darkness = 0.5;
 
-          passes = 4;
-          size = 1;
+          passes = 2;
+          size = 2;
 
           popups = true;
-          popups_ignorealpha = 0.5;
         };
 
         drop_shadow = false;
@@ -104,25 +116,19 @@
         touchpad.scroll_factor = 0.1;
       };
 
-      dwindle = {
-        # keep floating dimentions while tiling
-        pseudotile = true;
-        preserve_split = true;
-      };
-
       misc = {
         # disable auto polling for config file changes
         disable_autoreload = true;
 
-        force_default_wallpaper = 0;
+        force_default_wallpaper = 1;
 
         # disable dragging animation
         animate_mouse_windowdragging = false;
 
         # enable variable refresh rate (effective depending on hardware)
-        vrr = 1;
+        vrr = 0;
 
-        # we do, in fact, want direct scanout
+        # we do, in fact, want direct scanout
         no_direct_scanout = false;
       };
       # touchpad gestures

@@ -20,16 +20,12 @@
     ./spotify.nix
   ];
   programs.home-manager.enable = true;
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
   tokyonight = {
     enable= true;
     style = "night";
   };
   programs.git.enable = true;
-
-  gtk.enable = true;
-  gtk.theme.name = "tokyonight-gtk";
-  gtk.theme.package = pkgs.tokyonight-gtk-theme;
 
 
   nixpkgs = {
@@ -52,6 +48,7 @@
     firefox-devedition
     obsidian
     steam
+    discord
     gh
     vscode
     nixpkgs-fmt
@@ -60,9 +57,8 @@
     playerctl
     pavucontrol
     dunst
-    dolphin
-    libsForQt5.breeze-gtk
-    kdePackages.dolphin-plugins
+    nautilus
+    adwaita-qt
     rofi-wayland
     unzip
     ocenaudio
@@ -71,11 +67,19 @@
     highlight
     unixtools.whereis
     tokyonight-gtk-theme
-    kdePackages.kservice
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.konsole
+    dracula-icon-theme
+    adwaita-qt
+    grim
+    slurp
   ];
 
+  gtk.enable = true;
+  gtk.theme.name = "tokyonight-gtk";
+  gtk.theme.package = pkgs.tokyonight-gtk-theme;
+
+  qt.platformTheme.name = "gtk";
+  qt.style.name ="adwaita-dark";
+  qt.style.package = pkgs.adwaita-qt;
 
   programs.firefox = {
     package = pkgs.firefox-devedition;
@@ -108,7 +112,7 @@
     terminal = "alacritty";
     package = pkgs.rofi-wayland;
   };
-
+  programs.vscode.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

@@ -45,15 +45,19 @@
     home-manager
     fish
     sddm-sugar-dark
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-kde
     steam
   ];
 
   programs.steam.enable = true;
 
-
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
+    wlr.enable = true;
     config = {
       common.default = [ "gtk" ];
       hyprland.default = [ "gtk" "hyprland" ];
@@ -61,6 +65,7 @@
 
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-kde
     ];
   };
 

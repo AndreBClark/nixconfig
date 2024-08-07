@@ -10,7 +10,7 @@
       position = "bottom";
       spacing = 8;
       modules-left = [
-        "custom/logo"
+        "custom/os_button"
         "hyprland/workspaces"
         "hyprland/window"
       ];
@@ -29,11 +29,10 @@
         on-click = "activate";
         on-click-middle = "close";
       };
-      "custom/logo" = {
-        format = "<big> </big>";
-	on-click = "rofi -show drun -show-icons";
-	on-hover = "";
-
+      "custom/os_button" = {
+        format = " ";
+	      on-click = "rofi -show drun -show-icons";
+	      tooltip = false;
       };
       "custom/spotify" = {
         exec = "nix-shell ~/.config/waybar/scripts/mediaplayer.py --player spotify";
@@ -49,28 +48,9 @@
         on-scroll-up = "hyprctl dispatch workspace e-1";
         on-scroll-down = "hyprctl dispatch workspace e+1";
         spacing = 4;
-        format = "{icon}";
-        format-icons = {
-          "1" = "󰲠";
-          "2" = "󰲢";
-          "3" = "󰲤";
-          "4" = "󰲦";
-          #"5" = "󰲨";
-          # "6" = "󰲪";
-          # "7" = "󰲬";
-          # "8" = "󰲮";
-          # "9" = "󰲰";
-          # "10"=  "󰿬";
-          "active" = "";
-          "default" = "";
-          "empty" = "";
-        };
-        persistent-workspaces = {
-          "*" = 4;
-        };
       };
       "hyprland/window" = {
-        "max-length" = 128;
+        "max-length" = 120;
       };
 
       "clock#time" = {
@@ -87,30 +67,6 @@
       tray = {
         spacing = 4;
       };
-      #battery = {
-      #  format = "{capacity}% {icon}";
-      #  format-alt = "{time} {icon}";
-      #  format-charging = "{capacity}% ";
-      #  format-icons = [ "" "" "" "" "" ];
-      #  format-plugged = "{capacity}% ";
-      #  states = {
-      #    critical = 15;
-      #    warning = 30;
-      #  };
-      #};
-      #cpu = {
-      #  format = "{usage}% ";
-      #  tooltip = false;
-      #};
-      #memory = { format = "{}% "; };
-      #network = {
-      #  interval = 1;
-      #  format-alt = "{ifname}: {ipaddr}/{cidr}";
-      #  format-disconnected = "Disconnected ⚠";
-      #  format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
-      #  format-linked = "{ifname} (No IP) ";
-      #  format-wifi = "{essid} ({signalStrength}%) ";
-      #};
       pulseaudio = {
         format = "{volume}%  {icon}  {format_source}";
         format-bluetooth = "{volume}% {icon} {format_source}";
@@ -118,11 +74,7 @@
         format-icons = {
           car = "";
           default = [ "" "" "" ];
-          handsfree = "";
           headphones = "";
-          headset = "";
-          phone = "";
-          portable = "";
         };
         format-muted = " {format_source}";
         format-source = " {volume}% ";
@@ -131,9 +83,9 @@
       };
     }];
     style = ''
-      @define-color background-darker #${base00};
-      @define-color background #${base01};
-      @define-color selection #${base03};
+      @define-color background-darker #${base01};
+      @define-color background #${base00};
+      @define-color selection #${base02};
       @define-color foreground #${base07};
       @define-color comment #${base05};
       @define-color cyan #${base0C};
@@ -143,6 +95,7 @@
       @define-color purple #${base0E};
       @define-color red #${base0F};
       @define-color yellow #${base0C};
+
 
       * {
         border: none;
@@ -165,15 +118,22 @@
         border-bottom: none;
         font-size: 16px;
       }
+      button {
+        box-shadow: none;
+      }
+      button:hover {
+        box-shadow: none;
+      }
 
       box.module {
         border-radius: 100px;
-        padding: 0 5px;
-        background-color: @background-darker;
+        padding: 5px;
+        background-color: transparent;
+        color: @foreground;
       }
 
       box.modules-right, box.modules-left, box.modules-center {
-        background: @background;
+      background-color: transparent;
         padding: 0 20px;
       }
 
@@ -182,17 +142,28 @@
       }
 
       box.modules-left {
+        padding-left: 0;
         border-radius: 0 100px 100px 0;
       }
 
       box.modules-center {
-      	border-radius: 100px;
+        border-radius: 100px;
+        font-weight: bold;
+      }
+
+      #custom-os_button {
+        font-size: 32px;
+        padding: 0;
+        padding-left: 30px;
+        padding-right: 20px;
+        border-radius: 0 100px 100px 0;
+        background: alpha(@cyan, 0.85);
       }
       #workspaces button {
-        padding: 0 20px 0 15px;
+        padding: 0 20px;
         margin: 10px 5px 10px 5px;
         border-radius: 100px;
-        background: @background;
+        background: transparent;
         color: @foreground;
       }
 
@@ -216,7 +187,7 @@
         background: @background;
         border-radius: 100px;
         margin: 10px 5px;
-        padding: 0 10px;
+        padding: 10px;
       }
 
       #taskbar button.active {
@@ -227,13 +198,15 @@
         padding: 0 16px;
         border-radius: 100px;
         background: @purple;
+        font-weight: bold;
         color: @background-darker;
         margin: 10px 0;
       }
 
       #pulseaudio, #tray {
-        background: @background;
-        padding: 0 10px;
+        color: @foreground;
+        background: alpha(@background, 0.75);
+        padding: 0 20px;
         margin: 10px 0;
         border-radius: 100px;
       }
