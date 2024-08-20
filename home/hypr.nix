@@ -23,6 +23,7 @@
 	"$mod, S, exec, rofi -show drun -show-icons"
       ];
       env = [
+        "WLR_NO_HARDWARE_CURSORS,1"
         #Qt vars
         "QT_QPA_PLATFORM,wayland;xcb"
 #        "QT_QPA_PLATFORMTHEME,qt5ct"
@@ -42,13 +43,17 @@
         "WLR_DRM_DEVICES=/dev/dri/card1"
 
         "GDK_BACKEND,wayland,x11,*"
+        "XCURSOR_SIZE,16"
+        "XCURSOR_THEME,Catppuccin-Mocha-Sky 16"
+        "HYPRCURSOR_THEME,Catppuccin-Mocha-Sky 16"
       ];
 
       exec-once = [
         "hyprpaper"
         "dunst"
         "xdg-desktop-portal-hyprland"
-        "[workspace 1 silent] spotify"
+        "[workspace 2 silent] spotify"
+        "hyprctl setcursor Catppuccin-Mocha-Sky 16"
       ];
 
       general = {
@@ -62,9 +67,10 @@
         resize_on_border = true;
       };
       windowrule = [
-        "workspace 1,class:(Spotify)"
-        "workspace 2, class:(alacritty)"
-        "workspace 2, class:(Firefox)"
+        "workspace 2, monitor:HDMI-A-1"
+        "workspace 2,class:(Spotify)"
+        "workspace 1, class:(alacritty)"
+        "workspace 1, class:(Firefox)"
       ];
       master = {
         no_gaps_when_only = 1;
@@ -128,8 +134,6 @@
         # enable variable refresh rate (effective depending on hardware)
         vrr = 0;
 
-        # we do, in fact, want direct scanout
-        no_direct_scanout = false;
       };
       # touchpad gestures
       #     gestures = {

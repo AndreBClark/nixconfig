@@ -48,55 +48,93 @@
       firefox-devedition
       chromium
       obsidian
-    steam
-    discord
-    gh
-    vscode
-    nixpkgs-fmt
-    hyprpaper
-    hypridle
-    playerctl
-    pavucontrol
-    dunst
-    nautilus
-    adwaita-qt
-    rofi-wayland
-    unzip
-    ocenaudio
-    kdenlive
-    frei0r
-    highlight
-    unixtools.whereis
-    tokyonight-gtk-theme
-    dracula-icon-theme
-    adwaita-qt
-    grim
-    slurp
-    nix-your-shell
-    node2nix
+      papirus-folders
+      steam
+      discord
+      gh
+      vscode
+      nixpkgs-fmt
+      hyprpaper
+      hypridle
+      playerctl
+      pavucontrol
+      dunst
+      nautilus
+      adwaita-qt
+      rofi-wayland
+      unzip
+      ocenaudio
+      kdenlive
+      frei0r
+      highlight
+      unixtools.whereis
+      tokyonight-gtk-theme
+      dracula-icon-theme
+      adwaita-qt
+      grim
+      slurp
+      nix-your-shell
+      node2nix
+      adwaita-icon-theme
+      catppuccin-cursors.mochaSky
   ];
 
-  gtk.enable = true;
-  gtk.theme.name = "tokyonight-gtk";
-  gtk.theme.package = pkgs.tokyonight-gtk-theme;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Breeze-Dark";
+      package = pkgs.libsForQt5.breeze-gtk;
+    };
+    iconTheme = {
+      name = "Adwaita-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "lavender";
+      };
+    };
+    cursorTheme = {
+      name= "Catppuccin-Mocha-Sky";
+      package = pkgs.catppuccin-cursors.mochaSky;
+      size = 16;
+    };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+  };
 
-  qt.platformTheme.name = "gtk";
-  qt.style.name ="adwaita-dark";
-  qt.style.package = pkgs.adwaita-qt;
+#    qt = {
+#    enable = true;
+#    platformTheme.name = "gtk";
+#    style = {
+#      name = "gtk2";
+ #     package = pkgs.libsForQt5.breeze-qt5;
+ #   };
+ # };
+
+
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "Catppuccin-Mocha-Sky";
+    package = pkgs.catppuccin-cursors.mochaSky;
+    size = 16;
+  };
+
+
+    home.sessionVariables = {
+      XCURSOR_THEME = "Catppuccin-Mocha-Sky";
+      XCURSOR_SIZE = "16";
+    };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Breeze-Dark";
+      color-scheme = "prefer-dark";
+    };
+  };
 
   programs.firefox = {
     package = pkgs.firefox-devedition;
-    profiles.andrec = {
-      userChrome = ''
-        #appcontent {
-          background: transparent !important;
-        }
-      '';
-      preferences = {
-        toolkit.legacyUserProfileCustomizations.stylesheets = true;
-        gfx.webrender.all = true;
-      };
-    };
   };
 
 

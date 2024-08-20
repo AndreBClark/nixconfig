@@ -2,29 +2,22 @@
 , lib
 , inputs
 , ...
-}:
-let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in
-{
-  # allow spotify to be installed if you don't have unfree enabled already
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "spotify"
+}: {
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.default
   ];
-
-  # import the flake's module for your system
-  imports = [ inputs.spicetify-nix.homeManagerModule ];
-
-  # configure spicetify :)
-  programs.spicetify =
-    {
-      enable = true;
-      theme = spicePkgs.themes.Ziro;
+programs.spicetify =
+   let
+     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+   in
+   {
+     enable = true;
+      theme = spicePkgs.themes.ziro;
       colorScheme = "purple-dark";
       enabledCustomApps = with spicePkgs.apps; [
-        lyric-plus
+        lyricsPlus
         marketplace
-        new-releases
+        newReleases
       ];
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
@@ -35,7 +28,12 @@ in
         listPlaylistsWithSong
         skipStats
         powerBar
-        genre
+        betterGenres
       ];
     };
-}
+  }
+
+  # allow spotify to be installed if you don't have unfree enabled already
+  #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #  "spotify"
+  #];

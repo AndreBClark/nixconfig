@@ -60,12 +60,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+    };
     tokyonight.url = "github:mrjones2014/tokyonight.nix";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-colors-adapters.url = "gitlab:vfosnar/nix-colors-adapters";
 
     spicetify-nix = {
-      url = "github:the-argus/spicetify-nix?ref=aa0ee1f130914978a79411760b72ad51abba4745";
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows ="nixpkgs";
     };
   };

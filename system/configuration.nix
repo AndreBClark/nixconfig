@@ -50,8 +50,10 @@
     xdg-desktop-portal-gtk
     xdg-desktop-portal-kde
     steam
-  ];
 
+    catppuccin-cursors.mochaSky
+  ];
+  programs.dconf.enable = true;
   programs.steam.enable = true;
 
   xdg.portal = {
