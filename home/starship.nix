@@ -66,12 +66,12 @@
 "[ ](fg:#${base0C} bg:#${base02})"
 "$git_branch"
 "$git_status"
-"[ ](fg:#${base02} bg:#${base0E})"
+"[ ](fg:#${base02} bg:#${base03})"
 "$nodejs"
+"[ ](fg:#${base03})"
 "$rust"
 "$golang"
 "$php"
-"[ ](fg:#${base0E})"
       ];
 
       os = {

@@ -70,7 +70,7 @@
     };
   };
 
-  outputs = 
+  outputs =
     {
       self,
       nixpkgs,
@@ -78,24 +78,38 @@
     } @inputs:
     let
     	system = "x86_64-linux";
-	pkgs = nixpkgs.legacyPackages.${system};
+    	pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations."seadragon" = nixpkgs.lib.nixosSystem {
-	specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
-	  ./system/configuration.nix
-	  ./sddm/default.nix
+          ./system/configuration.nix
+          ./sddm/default.nix
         ];
       };
+
+      devShells.x86_64-linux.default =
+        pkgs.mkShell
+          {
+            nativeBuildInputs =
+            with pkgs;
+            with nodePackages;
+            [
+              nodejs
+              pnpm
+              node2nix
+              netlify-cli
+            ];
+          };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations."andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
       	pkgs = nixpkgs.legacyPackages.${system};
-	extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = {inherit inputs;};
         # > Our main home-manager configuration file <
         modules = [
           ./home

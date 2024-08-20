@@ -21,7 +21,11 @@ in
       enable = true;
       theme = spicePkgs.themes.Ziro;
       colorScheme = "purple-dark";
-
+      enabledCustomApps = with spicePkgs.apps; [
+        lyric-plus
+        marketplace
+        new-releases
+      ];
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
         shuffle # shuffle+ (special characters are sanitized out of ext names)
@@ -30,6 +34,8 @@ in
         goToSong
         listPlaylistsWithSong
         skipStats
+        powerBar
+        genre
       ];
     };
 }

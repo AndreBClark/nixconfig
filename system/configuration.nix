@@ -156,6 +156,9 @@ programs.hyprland = {
 #  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
 
 programs.fish.enable = true;
+programs.fish.promptInit = ''
+    ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+'';
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
     defaultUserShell = pkgs.fish;

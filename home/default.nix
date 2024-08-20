@@ -45,8 +45,9 @@
   # Add stuff for your user as you see fit:
   home.packages =
     with pkgs;  [
-    firefox-devedition
-    obsidian
+      firefox-devedition
+      chromium
+      obsidian
     steam
     discord
     gh
@@ -71,6 +72,8 @@
     adwaita-qt
     grim
     slurp
+    nix-your-shell
+    node2nix
   ];
 
   gtk.enable = true;
@@ -97,6 +100,8 @@
   };
 
 
+  programs.chromium.enable = true;
+
   programs.gh.gitCredentialHelper.enable = false;
   programs.git.extraConfig.credential = {
     "https://github.com" = {
@@ -111,6 +116,14 @@
     enable = true;
     terminal = "alacritty";
     package = pkgs.rofi-wayland;
+    extraConfig = {
+      /** Scan the current users desktop for desktop files. */
+      scan-desktop = true;
+      /** Parse user desktop files. */
+      parse-user =   true;
+      /** Parse system desktop files. */
+      parse-system= false;
+   };
   };
   programs.vscode.enable = true;
 

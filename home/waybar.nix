@@ -83,18 +83,34 @@
       };
     }];
     style = ''
-      @define-color background-darker #${base01};
-      @define-color background #${base00};
-      @define-color selection #${base02};
-      @define-color foreground #${base07};
-      @define-color comment #${base05};
-      @define-color cyan #${base0C};
-      @define-color green #${base0B};
-      @define-color orange #ffb86c;
-      @define-color pink #ff79c6;
-      @define-color purple #${base0E};
-      @define-color red #${base0F};
-      @define-color yellow #${base0C};
+      @define-color base00 #${base00};
+      @define-color base01 #${base01};
+      @define-color base02 #${base02};
+      @define-color base03 #${base03};
+      @define-color base04 #${base04};
+      @define-color base05 #${base05};
+      @define-color base06 #${base06};
+      @define-color base07 #${base07};
+      @define-color base08 #${base08};
+      @define-color base09 #${base09};
+      @define-color base0A #${base0A};
+      @define-color base0B #${base0B};
+      @define-color base0C #${base0C};
+      @define-color base0D #${base0D};
+      @define-color base0E #${base0E};
+      @define-color base0F #${base0F};
+      @define-color background-darker @base00;
+      @define-color background @base01;
+      @define-color selection @base02;
+      @define-color foreground @base07;
+      @define-color comment @base05;
+      @define-color orange @base09;
+      @define-color cyan @base0C;
+      @define-color green @base0B;
+      @define-color pink @base0F;
+      @define-color purple @base0E;
+      @define-color red @base08;
+      @define-color yellow @base0A;
 
 
       * {
@@ -175,8 +191,8 @@
       }
 
       #workspaces button.active {
-        background: @purple;
-        color: @background;
+        background: @base04;
+        color: @foreground;
       }
 
       #workspaces button.urgent {
@@ -184,7 +200,7 @@
       }
 
       #taskbar button {
-        background: @background;
+        background: @base03;
         border-radius: 100px;
         margin: 10px 5px;
         padding: 10px;
@@ -197,7 +213,7 @@
       #clock, #clock#time, #clock#date {
         padding: 0 16px;
         border-radius: 100px;
-        background: @purple;
+        background: @cyan;
         font-weight: bold;
         color: @background-darker;
         margin: 10px 0;
