@@ -48,7 +48,6 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     xdg-desktop-portal-gtk
-    xdg-desktop-portal-kde
     steam
 
     catppuccin-cursors.mochaSky
@@ -67,7 +66,6 @@
 
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-kde
     ];
   };
 

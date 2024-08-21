@@ -23,7 +23,6 @@
 	"$mod, S, exec, rofi -show drun -show-icons"
       ];
       env = [
-        "WLR_NO_HARDWARE_CURSORS,1"
         #Qt vars
         "QT_QPA_PLATFORM,wayland;xcb"
 #        "QT_QPA_PLATFORMTHEME,qt5ct"
@@ -44,8 +43,7 @@
 
         "GDK_BACKEND,wayland,x11,*"
         "XCURSOR_SIZE,16"
-        "XCURSOR_THEME,Catppuccin-Mocha-Sky 16"
-        "HYPRCURSOR_THEME,Catppuccin-Mocha-Sky 16"
+        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
       ];
 
       exec-once = [

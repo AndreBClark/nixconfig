@@ -18,6 +18,7 @@
     ./binds.nix
     ./waybar.nix
     ./spotify.nix
+    ./dconf.nix
   ];
   programs.home-manager.enable = true;
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
@@ -49,7 +50,6 @@
       chromium
       obsidian
       papirus-folders
-      steam
       discord
       gh
       vscode
@@ -77,33 +77,35 @@
       node2nix
       adwaita-icon-theme
       catppuccin-cursors.mochaSky
+      catppuccin-gtk
+      nwg-look
   ];
 
   gtk = {
     enable = true;
     theme = {
-      name = "Breeze-Dark";
-      package = pkgs.libsForQt5.breeze-gtk;
+      name = "Mocha-Sky";
+      package = pkgs.catppuccin-gtk;
     };
     iconTheme = {
-      name = "Adwaita-Dark";
+      name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
         flavor = "mocha";
         accent = "lavender";
       };
     };
-    cursorTheme = {
-      name= "Catppuccin-Mocha-Sky";
-      package = pkgs.catppuccin-cursors.mochaSky;
-      size = 16;
-    };
+#    cursorTheme = {
+#      name= "Catppuccin-Mocha-Sky";
+#      package = pkgs.catppuccin-cursors.mochaSky;
+#      size = 16;
+#    };
     gtk3 = {
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
-
-#    qt = {
-#    enable = true;
+    qt = {
+      enable = false;
+    };
 #    platformTheme.name = "gtk";
 #    style = {
 #      name = "gtk2";
@@ -128,13 +130,9 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Breeze-Dark";
       color-scheme = "prefer-dark";
-    };
-  };
 
-  programs.firefox = {
-    package = pkgs.firefox-devedition;
+    };
   };
 
 
