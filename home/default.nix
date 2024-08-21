@@ -2,6 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , pkgs
+, config
 , ...
 }: {
   # You can import other home-manager modules here
@@ -18,7 +19,6 @@
     ./binds.nix
     ./waybar.nix
     ./spotify.nix
-    ./dconf.nix
   ];
   programs.home-manager.enable = true;
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
@@ -76,8 +76,6 @@
       nix-your-shell
       node2nix
       adwaita-icon-theme
- catppuccin-cursors
- catppuccin-cursors.mochaSky
       catppuccin-gtk
       nwg-look
   ];
@@ -85,8 +83,13 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Mocha-Sky";
-      package = pkgs.catppuccin-gtk;
+      name = "Catppuccin-Mocha-Compact-Sky-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "sky" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "mocha";
+      };
     };
     iconTheme = {
       name = "Papirus-Dark";
@@ -95,39 +98,33 @@
         accent = "lavender";
       };
     };
-  cursorTheme = {
-      name= "Catppuccin-Mocha-Sky";
-      package = pkgs.catppuccin-cursors.mochaSky;
-      size = 16;
-   };
     gtk3 = {
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
-    qt = {
-      enable = true;
-    platformTheme.name = "gtk";
-    style = {
-      name = "gtk2";
-       package = pkgs.libsForQt5.breeze-qt5;
-    };
-  };
-
+ #   qt = {
+ #     enable = true;
+ #   platformTheme.name = "gtk";
+ #   style = {
+ #     name = "gtk2";
+ #      package = pkgs.libsForQt5.breeze-qt5;
+ #   };
+ # };
+# Now symlink the `~/.config/gtk-4.0/` folder declaratively:
+xdg.configFile = {
+  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+};
 
 
  home.pointerCursor = {
 
    gtk.enable = true;
-   name = "Catppuccin-Mocha-Sky";
+   name = "catppuccin-mocha-sky";
    package = pkgs.catppuccin-cursors.mochaSky;
-   size = 16;
+   size = 24;
  };
-
-
-#    home.sessionVariables = {
-#      XCURSOR_THEME = "Catppuccin-Mocha-Sky";
-#      XCURSOR_SIZE = "16";
-#    };
 
 
 

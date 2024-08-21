@@ -42,7 +42,8 @@
         "WLR_DRM_DEVICES=/dev/dri/card1"
 
         "GDK_BACKEND,wayland,x11,*"
-        "XCURSOR_SIZE,16"
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_THEME,catppuccin-mocha-sky-cursors"
 #        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
       ];
 
@@ -51,7 +52,7 @@
         "dunst"
         "xdg-desktop-portal-hyprland"
         "[workspace 1 silent] spotify"
- #       "hyprctl setcursor Catppuccin-Mocha-Sky 16"
+        "hyprctl setcursor catppuccin-mocha-sky-cursors 24"
       ];
 
       general = {
