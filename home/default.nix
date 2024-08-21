@@ -76,7 +76,8 @@
       nix-your-shell
       node2nix
       adwaita-icon-theme
-      catppuccin-cursors.mochaSky
+ catppuccin-cursors
+ catppuccin-cursors.mochaSky
       catppuccin-gtk
       nwg-look
   ];
@@ -94,46 +95,40 @@
         accent = "lavender";
       };
     };
-#    cursorTheme = {
-#      name= "Catppuccin-Mocha-Sky";
-#      package = pkgs.catppuccin-cursors.mochaSky;
-#      size = 16;
-#    };
+  cursorTheme = {
+      name= "Catppuccin-Mocha-Sky";
+      package = pkgs.catppuccin-cursors.mochaSky;
+      size = 16;
+   };
     gtk3 = {
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
     qt = {
-      enable = false;
-    };
-#    platformTheme.name = "gtk";
-#    style = {
-#      name = "gtk2";
- #     package = pkgs.libsForQt5.breeze-qt5;
- #   };
- # };
-
-
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    name = "Catppuccin-Mocha-Sky";
-    package = pkgs.catppuccin-cursors.mochaSky;
-    size = 16;
-  };
-
-
-    home.sessionVariables = {
-      XCURSOR_THEME = "Catppuccin-Mocha-Sky";
-      XCURSOR_SIZE = "16";
-    };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-
+      enable = true;
+    platformTheme.name = "gtk";
+    style = {
+      name = "gtk2";
+       package = pkgs.libsForQt5.breeze-qt5;
     };
   };
+
+
+
+ home.pointerCursor = {
+
+   gtk.enable = true;
+   name = "Catppuccin-Mocha-Sky";
+   package = pkgs.catppuccin-cursors.mochaSky;
+   size = 16;
+ };
+
+
+#    home.sessionVariables = {
+#      XCURSOR_THEME = "Catppuccin-Mocha-Sky";
+#      XCURSOR_SIZE = "16";
+#    };
+
 
 
   programs.chromium.enable = true;

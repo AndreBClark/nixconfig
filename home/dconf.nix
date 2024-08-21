@@ -5,22 +5,6 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "com/github/tchx84/Flatseal" = {
-      selected-app-id = "org.kde.xwaylandvideobridge";
-      window-height = 768;
-      window-maximized = false;
-      window-width = 1024;
-    };
-
-    "com/usebottles/bottles" = {
-      window-height = 640;
-      window-width = 880;
-    };
-
-    "org/gnome/desktop/a11y/applications" = {
-      screen-reader-enabled = false;
-    };
-
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-size = 16;

@@ -43,15 +43,15 @@
 
         "GDK_BACKEND,wayland,x11,*"
         "XCURSOR_SIZE,16"
-        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
+#        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
       ];
 
       exec-once = [
         "hyprpaper"
         "dunst"
         "xdg-desktop-portal-hyprland"
-        "[workspace 2 silent] spotify"
-        "hyprctl setcursor Catppuccin-Mocha-Sky 16"
+        "[workspace 1 silent] spotify"
+ #       "hyprctl setcursor Catppuccin-Mocha-Sky 16"
       ];
 
       general = {
@@ -65,10 +65,9 @@
         resize_on_border = true;
       };
       windowrule = [
-        "workspace 2, monitor:HDMI-A-1"
-        "workspace 2,class:(Spotify)"
-        "workspace 1, class:(alacritty)"
-        "workspace 1, class:(Firefox)"
+        "workspace 1,class:(Spotify)"
+        "workspace 2, class:(alacritty)"
+        "workspace 2, class:(Firefox)"
       ];
       master = {
         no_gaps_when_only = 1;
