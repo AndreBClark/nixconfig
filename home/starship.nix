@@ -44,6 +44,7 @@
 
   programs.alacritty = {
     enable = true;
+    catppuccin.enable = false;
     settings = {
       window.opacity = 0.5;
       colors = {

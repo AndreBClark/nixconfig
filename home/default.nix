@@ -9,6 +9,7 @@
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.catppuccin.homeManagerModules.catppuccin
     inputs.tokyonight.homeManagerModules.default
     inputs.nix-colors.homeManagerModules.default
     #inputs.nix-colors-adapters.homeManagerModules.default
@@ -26,6 +27,17 @@
     enable= true;
     style = "night";
   };
+  catppuccin = {
+    enable = true;
+    accent = "sky";
+    flavor = "mocha";
+    pointerCursor = {
+      enable = true;
+      accent = "sky";
+      flavor = "mocha";
+    };
+  };
+
   programs.git.enable = true;
 
 
@@ -46,8 +58,6 @@
   # Add stuff for your user as you see fit:
   home.packages =
     with pkgs;  [
-      firefox-devedition
-      chromium
       obsidian
       papirus-folders
       discord
@@ -64,6 +74,7 @@
       rofi-wayland
       unzip
       ocenaudio
+
       kdenlive
       frei0r
       highlight
@@ -75,22 +86,24 @@
       slurp
       nix-your-shell
       node2nix
-      adwaita-icon-theme
-      catppuccin-gtk
-      nwg-look
+      (catppuccin-kvantum.override {
+      accent = "Sky";
+      variant = "Mocha";
+      })
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+    protonup-qt
   ];
+
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Catppuccin-Mocha-Compact-Sky-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "sky" ];
-        size = "compact";
-        tweaks = [ "rimless" "black" ];
-        variant = "mocha";
-      };
-    };
+    catppuccin = {
+      enable = true;
+      accent = "sky";
+      flavor = "mocha";
+  };
+
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
@@ -102,14 +115,20 @@
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
- #   qt = {
- #     enable = true;
- #   platformTheme.name = "gtk";
- #   style = {
- #     name = "gtk2";
- #      package = pkgs.libsForQt5.breeze-qt5;
- #   };
- # };
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
+  };
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+    General.theme = "Catppuccin-Mocha-Sky";
+  };
+   dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
 xdg.configFile = {
   "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
@@ -118,18 +137,39 @@ xdg.configFile = {
 };
 
 
- home.pointerCursor = {
+# home.pointerCursor = {
 
-   gtk.enable = true;
-   name = "catppuccin-mocha-sky";
-   package = pkgs.catppuccin-cursors.mochaSky;
-   size = 24;
- };
+#   gtk.enable = true;
+#   name = "Catppuccin-Mocha-Sky-Cursors";
+# package = pkgs.catppuccin-cursors.mochaSky;
+#   size = 24;
+# };
 
+programs.firefox = {
+  package = pkgs.firefox-devedition;
+  enable = true;
+};
 
+  programs.vivaldi = {
+    enable = true;
+    commandLineArgs = [
+#     "--disable-gpu-driver-bug-workarounds"
+#     "--enable-features=WaylandWindowDecorations"
+#     "--enable-oop-rasterization"
+#     "--enable-gpu-compositing"
+     "--enable-accelerated-2d-canvas"
+#      "--enable-unsafe-webgpu"
+#     "--use-gl=egl"
+#      "--enable-gpu-rasterization"
+      "--enable-zero-copy"
+      "--ignore-gpu-blocklist"
+      "--ozone-platform=wayland"
+      "--ozone-platform-hint=auto"
+#      "--use-vulkan=swiftshader"
+"--enable-features=Vulkan"
 
-  programs.chromium.enable = true;
-
+    ];
+  };
   programs.gh.gitCredentialHelper.enable = false;
   programs.git.extraConfig.credential = {
     "https://github.com" = {
@@ -143,6 +183,7 @@ xdg.configFile = {
   programs.rofi = {
     enable = true;
     terminal = "alacritty";
+    tokyonight.enable = false;
     package = pkgs.rofi-wayland;
     extraConfig = {
       /** Scan the current users desktop for desktop files. */

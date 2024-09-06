@@ -12,39 +12,42 @@
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
       "$file-explorer" = "nautilus";
-      "$browser" = "firefox";
+      "$browser" = "vivaldi";
       monitor = [
-        "Unknown-1,disable"
-        "DP-2,2560x1440@74.92,0x0,1"
-        "HDMI-A-1,1920x1080@60,-1920x640,1"
+#        "Unknown-1,disable"
+        "DP-1,2560x1440@59.95,0x0,1"
+#        "HDMI-A-1,1920x1080@60,-1920x640,1"
         ",preferred,auto,1"
       ];
       bind = [
-	"$mod, S, exec, rofi -show drun -show-icons"
+        "$mod, S, exec, rofi -show drun -show-icons"
+        "ALT, TAB, exec, rofi -show window -show-icons"
       ];
       env = [
         #Qt vars
-        "QT_QPA_PLATFORM,wayland;xcb"
+ #       "QT_QPA_PLATFORM,wayland;xcb"
 #        "QT_QPA_PLATFORMTHEME,qt5ct"
 #        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
         #XDG vars
         "XDG_SESSION_TYPE,wayland"
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_DESKTOP,Hyprland"
+#        "XDG_CURRENT_DESKTOP,Hyprland"
+#        "XDG_SESSION_DESKTOP,Hyprland"
         #NVIDIA vars
-        "GBM_BACKEND,nvidia-drm"
         "LIBVA_DRIVER_NAME,nvidia"
-#        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-#        "ELECTRON_OZONE_PLATFORM_HINT,auto"
-
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "NVD_BACKEND,direct"
+#
         #wayland?
         "WLR_DRM_DEVICES=/dev/dri/card1"
-
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "NIXOS_OZONE_WL,1"
         "GDK_BACKEND,wayland,x11,*"
-        "XCURSOR_SIZE,24"
+        "XCURSOR_SIZE,36"
+        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
         "HYPRCURSOR_THEME,catppuccin-mocha-sky-cursors"
-#        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
       ];
 
       exec-once = [
@@ -52,12 +55,12 @@
         "dunst"
         "xdg-desktop-portal-hyprland"
         "[workspace 1 silent] spotify"
-        "hyprctl setcursor catppuccin-mocha-sky-cursors 24"
+        "hyprctl setcursor catppuccin-mocha-sky-cursors 36"
       ];
 
       general = {
-        gaps_in = 5;
-        gaps_out = 0;
+        gaps_in = 0;
+        gaps_out = 2;
         border_size = 4;
         "col.active_border" = "rgba(${base0E}FF)";
         "col.inactive_border" = "rgba(${base08}33)";
@@ -65,6 +68,8 @@
         allow_tearing = true;
         resize_on_border = true;
       };
+      render.explicit_sync = 0;
+      cursor.no_hardware_cursors = true;
       windowrule = [
         "workspace 1,class:(Spotify)"
         "workspace 2, class:(alacritty)"
@@ -87,7 +92,7 @@
           passes = 2;
           size = 2;
 
-          popups = true;
+          popups = false;
         };
 
         drop_shadow = false;
@@ -130,7 +135,7 @@
         animate_mouse_windowdragging = false;
 
         # enable variable refresh rate (effective depending on hardware)
-        vrr = 0;
+        vrr = 1;
 
       };
       # touchpad gestures

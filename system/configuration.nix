@@ -49,11 +49,15 @@
     libsForQt5.qt5.qtgraphicaleffects
     xdg-desktop-portal-gtk
     steam
-
+    vivaldi
     catppuccin-cursors.mochaSky
   ];
   programs.dconf.enable = true;
-  programs.steam.enable = true;
+
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = [pkgs.proton-ge-bin];
+  };
 
   xdg.portal = {
     enable = true;
@@ -137,7 +141,7 @@ programs.hyprland = {
   enable = true;
   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 };
-
+environment.sessionVariables.NIXOS_OZONE_WL = "1";
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
