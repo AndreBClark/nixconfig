@@ -92,7 +92,7 @@
       })
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
-    protonup-qt
+#    protonup-qt
   ];
 
 
@@ -145,10 +145,10 @@ xdg.configFile = {
 #   size = 24;
 # };
 
-programs.firefox = {
-  package = pkgs.firefox-devedition;
-  enable = true;
-};
+#programs.firefox = {
+#  package = pkgs.firefox-devedition;
+#  enable = true;
+#};
 
   programs.vivaldi = {
     enable = true;
@@ -163,7 +163,7 @@ programs.firefox = {
 #      "--enable-gpu-rasterization"
       "--enable-zero-copy"
       "--ignore-gpu-blocklist"
-      "--ozone-platform=wayland"
+      "--ozone-platform=auto"
       "--ozone-platform-hint=auto"
 #      "--use-vulkan=swiftshader"
 "--enable-features=Vulkan"

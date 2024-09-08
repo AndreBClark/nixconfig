@@ -15,8 +15,8 @@
       "$browser" = "vivaldi";
       monitor = [
 #        "Unknown-1,disable"
-        "DP-1,2560x1440@59.95,0x0,1"
-#        "HDMI-A-1,1920x1080@60,-1920x640,1"
+        "DP-1,2560x1440@60.00-vsync,0x0,1"
+        "HDMI-A-1,1920x1080@60.00,auto-left,1"
         ",preferred,auto,1"
       ];
       bind = [
@@ -68,7 +68,7 @@
         allow_tearing = true;
         resize_on_border = true;
       };
-      render.explicit_sync = 0;
+      render.explicit_sync = 1;
       cursor.no_hardware_cursors = true;
       windowrule = [
         "workspace 1,class:(Spotify)"

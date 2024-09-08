@@ -38,26 +38,29 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  plasma-browser-integration
+  konsole
+  oxygen
+];
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
     home-manager
-    fish
     sddm-sugar-dark
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     xdg-desktop-portal-gtk
-    steam
-    vivaldi
-    catppuccin-cursors.mochaSky
   ];
   programs.dconf.enable = true;
 
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [pkgs.proton-ge-bin];
-  };
+#  programs.steam = {
+ #   enable = true;
+#    extraCompatPackages = [pkgs.proton-ge-bin];
+ # };
 
   xdg.portal = {
     enable = true;
@@ -75,7 +78,6 @@
 
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -141,7 +143,7 @@ programs.hyprland = {
   enable = true;
   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 };
-environment.sessionVariables.NIXOS_OZONE_WL = "1";
+# environment.sessionVariables.NIXOS_OZONE_WL = "1";
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -151,7 +153,7 @@ environment.sessionVariables.NIXOS_OZONE_WL = "1";
     # Enable modesetting for Wayland compositors (hyprland)
     modesetting.enable = true;
     # Use the open source version of the kernel module (for driver 515.43.04+)
-    #   open = true;
+    open = false;
     # Enable the Nvidia settings menu
     nvidiaSettings = true;
     # Select the appropriate driver version for your specific GPU
