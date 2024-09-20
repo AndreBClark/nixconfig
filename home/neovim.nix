@@ -28,13 +28,16 @@
       vim-css-color.enable = true;
       lint.enable = true;
     };
+    colorscheme = "tokyonight-night";
     colorschemes.tokyonight = {
       enable = true;
       settings = {
-        style = "storm";
+        style = "night";
         transparent = true;
         dim_inactive = true;
         lualine_bold = true;
+        lightline = true;
+        bufferkube = true;
       };
     };
 

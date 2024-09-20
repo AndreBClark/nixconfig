@@ -38,22 +38,17 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  plasma-browser-integration
-  konsole
-  oxygen
-];
+
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
     home-manager
     sddm-sugar-dark
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
-    xdg-desktop-portal-gtk
+#    libsForQt5.qt5.qtquickcontrols2
+#    libsForQt5.qt5.qtgraphicaleffects
+#    xdg-desktop-portal-gtk
   ];
   programs.dconf.enable = true;
 
@@ -138,6 +133,7 @@
     videoDrivers = [ "nvidia" ];
   };
 
+  services.desktopManager.plasma6.enable = true;
 
 programs.hyprland = {
   enable = true;
@@ -194,7 +190,7 @@ programs.fish.promptInit = ''
       "andrec" = import ../home;
     };
   };
-  # This setups a SSH server. Very important if you're setting up a headless system.
+# This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
   services.openssh = {
     enable = true;

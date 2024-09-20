@@ -77,6 +77,7 @@
     {
       self,
       nixpkgs,
+      home-manager,
       ...
     } @inputs:
     let
@@ -111,7 +112,7 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations."andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
-      	pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {inherit inputs;};
         # > Our main home-manager configuration file <
         modules = [

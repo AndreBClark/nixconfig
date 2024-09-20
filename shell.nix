@@ -2,9 +2,14 @@
 with pkgs;
 with nodePackages;
 mkShell {
+  shellHook = ''
+    export PATH="$PWD/node_modules/.bin/:$PATH"
+    alias run='pnpm run'
+  '';
   buildInputs = with pkgs; with nodePackages; [
     nodejs
     pnpm
-    netlify-cli
+    node-gyp-build
+    node-gyp
   ];
 }

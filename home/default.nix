@@ -20,13 +20,15 @@
     ./binds.nix
     ./waybar.nix
     ./spotify.nix
+    ./browsers.nix
   ];
-  programs.home-manager.enable = true;
+
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
   tokyonight = {
     enable= true;
     style = "night";
   };
+
   catppuccin = {
     enable = true;
     accent = "sky";
@@ -41,6 +43,7 @@
   programs.git.enable = true;
 
 
+  programs.kitty.catppuccin.enable=false;
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -50,6 +53,7 @@
       allowUnfreePredicate = _: true;
     };
   };
+
   home = {
     username = "andrec";
     homeDirectory = "/home/andrec";
@@ -58,6 +62,8 @@
   # Add stuff for your user as you see fit:
   home.packages =
     with pkgs;  [
+      google-fonts
+      (nerdfonts.override { fonts = ["JetBrainsMono"];})
       obsidian
       papirus-folders
       discord
@@ -74,7 +80,6 @@
       rofi-wayland
       unzip
       ocenaudio
-
       kdenlive
       frei0r
       highlight
@@ -92,18 +97,13 @@
       })
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
+    libsForQt5.qt5.qtwayland
 #    protonup-qt
   ];
-
+  fonts.fontconfig.enable = true;
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      accent = "sky";
-      flavor = "mocha";
-  };
-
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
@@ -130,46 +130,14 @@
     };
   };
 # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
-xdg.configFile = {
-  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-};
-
-
-# home.pointerCursor = {
-
-#   gtk.enable = true;
-#   name = "Catppuccin-Mocha-Sky-Cursors";
-# package = pkgs.catppuccin-cursors.mochaSky;
-#   size = 24;
-# };
-
-#programs.firefox = {
-#  package = pkgs.firefox-devedition;
-#  enable = true;
+#xdg.configFile = {
+#  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+#  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+#  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
 #};
 
-  programs.vivaldi = {
-    enable = true;
-    commandLineArgs = [
-#     "--disable-gpu-driver-bug-workarounds"
-#     "--enable-features=WaylandWindowDecorations"
-#     "--enable-oop-rasterization"
-#     "--enable-gpu-compositing"
-     "--enable-accelerated-2d-canvas"
-#      "--enable-unsafe-webgpu"
-#     "--use-gl=egl"
-#      "--enable-gpu-rasterization"
-      "--enable-zero-copy"
-      "--ignore-gpu-blocklist"
-      "--ozone-platform=auto"
-      "--ozone-platform-hint=auto"
-#      "--use-vulkan=swiftshader"
-"--enable-features=Vulkan"
 
-    ];
-  };
+
   programs.gh.gitCredentialHelper.enable = false;
   programs.git.extraConfig.credential = {
     "https://github.com" = {
@@ -196,6 +164,7 @@ xdg.configFile = {
   };
   programs.vscode.enable = true;
 
+  programs.home-manager.enable = true;
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 

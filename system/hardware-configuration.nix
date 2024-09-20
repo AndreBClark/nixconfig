@@ -37,7 +37,12 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-
+# fileSystems."/nix" = {
+#     device = "/dev/disk/by-label/nix";
+#     fsType = "ext4";
+#     neededForBoot = true;
+#     options = [ "noatime" ];
+#   };
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/e9dc938d-5ecb-40c1-bd79-736362334e57";
       fsType = "btrfs";
