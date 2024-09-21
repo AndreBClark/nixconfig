@@ -27,9 +27,9 @@
     enable = true;
     enableFishIntegration = true;
   };
-
   programs.kitty = {
     enable = true;
+    catppuccin.enable=false;
     settings = {
       background = "#${config.colorScheme.palette.base03}";
     };

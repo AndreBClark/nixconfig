@@ -1,7 +1,7 @@
 {pkgs, ...}: {
 
 programs.firefox = {
-  package = pkgs.firefox-devedition-unwrapped;
+  package = pkgs.firefox-devedition;
   enable = true;
 };
   programs.chromium.enable =true;

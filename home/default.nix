@@ -2,9 +2,9 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , pkgs
-, config
 , ...
 }: {
+  programs.git.enable = true;
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -12,7 +12,8 @@
     inputs.catppuccin.homeManagerModules.catppuccin
     inputs.tokyonight.homeManagerModules.default
     inputs.nix-colors.homeManagerModules.default
-    #inputs.nix-colors-adapters.homeManagerModules.default
+    ./theme.nix
+    ./gtk.nix
     ./services.nix
     ./starship.nix
     ./neovim.nix
@@ -23,27 +24,8 @@
     ./browsers.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
-  tokyonight = {
-    enable= true;
-    style = "night";
-  };
-
-  catppuccin = {
-    enable = true;
-    accent = "sky";
-    flavor = "mocha";
-    pointerCursor = {
-      enable = true;
-      accent = "sky";
-      flavor = "mocha";
-    };
-  };
-
-  programs.git.enable = true;
 
 
-  programs.kitty.catppuccin.enable=false;
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -63,9 +45,8 @@
   home.packages =
     with pkgs;  [
       google-fonts
-      (nerdfonts.override { fonts = ["JetBrainsMono"];})
+      (nerdfonts.override { fonts = ["JetBrainsMono" "FiraCode"];})
       obsidian
-      papirus-folders
       discord
       gh
       vscode
@@ -84,17 +65,10 @@
       frei0r
       highlight
       unixtools.whereis
-      tokyonight-gtk-theme
-      dracula-icon-theme
-      adwaita-qt
       grim
       slurp
       nix-your-shell
       node2nix
-      (catppuccin-kvantum.override {
-      accent = "Sky";
-      variant = "Mocha";
-      })
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     libsForQt5.qt5.qtwayland
@@ -102,39 +76,6 @@
   ];
   fonts.fontconfig.enable = true;
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "lavender";
-      };
-    };
-    gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true;
-    };
-  };
-  qt = {
-    enable = true;
-    platformTheme.name = "kvantum";
-    style.name = "kvantum";
-  };
-
-  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-    General.theme = "Catppuccin-Mocha-Sky";
-  };
-   dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-# Now symlink the `~/.config/gtk-4.0/` folder declaratively:
-#xdg.configFile = {
-#  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-#  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-#  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-#};
 
 
 
