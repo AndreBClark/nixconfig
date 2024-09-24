@@ -74,7 +74,10 @@
     libsForQt5.qt5.qtwayland
 #    protonup-qt
   ];
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts.monospace = ["JetBrainsMono"];
+  };
 
 
 

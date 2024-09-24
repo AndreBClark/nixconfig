@@ -91,7 +91,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./system/configuration.nix
-          ./sddm/default.nix
+          ./sddm
         ];
       };
 
@@ -116,6 +116,7 @@
         extraSpecialArgs = {inherit inputs;};
         # > Our main home-manager configuration file <
         modules = [
+          ./sddm
           ./home
         ];
       };

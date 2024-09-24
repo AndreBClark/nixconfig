@@ -1,9 +1,11 @@
-{ config, pkgs, lib, ... }:
-
+{
+  config
+  , ...
+}:
 {
   programs.waybar = with config.colorScheme.palette; {
-    enable = true;
-    systemd.enable = true;
+    enable = false;
+    systemd.enable = false;
     settings = [{
       height = 48;
       layer = "top";

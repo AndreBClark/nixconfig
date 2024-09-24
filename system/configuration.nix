@@ -1,8 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 { inputs
-, lib
-, config
 , pkgs
 , ...
 }: {
@@ -21,7 +19,9 @@
   };
   # You can import other NixOS modules here
   imports = [
+    ./locale.nix
     # If you want to use modules from other flakes (such as nixos-hardware):
+    ./hardware-configuration.nix
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
@@ -32,12 +32,9 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
 
   ];
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
+
 
 
 
@@ -45,17 +42,13 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-    sddm-sugar-dark
-#    libsForQt5.qt5.qtquickcontrols2
-#    libsForQt5.qt5.qtgraphicaleffects
-#    xdg-desktop-portal-gtk
   ];
   programs.dconf.enable = true;
 
-#  programs.steam = {
- #   enable = true;
-#    extraCompatPackages = [pkgs.proton-ge-bin];
- # };
+  programs.steam = {
+   enable = true;
+    extraCompatPackages = [pkgs.proton-ge-bin];
+  };
 
   xdg.portal = {
     enable = true;
@@ -72,89 +65,31 @@
   };
 
 
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
-
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; }) ];
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "seadragon"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    # NVIDIA drivers are unfree.
-    videoDrivers = [ "nvidia" ];
-  };
-
-  services.desktopManager.plasma6.enable = true;
 
 programs.hyprland = {
   enable = true;
   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 };
+  services.desktopManager.plasma6.enable = true;
 # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  hardware.nvidia = {
-    # Enable modesetting for Wayland compositors (hyprland)
-    modesetting.enable = true;
-    # Use the open source version of the kernel module (for driver 515.43.04+)
-    open = false;
-    # Enable the Nvidia settings menu
-    nvidiaSettings = true;
-    # Select the appropriate driver version for your specific GPU
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+
 #  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
 
 programs.fish.enable = true;
