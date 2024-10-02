@@ -81,8 +81,8 @@
       ...
     } @inputs:
     let
-    	system = "x86_64-linux";
-    	pkgs = nixpkgs.legacyPackages.${system};
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       # NixOS configuration entrypoint
@@ -95,19 +95,29 @@
         ];
       };
 
-      devShells.x86_64-linux.default =
-        pkgs.mkShell
-          {
-            nativeBuildInputs =
+      devShells.${system}.default =
+        pkgs.mkShell {
+          shellHook = ''
+            export PATH="$PWD/node_modules/.bin/:$PATH"
+            alias run='pnpm run'
+          '';
+          nativeBuildInputs =
             with pkgs;
             with nodePackages;
-            [
-              nodejs
-              pnpm
-              node2nix
-              netlify-cli
-            ];
-          };
+          [
+            pkg-config
+            python3
+            nodejs
+            node-gyp
+            node-gyp-build
+          ];
+          buildInputs = with pkgs; with nodePackages; [
+            pnpm
+            vips
+            typescript
+            typescript-language-server
+          ];
+        };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
@@ -116,7 +126,7 @@
         extraSpecialArgs = {inherit inputs;};
         # > Our main home-manager configuration file <
         modules = [
-          ./sddm
+          # ./sddm
           ./home
         ];
       };
