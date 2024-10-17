@@ -4,7 +4,16 @@
 , pkgs
 , ...
 }: {
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "AndreBClark";
+    userEmail = "andre@cosmicdivision.dev";
+    extraConfig = {
+      credential.helper = "${
+        pkgs.git.override { withLibsecret = true; }
+      }/bin/git-credential-libsecret";
+    };
+  };
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
