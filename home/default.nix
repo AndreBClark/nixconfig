@@ -1,122 +1,67 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs
-, pkgs
-, ...
-}: {
-  programs.git = {
-    enable = true;
-    userName = "AndreBClark";
-    userEmail = "andre@cosmicdivision.dev";
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
+{
+  inputs,
+  pkgs,
+  lib,
+  username,
+  ...
+}:
+{
+  programs.git.enable = lib.mkDefault true;
+
+  home = {
+    username = username;
+    homeDirectory = "/home/${username}";
+  };
+
+  nixpkgs = {
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = lib.mkDefault true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: lib.mkDefault true;
     };
   };
-  # You can import other home-manager modules here
-  imports = [
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    inputs.nixvim.homeManagerModules.nixvim
-    inputs.catppuccin.homeManagerModules.catppuccin
-    inputs.tokyonight.homeManagerModules.default
-    inputs.nix-colors.homeManagerModules.default
+  imports = with inputs; [
+    ./git.nix
+    nixvim.homeManagerModules.nixvim
+    catppuccin.homeManagerModules.catppuccin
+    tokyonight.homeManagerModules.default
+    nix-colors.homeManagerModules.default
     ./theme.nix
     ./gtk.nix
     ./services.nix
     ./starship.nix
     ./neovim.nix
     ./hypr.nix
-    ./binds.nix
-    ./waybar.nix
     ./spotify.nix
     ./browsers.nix
+    ./qt.nix
+    ./fonts.nix
   ];
 
-
-
-  nixpkgs = {
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
-  };
-
-  home = {
-    username = "andrec";
-    homeDirectory = "/home/andrec";
-  };
 
   # Add stuff for your user as you see fit:
-  home.packages =
-    with pkgs;  [
-      google-fonts
-      (nerdfonts.override { fonts = ["JetBrainsMono" "FiraCode"];})
-      obsidian
-      discord
-      gh
-      vscode
-      nixpkgs-fmt
-      hyprpaper
-      hypridle
-      playerctl
-      pavucontrol
-      dunst
-      nautilus
-      adwaita-qt
-      rofi-wayland
-      unzip
-      ocenaudio
-      kdenlive
-      frei0r
-      highlight
-      unixtools.whereis
-      grim
-      slurp
-      nix-your-shell
-      node2nix
-    libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    libsForQt5.qt5.qtwayland
-#    protonup-qt
+  home.packages = with pkgs; [
+    obsidian
+    discord
+    vscode
+    nixpkgs-fmt
+    nixfmt-rfc-style
+    playerctl
+    pavucontrol
+    dunst
+    nautilus
+    unzip
+    ocenaudio
+    kdenlive
+    frei0r
   ];
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts.monospace = ["JetBrainsMono"];
-  };
 
-
-
-
-  programs.gh.gitCredentialHelper.enable = false;
-  programs.git.extraConfig.credential = {
-    "https://github.com" = {
-      helper = "!gh auth git-credential";
-    };
-    "https://gist.github.com" = {
-      helper = "!gh auth git-credential";
-    };
-  };
-
-  programs.rofi = {
-    enable = true;
-    terminal = "alacritty";
-    tokyonight.enable = false;
-    package = pkgs.rofi-wayland;
-    extraConfig = {
-      /** Scan the current users desktop for desktop files. */
-      scan-desktop = true;
-      /** Parse user desktop files. */
-      parse-user =   true;
-      /** Parse system desktop files. */
-      parse-system= false;
-   };
-  };
   programs.vscode.enable = true;
-
+  programs.direnv.enable = true;
   programs.home-manager.enable = true;
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

@@ -1,11 +1,20 @@
 {
-  inputs
-, pkgs
-, config
-, ...
+  inputs,
+  pkgs,
+  config,
+  ...
 }:
-
 {
+  imports = [
+    ./waybar.nix
+    ./binds.nix
+    ./rofi.nix
+  ];
+  home.packages = with pkgs; [
+    hypridle
+    hyprpaper
+  ];
+
   wayland.windowManager.hyprland = with config.colorScheme.palette; {
     enable = true;
     settings = {
@@ -14,7 +23,7 @@
       "$file-explorer" = "nautilus";
       "$browser" = "vivaldi";
       monitor = [
-#        "Unknown-1,disable"
+        #        "Unknown-1,disable"
         "DP-1,2560x1440@60.00-vsync,0x0,1"
         "HDMI-A-1,1920x1080@60.00,auto-left,1"
         ",preferred,auto,1"
@@ -25,21 +34,21 @@
       ];
       env = [
         #Qt vars
- #       "QT_QPA_PLATFORM,wayland;xcb"
-#        "QT_QPA_PLATFORMTHEME,qt5ct"
-#        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        #       "QT_QPA_PLATFORM,wayland;xcb"
+        #        "QT_QPA_PLATFORMTHEME,qt5ct"
+        #        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
         #XDG vars
         "XDG_SESSION_TYPE,wayland"
-#        "XDG_CURRENT_DESKTOP,Hyprland"
-#        "XDG_SESSION_DESKTOP,Hyprland"
+        #        "XDG_CURRENT_DESKTOP,Hyprland"
+        #        "XDG_SESSION_DESKTOP,Hyprland"
         #NVIDIA vars
         "LIBVA_DRIVER_NAME,nvidia"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
         "NVD_BACKEND,direct"
-#
+        #
         #wayland?
         "WLR_DRM_DEVICES=/dev/dri/card1"
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
@@ -84,7 +93,7 @@
           enabled = true;
           brightness = 0.8;
           contrast = 0.5;
-          noise = 0.06;
+          noise = 6.0e-2;
 
           vibrancy = 0.2;
           vibrancy_darkness = 0.5;

@@ -22,7 +22,7 @@
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
     General.theme = "Catppuccin-Mocha-Sky";
   };
-   dconf.settings = {
+  dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };

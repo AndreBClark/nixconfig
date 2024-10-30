@@ -1,89 +1,95 @@
 {
-  config
-  , ...
+  config,
+  ...
 }:
 {
   programs.waybar = with config.colorScheme.palette; {
-    enable = false;
-    systemd.enable = false;
-    settings = [{
-      height = 48;
-      layer = "top";
-      position = "bottom";
-      spacing = 8;
-      modules-left = [
-        "custom/os_button"
-        "hyprland/workspaces"
-        "hyprland/window"
-      ];
-      modules-center = [
-        "wlr/taskbar"
-      ];
+    enable = true;
+    systemd.enable = true;
+    settings = [
+      {
+        height = 48;
+        layer = "top";
+        position = "bottom";
+        spacing = 8;
+        modules-left = [
+          "custom/os_button"
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
+        modules-center = [
+          "wlr/taskbar"
+        ];
 
-      modules-right = [
-        "tray"
-        "custom/spotify"
-        "pulseaudio"
-        "clock#date"
-        "clock#time"
-      ];
-      "wlr/taskbar" = {
-        on-click = "activate";
-        on-click-middle = "close";
-      };
-      "custom/os_button" = {
-        format = " ";
-	      on-click = "rofi -show drun -show-icons";
-	      tooltip = false;
-      };
-      "custom/spotify" = {
-        exec = "nix-shell ~/.config/waybar/scripts/mediaplayer.py --player spotify";
-        format = " {}";
-        return-type = "json";
-        on-click = "playerctl play-pause";
-        on-double-click-right = "playerctl next";
-        on-scroll-down = "playerctl previous";
-      };
-
-      "hyprland/workspaces" = {
-        on-click = "activate";
-        on-scroll-up = "hyprctl dispatch workspace e-1";
-        on-scroll-down = "hyprctl dispatch workspace e+1";
-        spacing = 4;
-      };
-      "hyprland/window" = {
-        "max-length" = 120;
-      };
-
-      "clock#time" = {
-        interval = 1;
-        format = "{:%H:%M}";
-        #        tooltip = false;
-      };
-
-      "clock#date" = {
-        interval = 10;
-        format = "{:%b %d}";
-        tooltip-format = "{:%e %B %Y}";
-      };
-      tray = {
-        spacing = 4;
-      };
-      pulseaudio = {
-        format = "{volume}%  {icon}  {format_source}";
-        format-bluetooth = "{volume}% {icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
-        format-icons = {
-          car = "";
-          default = [ "" "" "" ];
-          headphones = "";
+        modules-right = [
+          "tray"
+          "custom/spotify"
+          "pulseaudio"
+          "clock#date"
+          "clock#time"
+        ];
+        "wlr/taskbar" = {
+          on-click = "activate";
+          on-click-middle = "close";
         };
-        format-muted = " {format_source}";
-        format-source = " {volume}% ";
-        format-source-muted = "";
-        on-click = "pavucontrol";
-      };
-    }];
+        "custom/os_button" = {
+          format = " ";
+          on-click = "rofi -show drun -show-icons";
+          tooltip = false;
+        };
+        "custom/spotify" = {
+          exec = "nix-shell ~/.config/waybar/scripts/mediaplayer.py --player spotify";
+          format = " {}";
+          return-type = "json";
+          on-click = "playerctl play-pause";
+          on-double-click-right = "playerctl next";
+          on-scroll-down = "playerctl previous";
+        };
+
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          on-scroll-up = "hyprctl dispatch workspace e-1";
+          on-scroll-down = "hyprctl dispatch workspace e+1";
+          spacing = 4;
+        };
+        "hyprland/window" = {
+          "max-length" = 120;
+        };
+
+        "clock#time" = {
+          interval = 1;
+          format = "{:%H:%M}";
+          #        tooltip = false;
+        };
+
+        "clock#date" = {
+          interval = 10;
+          format = "{:%b %d}";
+          tooltip-format = "{:%e %B %Y}";
+        };
+        tray = {
+          spacing = 4;
+        };
+        pulseaudio = {
+          format = "{volume}%  {icon}  {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-icons = {
+            car = "";
+            default = [
+              ""
+              ""
+              ""
+            ];
+            headphones = "";
+          };
+          format-muted = " {format_source}";
+          format-source = " {volume}% ";
+          format-source-muted = "";
+          on-click = "pavucontrol";
+        };
+      }
+    ];
     style = ''
       @define-color base00 #${base00};
       @define-color base01 #${base01};

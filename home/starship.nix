@@ -1,10 +1,10 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
-}: {
+}:
+{
 
   home.packages = with pkgs; [
     fish
@@ -19,7 +19,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-    set fish_greeting ""
+      set fish_greeting ""
     '';
   };
 
@@ -29,7 +29,7 @@
   };
   programs.kitty = {
     enable = true;
-    catppuccin.enable=false;
+    catppuccin.enable = false;
     settings = {
       background = "#${config.colorScheme.palette.base03}";
     };
@@ -48,7 +48,7 @@
     settings = {
       window.opacity = 0.5;
       colors = {
-	      primary.background = "#${config.colorscheme.palette.base03}";
+        primary.background = "#${config.colorscheme.palette.base03}";
       };
       font.normal.family = "JetBrains Mono Nerd Font";
     };
@@ -61,32 +61,32 @@
 
       add_newline = false;
       format = lib.concatStrings [
-"$os"
-"[ ](fg:#${base01} bg:#${base0C})"
-"$directory"
-"[ ](fg:#${base0C} bg:#${base02})"
-"$git_branch"
-"$git_status"
-"[ ](fg:#${base02} bg:#${base03})"
-"$nodejs"
-"[ ](fg:#${base03})"
-"$rust"
-"$golang"
-"$php"
+        "$os"
+        "[ ](fg:#${base01} bg:#${base0C})"
+        "$directory"
+        "[ ](fg:#${base0C} bg:#${base02})"
+        "$git_branch"
+        "$git_status"
+        "[ ](fg:#${base02} bg:#${base03})"
+        "$nodejs"
+        "[ ](fg:#${base03})"
+        "$rust"
+        "$golang"
+        "$php"
       ];
 
       os = {
         disabled = false;
-        style =  "bg:#${base01} fg:#${base0C}";
+        style = "bg:#${base01} fg:#${base0C}";
         format = "[ $symbol]($style)";
       };
 
       directory = {
         style = "fg:#${base02} bg:#${base0C}";
         format = "[$path ]($style)";
-      #      before_repo_root_style = "fg:#${base03} bg:#${base0C}";
+        #      before_repo_root_style = "fg:#${base03} bg:#${base0C}";
         repo_root_style = "fg:#${base02} bg:#${base0C}";
-        repo_root_format ="[ $repo_root]($repo_root_style)[$path]($style)";
+        repo_root_format = "[ $repo_root]($repo_root_style)[$path]($style)";
         substitutions = {
           "GitHub" = " ";
           "repos" = " ";

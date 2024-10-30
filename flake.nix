@@ -5,7 +5,7 @@
     # global, so they can be `.follow`ed
     systems.url = "github:nix-systems/x86_64-linux";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
+    hardware.url = "github:NixOS/nixos-hardware/master";
     flake-compat.url = "github:edolstra/flake-compat";
 
     flake-utils = {
@@ -20,7 +20,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim/2ef974182ef62a6a6992118f0beb54dce812ae9b";
-    	inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -67,10 +67,12 @@
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows ="nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin.url = "github:catppuccin/nix";
+    # nixos-generators.url = "github:nix-community/nixos-generators";
+    # nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -79,31 +81,68 @@
       nixpkgs,
       home-manager,
       ...
-    } @inputs:
+    }@inputs:
     let
       system = "x86_64-linux";
+      username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations."seadragon" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./system/configuration.nix
-          ./sddm
-        ];
+      nixosConfigurations = {
+        seadragon = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system username;
+            hostName = "seadragon";
+          };
+          modules = [
+            ./display/plasma.nix
+            ./display/hypr.nix
+            ./common
+            ./hosts/seadragon
+          ];
+        };
+
+        owlthulu = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs system;
+            hostName = "owlthulu";
+          };
+          modules = with inputs; [
+            hardware.nixosModules.dell-xps-15-9560
+            ./common
+            ./display/plasma.nix
+            ./display/hypr.nix
+            ./hosts/owlthulu
+            ./home
+          ];
+        };
+
+        default = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+            ./common
+            ./display/plasma.nix
+            ./hosts/seadragon
+          ];
+        };
       };
 
-      devShells.${system}.default =
-        pkgs.mkShell {
-          shellHook = ''
-            export PATH="$PWD/node_modules/.bin/:$PATH"
-            alias run='pnpm run'
-          '';
-          nativeBuildInputs =
-            with pkgs;
-            with nodePackages;
+      packages.${system}.default = self.nixosConfigurations.default.config.system.build.isoImage;
+      devShells.default = pkgs.mkShell {
+        shellHook = ''
+          export PATH="$PWD/node_modules/.bin/:$PATH"
+          alias run='pnpm run'
+        '';
+        nativeBuildInputs =
+          with pkgs;
+          with nodePackages;
           [
             pkg-config
             python3
@@ -111,22 +150,25 @@
             node-gyp
             node-gyp-build
           ];
-          buildInputs = with pkgs; with nodePackages; [
+        buildInputs =
+          with pkgs;
+          with nodePackages;
+          [
             pnpm
             vips
             typescript
             typescript-language-server
           ];
-        };
-
+      };
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations."andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = {inherit inputs;};
+      homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit username system;
+        extraSpecialArgs = {
+          inherit inputs pkgs username;
+        };
         # > Our main home-manager configuration file <
         modules = [
-          # ./sddm
           ./home
         ];
       };
