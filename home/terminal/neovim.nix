@@ -26,7 +26,16 @@
       pumblend = 10; # Popup blend
       pumheight = 10; # Maximum number of entries in a popup
       scrolloff = 4; # Lines of context
-      sessionoptions = ["buffers" "curdir" "tabpages" "winsize" "help" "globals" "skiprtp" "folds"];
+      sessionoptions = [
+        "buffers"
+        "curdir"
+        "tabpages"
+        "winsize"
+        "help"
+        "globals"
+        "skiprtp"
+        "folds"
+      ];
       shiftround = true; # Round indent
       showmode = false; # Dont show mode since we have a statusline
       sidescrolloff = 8; # Columns of context
@@ -67,24 +76,24 @@
       lsp = {
         enable = true;
         servers = {
-        cssls.enable = true; # CSS
-        tailwindcss.enable = true; # TailwindCSS
-        html.enable = true; # HTML
-        astro.enable = true; # AstroJS
-        phpactor.enable = true; # PHP
-        svelte.enable = false; # Svelte
-        vuels.enable = false; # Vue
-        pyright.enable = true; # Python
-        marksman.enable = true; # Markdown
-        nil-ls = {
-          enable = true; # Nix
-          settings.nix.flake.autoArchive = true;
+          cssls.enable = true; # CSS
+          tailwindcss.enable = true; # TailwindCSS
+          html.enable = true; # HTML
+          astro.enable = true; # AstroJS
+          phpactor.enable = true; # PHP
+          svelte.enable = false; # Svelte
+          vuels.enable = false; # Vue
+          pyright.enable = true; # Python
+          marksman.enable = true; # Markdown
+          nil-ls = {
+            enable = true; # Nix
+            settings.nix.flake.autoArchive = true;
+          };
+          dockerls.enable = true; # Docker
+          bashls.enable = true; # Bash
+          yamlls.enable = true; # YAML
         };
-        dockerls.enable = true; # Docker
-        bashls.enable = true; # Bash
-        yamlls.enable = true; # YAML
       };
-    };
     };
     colorschemes.tokyonight = {
       enable = true;
@@ -95,6 +104,5 @@
         lualine_bold = true;
       };
     };
-
   };
 }

@@ -7,6 +7,11 @@
 }:
 {
   programs.dconf.enable = true;
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   # use the latest Linux kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # Needed for https://github.com/NixOS/nixpkgs/issues/58959
@@ -26,13 +31,10 @@
 
   services.displayManager.sddm = {
     enable = true;
-#    wayland.enable = true;
-#    theme = "${pkgs.sddm-astronaut}";
+    wayland.enable = true;
+    theme = "${pkgs.sddm-astronaut}";
   };
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
   networking.networkmanager.enable = true;

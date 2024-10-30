@@ -5,11 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ./waybar.nix
-    ./binds.nix
-    ./rofi.nix
-  ];
   home.packages = with pkgs; [
     hypridle
     hyprpaper
