@@ -1,8 +1,6 @@
 {
   pkgs,
   lib,
-  system,
-  inputs,
   ...
 }:
 {
@@ -32,20 +30,17 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "${pkgs.sddm-astronaut}";
+    package = lib.mkForce pkgs.kdePackages.sddm;
+    # extraPackages = [pkgs.sddm-astronaut];
+    # theme = "${pkgs.sddm-astronaut}";
   };
 
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
+  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Enable networking
 
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
 }

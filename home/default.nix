@@ -13,7 +13,7 @@
     ./kde.nix
     ./programs
     ./terminal
-    ./hyprland
+#    ./hyprland
     ./theme
     nixvim.homeManagerModules.nixvim
     catppuccin.homeManagerModules.catppuccin

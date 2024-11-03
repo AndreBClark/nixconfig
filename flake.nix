@@ -4,10 +4,13 @@
   inputs = {
     # global, so they can be `.follow`ed
     systems.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs";
     hardware.url = "github:NixOS/nixos-hardware/master";
     flake-compat.url = "github:edolstra/flake-compat";
-
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
@@ -97,9 +100,6 @@
             hostName = "seadragon";
           };
           modules = [
-            ./display/plasma.nix
-            ./display/hypr.nix
-            ./common
             ./hosts/seadragon
           ];
         };
@@ -119,13 +119,14 @@
           ];
         };
 
-        default = nixpkgs.lib.nixosSystem {
+        default = inputs.nixos-generators.nixosGenerate {
           inherit system;
           specialArgs = {
             inherit inputs;
           };
+          format = "install-iso";
           modules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix"
+            #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
             ./common
             ./display/plasma.nix

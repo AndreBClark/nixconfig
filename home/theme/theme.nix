@@ -6,8 +6,8 @@
       adwaita-qt
       papirus-folders
     (catppuccin-kvantum.override {
-      accent = "Sky";
-      variant = "Mocha";
+      accent = "sky";
+      variant = "mocha";
       })
   ];
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
