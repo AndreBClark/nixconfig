@@ -3,11 +3,10 @@
   home.packages = with pkgs; [
       tokyonight-gtk-theme
       dracula-icon-theme
-      adwaita-qt
       papirus-folders
-    (catppuccin-kvantum.override {
-      accent = "sky";
-      variant = "mocha";
+    (catppuccin-kde.override {
+      accents = ["sky"];
+      flavour = ["mocha"];
       })
   ];
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;

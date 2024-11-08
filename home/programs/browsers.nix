@@ -8,20 +8,24 @@ programs.firefox = {
 
   programs.vivaldi = {
     enable = true;
-    package = pkgs.vivaldi;
+    package = (pkgs.vivaldi.overrideAttrs (oldAttrs: {
+    dontWrapQtApps = false;
+    dontPatchELF = true;
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+  }));
     commandLineArgs = [
 #     "--disable-gpu-driver-bug-workarounds"
 #     "--enable-features=WaylandWindowDecorations"
 #     "--enable-oop-rasterization"
 #     "--enable-gpu-compositing"
-      "--enable-accelerated-2d-canvas"
+#      "--enable-accelerated-2d-canvas"
 #      "--enable-unsafe-webgpu"
-#     "--use-gl=egl"
-#      "--enable-features=UseOzonePlatform"
-      # "--ozone-platform=auto"
+      # "--use-gl=egl-angle,angle=vulkan"
+      "--enable-features=UseOzonePlatform"
       "--ozone-platform-hint=auto"
-#      "--enable-zero-copy"
-      "--ignore-gpu-blocklist"
+      "--ozone-platform=wayland"
+      # "--enable-zero-copy"
+#      "--ignore-gpu-blocklist"
 #      "--use-vulkan=swiftshader"
 #      "--enable-features=Vulkan"
     ];

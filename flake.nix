@@ -63,7 +63,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     tokyonight.url = "github:mrjones2014/tokyonight.nix";
     nix-colors.url = "github:misterio77/nix-colors";
     nix-colors-adapters.url = "gitlab:vfosnar/nix-colors-adapters";

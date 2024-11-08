@@ -15,5 +15,6 @@
     };
     backupFileExtension = "backup";
     users."${username}" = import ../home;
+    sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
   };
 }
