@@ -1,4 +1,7 @@
 {inputs, pkgs, ...}:{
+  imports = with inputs; [
+    catppuccin.homeManagerModules.catppuccin
+  ];
 
   home.packages = with pkgs; [
       tokyonight-gtk-theme
@@ -25,5 +28,5 @@
       flavor = "mocha";
     };
   };
-
+  qt.style.catppuccin.enable = false;
 }

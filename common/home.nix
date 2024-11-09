@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   system,
   username,
@@ -13,7 +14,7 @@
     extraSpecialArgs = {
       inherit inputs username system;
     };
-    backupFileExtension = "backup";
+    backupFileExtension = lib.mkForce "backup";
     users."${username}" = import ../home;
     sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
   };

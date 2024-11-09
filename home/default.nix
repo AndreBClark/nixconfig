@@ -16,7 +16,6 @@
 #    ./hyprland
     ./theme
     nixvim.homeManagerModules.nixvim
-    catppuccin.homeManagerModules.catppuccin
     tokyonight.homeManagerModules.default
     nix-colors.homeManagerModules.default
   ];

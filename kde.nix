@@ -58,17 +58,18 @@
               };
             };
           }
+          "org.kde.plasma.appmenu"
+          "org.kde.plasma.pager"
           "org.kde.plasma.marginsseparator"
           {
             iconTasks = {
               launchers = [
+                "applications:systemsettings.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:org.kde.konsole.desktop"
                 "applications:alacritty.desktop"
               ];
             };
           }
-          "org.kde.plasma.appmenu"
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.systemtray"
           "org.kde.plasma.digitalclock"
