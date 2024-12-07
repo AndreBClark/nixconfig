@@ -9,5 +9,6 @@
     ./xdg.nix
     ./common.nix
     ./home.nix
+    ./steam.nix
   ];
 }

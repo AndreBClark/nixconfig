@@ -9,7 +9,7 @@
 #      qt5ct
       wayland
       kwin
-      wayqt
+      # wayqt
       kwayland
       plasma-wayland-protocols
       qt5.qtwayland

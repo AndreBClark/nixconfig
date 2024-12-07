@@ -42,7 +42,25 @@
       # wallpaper =
       # "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Patak/contents/images/1080x1920.png";
     };
-
+    fonts = {
+      general = {
+        family = "Inter";
+        styleHint = "sansSerif";
+      };
+      fixedWidth = {
+        family= "JetBrains Mono";
+        pointsize = 14;
+        styleHint = "monospace";
+      };
+      menu = {
+        family = "Inter";
+        styleHint = "sansSerif";
+      };
+      toolBar = {
+        family = "Inter";
+        styleHint = "sansSerif";
+      };
+    };
 
     panels = [
       # Windows-like panel at the bottom
@@ -58,15 +76,15 @@
               };
             };
           }
-          "org.kde.plasma.appmenu"
           "org.kde.plasma.pager"
+          "org.kde.plasma.appmenu"
           "org.kde.plasma.marginsseparator"
           {
             iconTasks = {
               launchers = [
                 "applications:systemsettings.desktop"
+                "applications:Alacritty.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:alacritty.desktop"
               ];
             };
           }
@@ -102,7 +120,7 @@
     #
     configFile = {
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
+      # "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
       "kwinrc"."Desktops"."Number" = {
         value = 2;
         # Forces kde to not change this value (even through the settings app).

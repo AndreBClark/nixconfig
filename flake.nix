@@ -4,9 +4,9 @@
   inputs = {
     # global, so they can be `.follow`ed
     systems.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:nixos/nixpkgs";
-    hardware.url = "github:NixOS/nixos-hardware/master";
-    flake-compat.url = "github:edolstra/flake-compat";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    hardware.url = "github:NixOS/nixos-hardware";
+    # flake-compat.url = "github:edolstra/flake-compat";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,8 +78,6 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
-    # nixos-generators.url = "github:nix-community/nixos-generators";
-    # nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

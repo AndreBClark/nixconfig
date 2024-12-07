@@ -7,13 +7,8 @@
 {
 
   home.packages = with pkgs; [
-    fish
     fzf
-    kitty
     zoxide
-    alacritty
-    starship
-    tmux
   ];
 
   programs.fish = {
@@ -40,13 +35,15 @@
     terminal = "alacritty";
   };
 
-  programs.zoxide.enable = true;
 
   programs.alacritty = {
     enable = true;
     catppuccin.enable = false;
     settings = {
-      window.opacity = 0.5;
+      window = {
+        opacity = 0.5;
+        blur = true;
+      };
       colors = {
         primary.background = "#${config.colorscheme.palette.base03}";
       };
