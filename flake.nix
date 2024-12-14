@@ -137,8 +137,7 @@
         };
       };
 
-      packages.${system}.default = self.nixosConfigurations.default.config.system.build.isoImage;
-      devShells.default = pkgs.mkShell {
+      devShells.x86_64-linux.default = pkgs.mkShell {
         shellHook = ''
           export PATH="$PWD/node_modules/.bin/:$PATH"
           alias run='pnpm run'

@@ -19,6 +19,7 @@
     ocenaudio
     kdenlive
     frei0r
+    devenv
   ];
   programs.vscode.enable = true;
   programs.direnv.enable = true;
