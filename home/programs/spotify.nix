@@ -1,5 +1,4 @@
 { pkgs
-, lib
 , inputs
 , ...
 }: {
@@ -29,6 +28,8 @@ programs.spicetify =
         skipStats
         powerBar
         betterGenres
+        loopyLoop
+        history
       ];
     };
   }

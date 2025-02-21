@@ -14,7 +14,7 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-
+  services.pulseaudio.enable = false;
   services.xserver.videoDrivers = [ "nvidia" ];
 
   services.pipewire = {
@@ -30,7 +30,6 @@
     enable = true;
     enable32Bit = true;
   };
-  hardware.pulseaudio.enable = false;
   hardware.nvidia = {
     # Enable modesetting for Wayland compositors (hyprland)
     modesetting.enable = true;

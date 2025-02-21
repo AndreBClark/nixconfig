@@ -24,7 +24,6 @@
   };
   programs.kitty = {
     enable = true;
-    catppuccin.enable = false;
     settings = {
       background = "#${config.colorScheme.palette.base03}";
     };
@@ -38,7 +37,6 @@
 
   programs.alacritty = {
     enable = true;
-    catppuccin.enable = false;
     settings = {
       window = {
         opacity = 0.5;

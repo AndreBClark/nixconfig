@@ -22,11 +22,13 @@
     enable = true;
     accent = "sky";
     flavor = "mocha";
-    pointerCursor = {
+    kvantum.enable = false;
+    kitty.enable = true;
+    alacritty.enable = true;
+    cursors = {
       enable = true;
       accent = "sky";
       flavor = "mocha";
     };
   };
-  qt.style.catppuccin.enable = false;
 }

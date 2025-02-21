@@ -25,39 +25,36 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/736f4322-086d-4044-bdc5-32877387013e";
-    fsType = "ext4";
-  };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/e38941a0-57f9-414f-b9e0-d6ef70060e9e";
-    fsType = "btrfs";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/e1a6a1a5-4413-4932-a959-bd40da6242f8";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/29AC-413A";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/c2acd9a7-3277-4306-a80e-8464233eaf72";
+      fsType = "xfs";
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/50da5cfa-4e43-4d5a-b9bf-44678aadf9e2";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/C155-F11E";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/home/games" =
+    { device = "/dev/disk/by-uuid/df5243df-6aa6-4a77-ae92-b71e9454548d";
+      fsType = "btrfs";
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/e3335bbf-c15b-4c18-bb17-c53171dd78e7"; }
     ];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/50da5cfa-4e43-4d5a-b9bf-44678aadf9e2";
-    fsType = "ext4";
-  };
-
-  fileSystems."/home/games" = {
-    device = "/dev/disk/by-uuid/df5243df-6aa6-4a77-ae92-b71e9454548d";
-    fsType = "btrfs";
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/e3335bbf-c15b-4c18-bb17-c53171dd78e7"; }
-  ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

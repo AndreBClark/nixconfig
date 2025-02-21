@@ -45,7 +45,7 @@
       splitbelow = true; # Put new windows below current
       splitkeep = "screen";
       splitright = true; # Put new windows right of current
-      termguicolors = true; # True color support
+      termguicolors = true; # True color support
     };
     plugins = {
       lazy.enable = true;
@@ -73,6 +73,7 @@
       vim-css-color.enable = true;
       lint.enable = true;
       commentary.enable = true;
+      web-devicons.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -85,7 +86,7 @@
           vuels.enable = false; # Vue
           pyright.enable = true; # Python
           marksman.enable = true; # Markdown
-          nil-ls = {
+          nil_ls = {
             enable = true; # Nix
             settings.nix.flake.autoArchive = true;
           };
