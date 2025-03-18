@@ -26,6 +26,7 @@
     enable = true;
     settings = {
       background = "#${config.colorScheme.palette.base03}";
+      font = "JetBrainsMono Nerd Font";
     };
   };
   programs.tmux = {
@@ -45,7 +46,7 @@
       colors = {
         primary.background = "#${config.colorscheme.palette.base03}";
       };
-      font.normal.family = "JetBrains Mono Nerd Font";
+      font.normal.family = "JetBrainsMono Nerd Font";
     };
   };
 
