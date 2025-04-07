@@ -5,7 +5,7 @@
     # global, so they can be `.follow`ed
     systems.url = "github:nix-systems/x86_64-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    hardware.url = "github:NixOS/nixos-hardware";
+    hardware.url = "github:NixOS/nixos-hardware/master";
     # flake-compat.url = "github:edolstra/flake-compat";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";

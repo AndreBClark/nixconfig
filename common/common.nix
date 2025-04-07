@@ -12,7 +12,9 @@
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
   '';
 
-
+  environment.systemPackages = [
+    pkgs.stevenblack-blocklist
+  ];
   programs.dconf.enable = true;
 
   # Bootloader.
@@ -46,7 +48,13 @@
 
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    stevenblack = {
+      enable = true;
+      block = [ "fakenews" "gambling" "porn" ];
+    };
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Enable networking
 

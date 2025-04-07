@@ -1,5 +1,6 @@
 {
   imports = [
+    ./boot.nix
     ./nix.nix
     ./nixpkgs.nix
     ./fish.nix
@@ -8,7 +9,7 @@
     ./fonts.nix
     ./xdg.nix
     ./common.nix
-    ./home.nix
     ./steam.nix
+    ./home.nix
   ];
 }

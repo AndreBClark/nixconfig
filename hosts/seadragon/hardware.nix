@@ -1,10 +1,14 @@
-{ inputs, config, lib, ... }:
+{
+  inputs,
+  config,
+  ...
+}:
 {
   imports = with inputs; [
     # If you want to use modules from other flakes (such as nixos-hardware):
     hardware.nixosModules.common-cpu-intel
     hardware.nixosModules.common-pc-ssd
-    hardware.nixosModules.common-gpu-nvidia
+    hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
 
   # Enable CUPS to print documents.
@@ -15,7 +19,6 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.pulseaudio.enable = false;
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   services.pipewire = {
     # Enable sound with pipewire.
@@ -25,24 +28,12 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  hardware.nvidia = {
-    # Enable modesetting for Wayland compositors (hyprland)
-    modesetting.enable = true;
-    # Use the open source version of the kernel module (for driver 515.43.04+)
-    open = false;
-    # Enable the Nvidia settings menu
-    nvidiaSettings = true;
-    prime.offload = {
-      enable = false;
-      enableOffloadCmd = false;
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
-    # Select the appropriate driver version for your specific GPU
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
 }

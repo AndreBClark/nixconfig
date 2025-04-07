@@ -11,8 +11,8 @@ programs.spicetify =
    in
    {
      enable = true;
-      theme = spicePkgs.themes.ziro;
-      colorScheme = "purple-dark";
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
       enabledCustomApps = with spicePkgs.apps; [
         lyricsPlus
         marketplace

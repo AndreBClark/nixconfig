@@ -1,7 +1,5 @@
 {
   pkgs,
-  system,
-  inputs,
   ...
 }:
 {
@@ -17,7 +15,7 @@
     nautilus
     unzip
     ocenaudio
-    kdenlive
+    kdePackages.kdenlive
     frei0r
     devenv
   ];
