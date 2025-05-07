@@ -1,6 +1,6 @@
 {inputs, pkgs, ...}:{
   imports = with inputs; [
-    catppuccin.homeManagerModules.catppuccin
+    catppuccin.homeModules.catppuccin
   ];
 
   home.packages = with pkgs; [
@@ -25,6 +25,7 @@
     kvantum.enable = false;
     kitty.enable = true;
     alacritty.enable = true;
+    vscode.enable = false;
     cursors = {
       enable = true;
       accent = "sky";

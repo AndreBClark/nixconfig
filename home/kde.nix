@@ -17,6 +17,7 @@
       qt6ct
       qtwayland
       plasma-browser-integration
+      xwaylandvideobridge
     ];
 
   imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
@@ -64,7 +65,6 @@
               launchers = [
                 "applications:org.kde.dolphin.desktop"
                 "applications:org.kde.konsole.desktop"
-                "applications:alacritty.desktop"
               ];
             };
           }

@@ -6,6 +6,10 @@
     systems.url = "github:nix-systems/x86_64-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     hardware.url = "github:NixOS/nixos-hardware/master";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # flake-compat.url = "github:edolstra/flake-compat";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -85,6 +89,7 @@
       self,
       nixpkgs,
       home-manager,
+      nur,
       ...
     }@inputs:
     let
@@ -102,6 +107,7 @@
             hostName = "seadragon";
           };
           modules = [
+            nur.modules.nixos.default
             ./hosts/seadragon
           ];
         };
@@ -156,6 +162,7 @@
           with pkgs;
           with nodePackages;
           [
+            deno
             pnpm
             vips
             typescript
