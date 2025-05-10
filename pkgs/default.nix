@@ -1,5 +1,3 @@
-{
-    pkgs: {
-        boop = pkgs.callPackage ./sgdboop.nix;
-    };
+pkgs: {
+    sgdboop = pkgs.callPackage ./sgdboop.nix {};
 }
