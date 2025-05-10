@@ -5,7 +5,7 @@
   environment.systemPackages = [
     pkgs.xwayland
     pkgs.samrewritten
-    pkgs.nur.repos.bandithedoge.sgdboop-bin
+    pkgs.sgdboop
   ];
   programs.xwayland.enable = true;
   programs.steam = {
