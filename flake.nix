@@ -94,10 +94,18 @@
     }@inputs:
     let
       system = "x86_64-linux";
+      systems = [
+        system
+      ];
       username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
+
+    # Your custom packages
+    # Accessible through 'nix build', 'nix shell', etc
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
