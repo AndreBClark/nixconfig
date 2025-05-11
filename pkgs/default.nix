@@ -1,3 +1,5 @@
-pkgs: {
-    sgdboop = pkgs.callPackage ./sgdboop.nix {};
+{
+    imports = [
+        ./sgdboop.nix
+    ];
 }
