@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.unityhub
+  environment.systemPackages = with pkgs; [
+    unityhub
   ];
 }

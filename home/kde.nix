@@ -10,6 +10,7 @@
       wayland
       kwin
       # wayqt
+      xwayland
       kwayland
       plasma-wayland-protocols
       qt5.qtwayland
@@ -40,10 +41,26 @@
       cursor.theme = "catppuccin-mocha-sky-cursors";
       iconTheme = "Dracula";
       enableMiddleClickPaste = true;
-      # wallpaper =
-      # "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Patak/contents/images/1080x1920.png";
+      wallpaper =
+      "/home/andrec/Pictures/2z5ZGragrUfgA47R4zLdnK.jpg";
     };
-
+    fonts = {
+      general = {
+        family = "Inter";
+        pointSize = 14;
+        styleHint = "sansSerif";
+      };
+      fixedWidth = {
+        family= "JetBrains Mono";
+        pointSize = 14;
+        styleHint = "monospace";
+      };
+      menu = {
+        family = "Inter";
+        styleHint = "sansSerif";
+        pointSize = 14;
+      };
+    };
 
     panels = [
       # Windows-like panel at the bottom
@@ -64,8 +81,14 @@
             iconTasks = {
               launchers = [
                 "applications:org.kde.dolphin.desktop"
-                "applications:org.kde.konsole.desktop"
+                "applications:code.desktop"
+                "applications:kitty.desktop"
+                "applications:spotify.desktop"
+                "applications:chromium-browser.desktop"
+                "applications:firefox-devedition.desktop"
+                "applications:steam.desktop"
               ];
+
             };
           }
           "org.kde.plasma.appmenu"
@@ -109,4 +132,7 @@
       };
     };
   };
+
+  ##
+
 }

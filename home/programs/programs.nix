@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     obsidian
     discord
-    vscode
     nixpkgs-fmt
     nixfmt-rfc-style
     playerctl
@@ -18,6 +17,7 @@
     kdePackages.kdenlive
     frei0r
     devenv
+    jq
   ];
   programs.vscode.enable = true;
   programs.direnv.enable = true;

@@ -28,12 +28,24 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
+  ];
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" ];
+  };
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     nvidia = {
       open = false;
       package = config.boot.kernelPackages.nvidiaPackages.production;
+      modesetting.enable = true;
     };
   };
-
 }

@@ -18,23 +18,18 @@ programs.spicetify =
         marketplace
         newReleases
       ];
-      enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        shuffle # shuffle+ (special characters are sanitized out of ext names)
-        hidePodcasts
-        trashbin
-        goToSong
-        listPlaylistsWithSong
-        skipStats
-        powerBar
-        betterGenres
-        loopyLoop
-        history
-      ];
+#       enabledExtensions = with spicePkgs.extensions; [
+#         fullAppDisplay
+#         shuffle # shuffle+ (special characters are sanitized out of ext names)
+#         hidePodcasts
+#         trashbin
+#         goToSong
+#         listPlaylistsWithSong
+#         skipStats
+#         powerBar
+#         betterGenres
+#         loopyLoop
+#         history
+#       ];
     };
-  }
-
-  # allow spotify to be installed if you don't have unfree enabled already
-  #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #  "spotify"
-  #];
+}

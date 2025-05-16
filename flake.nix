@@ -147,7 +147,8 @@
         };
       };
 
-      devShells.x86_64-linux.default = pkgs.mkShell {
+      devShells.x86_64-linux = {
+        default = pkgs.mkShell {
         shellHook = ''
           export PATH="$PWD/node_modules/.bin/:$PATH"
           alias run='pnpm run'
@@ -172,6 +173,8 @@
             typescript
             typescript-language-server
           ];
+      };
+      dotnet-env = ./dotnetshell.nix;
       };
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
