@@ -64,7 +64,7 @@
       nix-develop.enable = true;
       chadtree = {
         enable = true;
-        view.openDirection = "left";
+        settings.view.open_direction = "left";
       };
       emmet.enable = true;
       telescope.enable = true;
@@ -83,7 +83,6 @@
           astro.enable = true; # AstroJS
           phpactor.enable = true; # PHP
           svelte.enable = false; # Svelte
-          vuels.enable = false; # Vue
           pyright.enable = true; # Python
           marksman.enable = true; # Markdown
           nil_ls = {

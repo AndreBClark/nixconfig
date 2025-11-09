@@ -2,7 +2,6 @@
 {
   home.packages =
     with pkgs;
-    with libsForQt5;
     with kdePackages;
     [
       # adwaita-qt
@@ -18,10 +17,9 @@
       qt6ct
       qtwayland
       plasma-browser-integration
-      xwaylandvideobridge
     ];
 
-  imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+  imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
   qt = {
     enable = true;
     platformTheme.name = "kde";
@@ -47,18 +45,18 @@
     fonts = {
       general = {
         family = "Inter";
-        pointSize = 14;
+        pointSize = 12;
         styleHint = "sansSerif";
       };
       fixedWidth = {
         family= "JetBrains Mono";
-        pointSize = 14;
+        pointSize = 12;
         styleHint = "monospace";
       };
       menu = {
         family = "Inter";
         styleHint = "sansSerif";
-        pointSize = 14;
+        pointSize = 10;
       };
     };
 
@@ -118,7 +116,11 @@
         "Switch Window Up" = "Meta+K";
       };
     };
-
+    powerdevil = {
+      AC = {
+        powerButtonAction = null;
+      };
+    };
     #
     # Some low-level settings:
     #

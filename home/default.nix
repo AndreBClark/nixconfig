@@ -15,7 +15,7 @@
     ./terminal
 #    ./hyprland
     ./theme
-    nixvim.homeManagerModules.nixvim
+    nixvim.homeModules.nixvim
     tokyonight.homeManagerModules.default
     nix-colors.homeManagerModules.default
   ];

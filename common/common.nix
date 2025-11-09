@@ -12,8 +12,10 @@
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
   '';
 
-  environment.systemPackages = [
-    pkgs.stevenblack-blocklist
+  environment.systemPackages = with pkgs; [
+    pciutils
+    envsubst
+    stevenblack-blocklist
   ];
   programs.dconf.enable = true;
 

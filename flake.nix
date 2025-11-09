@@ -99,11 +99,7 @@
       ];
       username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
+  in {
       nixosConfigurations = {
         seadragon = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -131,59 +127,26 @@
           ];
         };
 
-        default = inputs.nixos-generators.nixosGenerate {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
-          format = "install-iso";
-          modules = [
-            #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix"
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-            ./common
-            ./display/plasma.nix
-            ./hosts/seadragon
-          ];
+      "${system}".iso = import ./isoImage.nix {
+        inherit pkgs inputs system username;
         };
       };
 
-      devShells.x86_64-linux = {
-        default = pkgs.mkShell {
-        shellHook = ''
-          export PATH="$PWD/node_modules/.bin/:$PATH"
-          alias run='pnpm run'
-        '';
-        nativeBuildInputs =
-          with pkgs;
-          with nodePackages;
-          [
-            pkg-config
-            python3
-            nodejs
-            node-gyp
-            node-gyp-build
-          ];
-        buildInputs =
-          with pkgs;
-          with nodePackages;
-          [
-            deno
-            pnpm
-            vips
-            typescript
-            typescript-language-server
-          ];
+      devShells."${system}" = {
+        default = import ./shells/web.nix {
+          inherit pkgs;
+          nodePackages = pkgs.nodePackages;
+        };
+        python = import ./shells/python.nix {
+          inherit pkgs;
+        };
       };
-      dotnet-env = ./dotnetshell.nix;
-      };
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
+
       homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit username system;
         extraSpecialArgs = {
           inherit inputs pkgs username;
         };
-        # > Our main home-manager configuration file <
         modules = [
           ./home
         ];

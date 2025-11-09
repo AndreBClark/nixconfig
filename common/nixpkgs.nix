@@ -6,6 +6,10 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "dotnet-runtime-wrapped-7.0.20"
+        "dotnet-runtime-7.0.20"
+      ];
     };
   };
 }

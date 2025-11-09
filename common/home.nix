@@ -14,8 +14,9 @@
     extraSpecialArgs = {
       inherit inputs username system;
     };
-    backupFileExtension = lib.mkForce "hm-backup";
+    backupFileExtension = lib.mkOverride 100 "hm-backup";
     users."${username}" = import ../home;
-    sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+    sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+    useUserPackages = true;
   };
 }

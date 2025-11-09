@@ -25,7 +25,7 @@
     kvantum.enable = false;
     kitty.enable = true;
     alacritty.enable = true;
-    vscode.enable = false;
+    vscode.profiles.default.enable = false;
     cursors = {
       enable = true;
       accent = "sky";
