@@ -40,7 +40,7 @@
       iconTheme = "Dracula";
       enableMiddleClickPaste = true;
       wallpaper =
-      "/home/andrec/Pictures/2z5ZGragrUfgA47R4zLdnK.jpg";
+      "/home/andrec/nixconfig/fallingfrontier.jpg";
     };
     fonts = {
       general = {

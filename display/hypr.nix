@@ -1,4 +1,4 @@
-{pkgs, inputs, system, lib, ...}:
+{pkgs, inputs, ...}:
 {
   programs.hyprland = {
     enable = true;
