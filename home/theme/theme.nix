@@ -14,10 +14,11 @@ let flavor = "mocha"; in {
       })
   ];
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
-  tokyonight = {
-    enable= true;
-    style = "night";
-  };
+#   tokyonight = {
+#     enable = true;
+#     style = "night";
+#   };
+services.dunst.enable = true;
   catppuccin = {
     enable = true;
     accent = "sky";

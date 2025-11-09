@@ -10,8 +10,7 @@
     nixfmt-rfc-style
     playerctl
     pavucontrol
-#     dunst
-    nautilus
+    dunst
     unzip
     ocenaudio
     kdePackages.kdenlive

@@ -1,9 +1,9 @@
-{pkgs, ... }: {
+{pkgs, lib, ... }: {
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      timeout = 30;
+      timeout = 5;
     };
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
@@ -60,7 +60,15 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
     };
-    supportedFilesystems = ["btrfs" "ntfs" "ext4"];
+  supportedFilesystems = lib.mkForce [
+    "btrfs"
+    "reiserfs"
+    "vfat"
+    "f2fs"
+    "xfs"
+    "ntfs"
+    "cifs"
+  ];
     tmp.cleanOnBoot = true;
   };
 }
