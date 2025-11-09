@@ -1,11 +1,10 @@
-{pkgs, lib }:
-{
+{pkgs, lib, ... }: {
     environment.systemPackages = with pkgs; [
         (catppuccin-sddm.override {
             flavor = "mocha";
             accent = "sky";
             font  = "JetBrainsMono Nerd Font";
-            fontSize = "18";
+            fontSize = "48";
             background = "${../fallingfrontier.jpg}";
             loginBackground = true;
         })

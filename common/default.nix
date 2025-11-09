@@ -9,6 +9,7 @@
     ./locale.nix
     ./fonts.nix
     ./xdg.nix
+    ./blockfile.nix
     ./common.nix
     ./steam.nix
     ./home.nix
