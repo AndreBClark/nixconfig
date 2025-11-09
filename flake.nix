@@ -120,8 +120,6 @@
           modules = with inputs; [
             hardware.nixosModules.dell-xps-15-9560
             ./common
-            ./display/plasma.nix
-            ./display/hypr.nix
             ./hosts/owlthulu
             ./home
           ];
