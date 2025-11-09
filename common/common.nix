@@ -13,14 +13,6 @@
     pciutils
     envsubst
     stevenblack-blocklist
-    (catppuccin-sddm.override {
-      flavor = "mocha";
-      accent = "sky";
-      font  = "JetBrainsMono Nerd Font";
-      fontSize = "18";
-      background = "${../fallingfrontier.jpg}";
-      loginBackground = true;
-    })
   ];
   programs.dconf.enable = true;
 
@@ -28,13 +20,6 @@
     enable = true;
     xkb.layout = "us";
   };
-services.displayManager.sddm = {
-  enable = true;
-  wayland.enable = true;
-  theme = "catppuccin-mocha-sky";
-  package = lib.mkForce pkgs.kdePackages.sddm;
-};
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
   networking = {
     networkmanager.enable = true;

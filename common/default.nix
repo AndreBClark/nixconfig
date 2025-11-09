@@ -5,6 +5,7 @@
     ./nixpkgs.nix
     ./fish.nix
     ./users.nix
+    ./loginscreen.nix
     ./locale.nix
     ./fonts.nix
     ./xdg.nix
