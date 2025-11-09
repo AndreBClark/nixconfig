@@ -1,4 +1,4 @@
-{lib, inputs, system, ...}:
+{lib, ...}:
 {
   nixpkgs = {
     # Configure your nixpkgs instance

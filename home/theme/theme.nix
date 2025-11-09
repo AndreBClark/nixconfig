@@ -1,4 +1,5 @@
-{inputs, pkgs, ...}:{
+{inputs, pkgs, ...}:
+let flavor = "mocha"; in {
   imports = with inputs; [
     catppuccin.homeModules.catppuccin
   ];
@@ -9,7 +10,7 @@
       papirus-folders
     (catppuccin-kde.override {
       accents = ["sky"];
-      flavour = ["mocha"];
+      flavour = [flavor];
       })
   ];
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
@@ -17,19 +18,22 @@
     enable= true;
     style = "night";
   };
-
   catppuccin = {
     enable = true;
     accent = "sky";
-    flavor = "mocha";
+    flavor = flavor;
     kvantum.enable = false;
     kitty.enable = true;
     alacritty.enable = true;
     vscode.profiles.default.enable = false;
+    dunst = {
+      enable = true;
+      flavor = flavor;
+    };
     cursors = {
       enable = true;
       accent = "sky";
-      flavor = "mocha";
+      flavor = flavor;
     };
   };
 }

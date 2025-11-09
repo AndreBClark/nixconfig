@@ -5,7 +5,7 @@
 {
   programs.rofi = {
     enable = true;
-    terminal = "alacritty";
+    terminal = "kitty";
     tokyonight.enable = false;
     package = pkgs.rofi-wayland;
     extraConfig = {

@@ -143,9 +143,9 @@
       };
 
       homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit username system;
+        pkgs = import nixpkgs { inherit system; config.allowUnfree = true;};
         extraSpecialArgs = {
-          inherit inputs pkgs username;
+          inherit inputs username;
         };
         modules = [
           ./home

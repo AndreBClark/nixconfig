@@ -10,7 +10,7 @@
     nixfmt-rfc-style
     playerctl
     pavucontrol
-    dunst
+#     dunst
     nautilus
     unzip
     ocenaudio

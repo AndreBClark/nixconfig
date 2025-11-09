@@ -10,7 +10,6 @@
   imports = with inputs; [
     ./nixpkgs.nix
     ./home.nix
-    ./kde.nix
     ./programs
     ./terminal
 #    ./hyprland
