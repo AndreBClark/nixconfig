@@ -48,9 +48,9 @@
     };
     fonts = {
       general = {
-        family = "Inter";
+        family = "JetBrains Mono";
         pointSize = 12;
-        styleHint = "sansSerif";
+        styleHint = "monospace";
       };
       fixedWidth = {
         family = "JetBrains Mono";
@@ -58,21 +58,18 @@
         styleHint = "monospace";
       };
       menu = {
-        family = "Inter";
-        styleHint = "sansSerif";
+        family = "JetBrains Mono";
         pointSize = 10;
+        styleHint = "monospace";
       };
     };
+    session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+    shortcusts.plasmashell."activate application launcher" = null;
     hotkeys.commands = {
       "launch-rofi" = {
         name = "Launch Rofi";
-        key = "Alt+Meta";
+        key = "Meta";
         command = "rofi -show combi";
-      };
-      "launch-run" = {
-        name = "Launch Rofi";
-        key = "Alt+Meta";
-        command = "rofi -show run";
       };
     };
     panels = [
@@ -107,7 +104,11 @@
           "org.kde.plasma.appmenu"
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
+          {
+            name = "org.kde.plasma.digitalclock";
+            config.Appearance.dateFormat = "custom";
+            customDateFormat = "MM-dd dddd";
+          }
         ];
       }
     ];
@@ -154,5 +155,13 @@
         immutable = true;
       };
     };
-  };
+  xdg.configFile."mime/packages/inode-directory.xml".text = ''
+    <?xml version="1.0" encoding="UTF-8"?>
+      <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+      <mime-type type="inode/directory">
+          <comment>Folder</comment>
+          <icon name="folder"/>
+          <glob-deleteall/>
+      </mime-type>
+    </mime-info>'';
 }

@@ -32,7 +32,7 @@
 #         loopyLoop
         history
         playNext
-        sectionMarker
+        # sectionMarker makes progressbar illegible with catpuccin theme
         oldLikeButton
       ];
     };

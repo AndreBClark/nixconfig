@@ -22,6 +22,7 @@
     audacity
     ocenaudio
     nh
+    shared-mime-info
   ];
   programs = {
     direnv.enable = true;

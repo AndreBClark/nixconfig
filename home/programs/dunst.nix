@@ -16,8 +16,8 @@
       corner_radius = 5;
       frame_width = 0;
       show_indicators = true;
-      enable_recursive_icon_lookup = true;
-      icon_theme = "Dracula";
+#       enable_recursive_icon_lookup = true;
+#       icon_theme = "Dracula";
       min_icon_size = 24;
       max_icon_size = 96;
       progress_bar = true;

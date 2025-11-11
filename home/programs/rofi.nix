@@ -16,6 +16,9 @@
       "keys"
       "filebrowser"
     ];
+    plugins = with pkgs; [
+      rofi-calc rofi-emoji rofi-games rofi-power-menu rofi-obsidian
+    ];
     extraConfig = {
       show-icons = true;
       sort = true;

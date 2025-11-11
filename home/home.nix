@@ -1,12 +1,10 @@
 {
   username,
-  system,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
 {
+  programs.git.enable = lib.mkDefault true;
   home = {
     username = username;
     homeDirectory = "/home/${username}";
