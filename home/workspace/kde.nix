@@ -64,7 +64,6 @@
       };
     };
     session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
-    shortcusts.plasmashell."activate application launcher" = null;
     hotkeys.commands = {
       "launch-rofi" = {
         name = "Launch Rofi";
@@ -106,8 +105,10 @@
           "org.kde.plasma.systemtray"
           {
             name = "org.kde.plasma.digitalclock";
-            config.Appearance.dateFormat = "custom";
-            customDateFormat = "MM-dd dddd";
+            config.Appearance = {
+              dateFormat = "custom";
+              customDateFormat = "MM-dd dddd";
+            };
           }
         ];
       }
@@ -139,6 +140,8 @@
         "Switch Window Right" = "Meta+L";
         "Switch Window Up" = "Meta+K";
       };
+      plasmashell."activate application launcher" = "";
+
     };
     powerdevil = {
       AC = {
@@ -155,6 +158,7 @@
         immutable = true;
       };
     };
+  };
   xdg.configFile."mime/packages/inode-directory.xml".text = ''
     <?xml version="1.0" encoding="UTF-8"?>
       <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">

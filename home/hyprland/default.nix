@@ -4,6 +4,5 @@
     ./hypr.nix
     ./services.nix
     ./binds.nix
-    ./rofi.nix
   ];
 }

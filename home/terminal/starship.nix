@@ -68,9 +68,9 @@
 
       ];
       right_format = lib.concatStrings [
-        "$git_commit"
-        "$git_metrics"
         "$cmd_duration"
+        "$status"
+        "$direnv"
         "$nix_shell"
         "$php"
         #         "$python"
@@ -78,6 +78,8 @@
         "$rust"
         "$sudo"
         "$shell"
+        "$git_commit"
+        "$git_metrics"
       ];
 
       os = {
@@ -135,7 +137,11 @@
       #     right side
       git_commit.disabled = false;
       git_metrics.disabled = false;
-      shell.disabled = false;
+      shell = {
+        format = " with $indicator ";
+        fish_indicator = "󰈺 fsh";
+        disabled = false;
+      };
       nix_shell.disabled = false;
       python = {
         symbol = "";
@@ -146,7 +152,6 @@
       cmd_duration = {
         format = "done in $duration";
         disabled = false;
-        show_notifications = true;
         min_time_to_notify = 45000;
       };
     };
