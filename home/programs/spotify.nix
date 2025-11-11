@@ -13,12 +13,10 @@
       theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";
       enabledCustomApps = with spicePkgs.apps; [
-        lyricsPlus
-        marketplace
-        newReleases
-        ncsVisualizer
-        localFiles
         betterLibrary
+        localFiles
+        newReleases
+        marketplace
       ];
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay

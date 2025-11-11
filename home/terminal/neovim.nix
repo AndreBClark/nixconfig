@@ -1,7 +1,13 @@
 {
+  inputs,
   ...
 }:
 {
+  imports = with inputs; [
+    nixvim.homeModules.nixvim
+    tokyonight.homeManagerModules.default
+    nix-colors.homeManagerModules.default
+  ];
   programs.nixvim = {
     enable = true;
     defaultEditor = true;

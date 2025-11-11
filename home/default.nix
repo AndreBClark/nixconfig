@@ -7,15 +7,12 @@
 }:
 {
   programs.git.enable = lib.mkDefault true;
-  imports = with inputs; [
+  imports = [
     ./nixpkgs.nix
     ./home.nix
     ./programs
     ./terminal
 #    ./hyprland
     ./theme
-    nixvim.homeModules.nixvim
-    tokyonight.homeManagerModules.default
-    nix-colors.homeManagerModules.default
   ];
 }

@@ -1,18 +1,21 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   home.packages =
     with pkgs;
     with kdePackages;
     [
-      # adwaita-qt
-#      qt5ct
       wayland
+      #       wayqt
       kwin
-      # wayqt
       xwayland
       kwayland
-      plasma-wayland-protocols
       qt5.qtwayland
+      plasma-wayland-protocols
       qtstyleplugin-kvantum
       qt6ct
       qtwayland
@@ -37,10 +40,11 @@
       clickItemTo = "select";
       lookAndFeel = "Catppuccin-Mocha-Sky";
       cursor.theme = "catppuccin-mocha-sky-cursors";
+      cursor.size = 16;
       iconTheme = "Dracula";
+      soundTheme = lib.mkForce null;
       enableMiddleClickPaste = true;
-      wallpaper =
-      "/home/andrec/nixconfig/fallingfrontier.jpg";
+      wallpaper = "/home/andrec/nixconfig/fallingfrontier.jpg";
     };
     fonts = {
       general = {
@@ -49,7 +53,7 @@
         styleHint = "sansSerif";
       };
       fixedWidth = {
-        family= "JetBrains Mono";
+        family = "JetBrains Mono";
         pointSize = 12;
         styleHint = "monospace";
       };
@@ -59,14 +63,25 @@
         pointSize = 10;
       };
     };
-
+    hotkeys.commands = {
+      "launch-rofi" = {
+        name = "Launch Rofi";
+        key = "Alt+Meta";
+        command = "rofi -show combi";
+      };
+      "launch-run" = {
+        name = "Launch Rofi";
+        key = "Alt+Meta";
+        command = "rofi -show run";
+      };
+    };
     panels = [
       # Windows-like panel at the bottom
       {
         location = "bottom";
         widgets = [
           {
-            name = "org.kde.plasma.kickoff";
+            name = "org.kde.plasma.showdesktop";
             config = {
               General = {
                 icon = "nix-snowflake-white";
@@ -100,6 +115,14 @@
     #
     # Some mid-level settings:
     #
+    startup.startupScript = {
+      dunst = {
+        text = "dunst &";
+      };
+      steam = {
+        text = "steam -silent";
+      };
+    };
     shortcuts = {
       ksmserver = {
         "Lock Session" = [
@@ -121,9 +144,7 @@
         powerButtonAction = null;
       };
     };
-    #
     # Some low-level settings:
-    #
     configFile = {
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
@@ -134,7 +155,4 @@
       };
     };
   };
-
-  ##
-
 }

@@ -4,7 +4,7 @@
             flavor = "mocha";
             accent = "sky";
             font  = "JetBrainsMono Nerd Font";
-            fontSize = "48";
+            fontSize = "16";
             background = "${../fallingfrontier.jpg}";
             loginBackground = true;
         })

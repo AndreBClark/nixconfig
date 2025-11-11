@@ -5,26 +5,24 @@ let flavor = "mocha"; in {
   ];
 
   home.packages = with pkgs; [
-      tokyonight-gtk-theme
       dracula-icon-theme
+#       darkly
       papirus-folders
+
     (catppuccin-kde.override {
       accents = ["sky"];
-      flavour = [flavor];
-      })
+      flavour = ["mocha"];
+    })
   ];
-  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
-#   tokyonight = {
-#     enable = true;
-#     style = "night";
-#   };
-services.dunst.enable = true;
   catppuccin = {
     enable = true;
     accent = "sky";
     flavor = flavor;
     kvantum.enable = false;
     kitty.enable = true;
+    starship.enable = true;
+    rofi.enable = true;
+    rofi.flavor = flavor;
     alacritty.enable = true;
     vscode.profiles.default.enable = false;
     dunst = {
