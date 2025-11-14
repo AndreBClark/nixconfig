@@ -99,7 +99,8 @@
       ];
       username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
-  in {
+    in
+    {
       nixosConfigurations = {
         seadragon = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -125,8 +126,13 @@
           ];
         };
 
-      "${system}".iso = import ./isoImage.nix {
-        inherit pkgs inputs system username;
+        "${system}".iso = import ./isoImage.nix {
+          inherit
+            pkgs
+            inputs
+            system
+            username
+            ;
         };
       };
 
@@ -141,7 +147,10 @@
       };
 
       homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit system; config.allowUnfree = true;};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         extraSpecialArgs = {
           inherit inputs username;
         };

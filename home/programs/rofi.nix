@@ -12,39 +12,33 @@
       "run"
       "combi"
       "keys"
-      "filebrowser"
       "calc"
       "emoji"
       "games"
-      {
-        name = "obsidian";
-        path = lib.getExe pkgs.rofi-obsidian;
-      }
+      "file-browser-extended"
     ];
     plugins = with pkgs; [
-      rofi-calc rofi-emoji rofi-games rofi-power-menu rofi-obsidian
+      rofi-calc rofi-emoji rofi-games rofi-power-menu rofi-file-browser
     ];
     extraConfig = {
       show-icons = true;
       sort = true;
       sorting-method = "fzf";
-      modi=["drun,window,run"];
+      hide-scrollbar = true;
       combi-modes = [
         "drun"
         "run"
-        "filebrowser"
-        "obsidian"
         "games"
       ];
     display-combi = "";
-    display-drun = "Apps: ";
-    display-run = "Commands: ";
-    display-window = "Window: ";
+    display-drun = "App ";
+    display-run = "Command ";
+    display-window = "Window ";
+    display-file-browser-extended = "File";
     matching = "fuzzy";
     drun-match-fields = "name,generic,categories,keywords";
     drun-parse-user = true;
     drun-parse-system = false;
-    drun-exclude-categories = ["Games"];
     };
     terminal = "kitty";
     font = "JetBrainsMono Nerd Font 12";
@@ -56,20 +50,19 @@
         "*" = {
           font = "JetBrainsMono Nerd Font 12";
           margin = mkLiteral "0px";
-          padding = mkLiteral "8px";
+          padding = mkLiteral "0px";
           spacing = mkLiteral "0px";
-          width = 512;
-          border-size = 0;
-          border-style = "none";
         };
 
         "window" = {
-          width = 1080;
+          location = "north";
+          y-offset = mkLiteral "calc(50% - 176px)";
+          width = 960;
           border-radius = mkLiteral "12px";
         };
+
         "mainbox" = {
           padding = mkLiteral "12px";
-          width = 1080;
         };
 
         "#inputbar" = {
@@ -79,7 +72,39 @@
           ];
           border-radius = mkLiteral "16px";
           padding = mkLiteral "8px 16px";
-          spacing = mkLiteral "4px";
+          spacing = mkLiteral "8px";
+        };
+        "entry" = {
+          placeholder = "Search";
+        };
+        "message" = {
+          margin = mkLiteral "12px 0 0";
+          border-radius =      mkLiteral "16px";
+          border = mkLiteral "0";
+        };
+        "textbox" = {
+          padding = mkLiteral "8px 24px";
+        };
+
+        "listview" = {
+          background-color = mkLiteral "transparent";
+          margin = mkLiteral "12px 0 0";
+          lines = mkLiteral "8";
+          columns =    mkLiteral "2";
+          fixed-height = false;
+          border = mkLiteral "0";
+        };
+        "element" = {
+          padding = mkLiteral "8px 16px";
+          spacing = mkLiteral "8px";
+          border-radius = mkLiteral "16px";
+        };
+        "element-icon" = {
+          size = mkLiteral "2em";
+          vertical-align = mkLiteral "0.5";
+        };
+        "element-text" = {
+          text-color = mkLiteral "inherit";
         };
       };
   };

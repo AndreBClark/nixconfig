@@ -93,7 +93,7 @@
                 "applications:code.desktop"
                 "applications:kitty.desktop"
                 "applications:spotify.desktop"
-                "applications:chromium-browser.desktop"
+                "applications:vivaldi.desktop"
                 "applications:firefox-devedition.desktop"
                 "applications:steam.desktop"
               ];
@@ -107,7 +107,7 @@
             name = "org.kde.plasma.digitalclock";
             config.Appearance = {
               dateFormat = "custom";
-              customDateFormat = "MM-dd dddd";
+              customDateFormat = "MM-dd ddd";
             };
           }
         ];
@@ -118,9 +118,6 @@
     # Some mid-level settings:
     #
     startup.startupScript = {
-      dunst = {
-        text = "dunst &";
-      };
       steam = {
         text = "steam -silent";
       };
@@ -140,12 +137,12 @@
         "Switch Window Right" = "Meta+L";
         "Switch Window Up" = "Meta+K";
       };
-      plasmashell."activate application launcher" = "";
+      plasmashell."activate application launcher" = lib.mkForce "Meta+|+CapsLock+,+,+,";
 
     };
     powerdevil = {
       AC = {
-        powerButtonAction = null;
+        powerButtonAction = lib.mkForce "nothing";
       };
     };
     # Some low-level settings:

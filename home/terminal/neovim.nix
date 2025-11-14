@@ -1,16 +1,26 @@
 {
+  pkgs,
   inputs,
+  lib,
   ...
 }:
 {
   imports = with inputs; [
     nixvim.homeModules.nixvim
-    tokyonight.homeManagerModules.default
-    nix-colors.homeManagerModules.default
   ];
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+    globals = {
+      mapleader = " ";
+    };
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha";
+      };
+    };
     opts = {
       number = true;
       relativenumber = true;
@@ -26,7 +36,6 @@
       grepprg = "rg --vimgrep";
       ignorecase = true; # Ignore case
       inccommand = "nosplit"; # preview incremental substitute
-      laststatus = 3; # global statusline
       list = true; # Show some invisible characters (tabs...
       mouse = "a"; # Enable mouse mode
       pumblend = 10; # Popup blend
@@ -52,29 +61,94 @@
       splitkeep = "screen";
       splitright = true; # Put new windows right of current
       termguicolors = true; # True color support
+      spelllang = lib.mkDefault [ "en_us" ]; # Spell check languages
+      # Folding
+      foldlevel = 99; # Folds with a level higher than this number will be closed
+      foldcolumn = "1";
+      foldenable = true;
+      foldlevelstart = -1;
+      fillchars = {
+        horiz = "━";
+        horizup = "┻";
+        horizdown = "┳";
+        vert = "┃";
+        vertleft = "┫";
+        vertright = "┣";
+        verthoriz = "╋";
+        eob = " ";
+        diff = "╱";
+        fold = " ";
+        foldopen = "";
+        foldclose = "";
+        msgsep = "‾";
+      };
+      showmatch = true;
+      infercase = true;
+      clipboard = "unnamedplus";
     };
     plugins = {
-      lazy.enable = true;
       treesitter.enable = true;
-      lightline = {
+      notify.enable = true;
+      lualine = {
         enable = true;
         settings = {
-          colorscheme = "rosepine";
-          background = "dark";
+          options.theme = lib.mkForce "catppuccin";
+          extensions = [
+            "fzf"
+            "oil"
+          ];
+        };
+      };
+      lspkind.enable = true;
+      cmp-nvim-lsp-signature-help.enable = true;
+      cmp = {
+        enable = true;
+        settings.sources = [
+          { name = "nvim_lsp"; }
+          { name = "nvim_lsp_signature_help"; }
+          { name = "path"; }
+          { name = "buffer"; }
+          { name = "snippy"; }
+          { name = "luasnip"; }
+          { name = "cmp-dap"; }
+          { name = "cmp-treesitter"; }
+        ];
+        settings.mapping = {
+          "<Tab>" = "cmp.mapping.select_next_item()";
+          "<S-Tab>" = "cmp.mapping.select_prev_item()";
+          "<C-j>" = "cmp.mapping.scroll_docs(4)";
+          "<C-k>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-Esc>" = "cmp.mapping.close()";
+          "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
+          "<Up>" = "cmp.mapping.select_prev_item()";
+          "<Down>" = "cmp.mapping.select_next_item()";
+          "<Left>" = "cmp.mapping.close()";
+          "<Right>" = "cmp.mapping.confirm({ select = true })";
+        };
+      };
+      cmp-treesitter.enable = true;
+      lsp-format.enable = true;
+      none-ls = {
+        enable = true;
+        enableLspFormat = true;
+        sources.formatting = {
+          alejandra.enable = true;
+          nixpkgs_fmt.enable = true;
+          prettier.enable = true;
+          prettierd.enable = true;
+          stylua.enable = true;
         };
       };
       bufferline.enable = true;
-      transparent.enable = true;
+      #   # transparent.enable = true;
       twilight.enable = true;
-      nix.enable = true;
       nix-develop.enable = true;
-      chadtree = {
-        enable = true;
-        settings.view.open_direction = "left";
-      };
-      emmet.enable = true;
       telescope.enable = true;
-      harpoon.enable = true;
+      harpoon = {
+        enable = true;
+        enableTelescope = true;
+      };
       trim.enable = true;
       vim-css-color.enable = true;
       lint.enable = true;
@@ -82,6 +156,7 @@
       web-devicons.enable = true;
       lsp = {
         enable = true;
+        inlayHints = true;
         servers = {
           cssls.enable = true; # CSS
           tailwindcss.enable = true; # TailwindCSS
@@ -93,7 +168,10 @@
           marksman.enable = true; # Markdown
           nil_ls = {
             enable = true; # Nix
-            settings.nix.flake.autoArchive = true;
+            settings = {
+              nix.flake.autoArchive = true;
+              formatting.command = [ "${lib.getExe pkgs.nixfmt}" ];
+            };
           };
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
@@ -101,14 +179,27 @@
         };
       };
     };
-    colorschemes.tokyonight = {
-      enable = true;
-      settings = {
-        style = "night";
-        transparent = true;
-        dim_inactive = true;
-        lualine_bold = true;
-      };
-    };
+    extraConfigLua = ''
+      local cmp_enabled = true
+      vim.api.nvim_create_user_command("ToggleAutoComplete", function()
+        if cmp_enabled then
+          require("cmp").setup.buffer({ enabled = false })
+          require("notify")("Disabled Autocomplete", "info")
+          cmp_enabled = false
+        else
+          require("cmp").setup.buffer({ enabled = true })
+          require("notify")("Enabled Autocomplete", "info")
+          cmp_enabled = true
+        end
+      end, {})
+    '';
+    keymaps = [
+      {
+        key = "<Leader>na";
+        action = "<cmd> ToggleAutoComplete <CR>";
+        mode = "n";
+        options.desc = "Toggle CMP Autocomplete";
+      }
+    ];
   };
 }
