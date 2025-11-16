@@ -94,7 +94,6 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      systems = [ system ];
       username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -108,7 +107,6 @@
           modules = [
             nur.modules.nixos.default
             ./hosts/seadragon
-            ./home/seadragon
           ];
         };
 

@@ -18,7 +18,7 @@ in
     dracula-icon-theme
     #       darkly
     papirus-folders
-    catppuccin-cursors."${flavor}${Accent}"
+    # catppuccin-cursors."${flavor}${Accent}"
     (catppuccin-kde.override {
       accents = [ accent ];
       flavour = [ flavor ];
@@ -40,7 +40,7 @@ in
       flavor = flavor;
     };
     cursors = {
-      enable = false;
+      enable = true;
       accent = accent;
       flavor = flavor;
     };
