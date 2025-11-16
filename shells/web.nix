@@ -1,21 +1,30 @@
-{ pkgs ? import <nixpkgs> {}, nodePackages ? pkgs.nodePackages }:
+{
+  pkgs ? import <nixpkgs> { },
+  nodePackages ? pkgs.nodePackages,
+}:
 pkgs.mkShell {
+  buildInputs =
+    with pkgs;
+    with nodePackages;
+    [
+      pkg-config
+      python3
+      nodejs
+      node-gyp
+      node-gyp-build
+      deno
+      pnpm
+      vips
+      typescript
+      typescript-language-server
+      biome # Add Biome.js for linting, formatting, and more
+      prettier # Optional if you prefer Prettier alongside
+    ];
+
   shellHook = ''
-    export PATH="$PWD/node_modules/.bin/:$PATH"
     alias run='pnpm run'
+    alias test='pnpm test'
+    alias lint='biome lint'
+    alias format='biome format'
   '';
-  nativeBuildInputs = with pkgs; with nodePackages; [
-    pkg-config
-    python3
-    nodejs
-    node-gyp
-    node-gyp-build
-  ];
-  buildInputs = with pkgs; with nodePackages; [
-    deno
-    pnpm
-    vips
-    typescript
-    typescript-language-server
-  ];
 }

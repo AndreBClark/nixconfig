@@ -26,6 +26,7 @@
       relativenumber = true;
       shiftwidth = 2;
       tabstop = 2;
+      laststatus = 3;
       completeopt = "menu,menuone,noselect";
       conceallevel = 2; # Hide * markup for bold and italic, but not markers with substitutions
       confirm = true; # Confirm to save changes before exiting modified buffer
@@ -33,7 +34,6 @@
       expandtab = true; # Use spaces instead of tabs
       formatoptions = "jcroqlnt"; # tcqj
       grepformat = "%f:%l:%c:%m";
-      grepprg = "rg --vimgrep";
       ignorecase = true; # Ignore case
       inccommand = "nosplit"; # preview incremental substitute
       list = true; # Show some invisible characters (tabs...
@@ -63,6 +63,7 @@
       termguicolors = true; # True color support
       spelllang = lib.mkDefault [ "en_us" ]; # Spell check languages
       # Folding
+      foldmethod = "syntax";
       foldlevel = 99; # Folds with a level higher than this number will be closed
       foldcolumn = "1";
       foldenable = true;
@@ -100,6 +101,7 @@
         };
       };
       lspkind.enable = true;
+      oil.enable = true;
       cmp-nvim-lsp-signature-help.enable = true;
       cmp = {
         enable = true;
@@ -194,6 +196,36 @@
       end, {})
     '';
     keymaps = [
+      {
+        mode = "n";
+        key = "<leader>ha";
+        action.__raw = "function() require'harpoon':list():add() end";
+      }
+      {
+        mode = "n";
+        key = "<C-e>";
+        action.__raw = "function() require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) end";
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action.__raw = "function() require'harpoon':list():select(1) end";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action.__raw = "function() require'harpoon':list():select(2) end";
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action.__raw = "function() require'harpoon':list():select(3) end";
+      }
+      {
+        mode = "n";
+        key = "<C-m>";
+        action.__raw = "function() require'harpoon':list():select(4) end";
+      }
       {
         key = "<Leader>na";
         action = "<cmd> ToggleAutoComplete <CR>";

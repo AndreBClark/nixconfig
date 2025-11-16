@@ -1,7 +1,7 @@
 {
   pkgs,
- lib,
- config,
+  lib,
+  config,
   ...
 }:
 {
@@ -18,7 +18,11 @@
       "file-browser-extended"
     ];
     plugins = with pkgs; [
-      rofi-calc rofi-emoji rofi-games rofi-power-menu rofi-file-browser
+      rofi-calc
+      rofi-emoji
+      rofi-games
+      rofi-power-menu
+      rofi-file-browser
     ];
     extraConfig = {
       show-icons = true;
@@ -27,18 +31,16 @@
       hide-scrollbar = true;
       combi-modes = [
         "drun"
-        "run"
-        "games"
       ];
-    display-combi = "";
-    display-drun = "App ";
-    display-run = "Command ";
-    display-window = "Window ";
-    display-file-browser-extended = "File";
-    matching = "fuzzy";
-    drun-match-fields = "name,generic,categories,keywords";
-    drun-parse-user = true;
-    drun-parse-system = false;
+      display-combi = "";
+      display-drun = "App ";
+      display-run = "Command ";
+      display-window = "Window ";
+      display-file-browser-extended = "File";
+      matching = "fuzzy";
+      drun-match-fields = "name,generic,categories,keywords";
+      drun-parse-user = true;
+      drun-parse-system = false;
     };
     terminal = "kitty";
     font = "JetBrainsMono Nerd Font 12";
@@ -56,7 +58,7 @@
 
         "window" = {
           location = "north";
-          y-offset = mkLiteral "calc(50% - 176px)";
+          # y-offset = mkLiteral "calc(50% - 176px)";
           width = 960;
           border-radius = mkLiteral "12px";
         };
@@ -79,7 +81,7 @@
         };
         "message" = {
           margin = mkLiteral "12px 0 0";
-          border-radius =      mkLiteral "16px";
+          border-radius = mkLiteral "16px";
           border = mkLiteral "0";
         };
         "textbox" = {
@@ -90,7 +92,7 @@
           background-color = mkLiteral "transparent";
           margin = mkLiteral "12px 0 0";
           lines = mkLiteral "8";
-          columns =    mkLiteral "2";
+          columns = mkLiteral "2";
           fixed-height = false;
           border = mkLiteral "0";
         };

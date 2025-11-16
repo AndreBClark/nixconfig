@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     discord
     nixpkgs-fmt
@@ -17,6 +18,7 @@
     ocenaudio
     nh
     shared-mime-info
+    starsector
   ];
   programs = {
     direnv.enable = true;

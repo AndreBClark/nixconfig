@@ -19,6 +19,7 @@
       qtstyleplugin-kvantum
       qt6ct
       qtwayland
+      qttools
       plasma-browser-integration
     ];
 
@@ -26,11 +27,29 @@
   qt = {
     enable = true;
     platformTheme.name = "kde";
-    style.name = "breeze";
+    style = {
+      name = "Darkly";
+      package = pkgs.darkly;
+    };
   };
-
   programs.plasma = {
     enable = true;
+    overrideConfig = true;
+    # Some low-level settings:
+    configFile = {
+      "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
+      "kwinrc"."Desktops"."Number" = {
+        value = 2;
+        # Forces kde to not change this value (even through the settings app).
+        immutable = true;
+      };
+
+      configFile."panel-colorizer/presets/" = {
+        enable = true;
+        recursive = true;
+        source = "/home/andrec/.config/panel-colorizer/data/presets/";
+      };
+    };
     #
     # Some high-level settings:
     #
@@ -42,7 +61,7 @@
       cursor.theme = "catppuccin-mocha-sky-cursors";
       cursor.size = 16;
       iconTheme = "Dracula";
-      soundTheme = lib.mkForce null;
+      soundTheme = lib.mkForce "nothing";
       enableMiddleClickPaste = true;
       wallpaper = "/home/andrec/nixconfig/fallingfrontier.jpg";
     };
@@ -70,14 +89,20 @@
         key = "Meta";
         command = "rofi -show combi";
       };
+      "launch-filebrowser" = {
+        name = "Launch File Browser";
+        key = "Meta+f";
+        command = "rofi -show file-browser-extended";
+      };
     };
     panels = [
       # Windows-like panel at the bottom
       {
         location = "bottom";
+        height = 48;
         widgets = [
           {
-            name = "org.kde.plasma.showdesktop";
+            name = "org.kde.plasma.lock_logout";
             config = {
               General = {
                 icon = "nix-snowflake-white";
@@ -86,6 +111,15 @@
             };
           }
           "org.kde.plasma.marginsseparator"
+          # {
+          #   name = "luisbocanegra.panel.colorizer";
+
+          #   config.General = {
+          #     isEnabled = true;
+          #     hideWidget = true;
+          #     lastPreset = "/home/andrec/.config/panel-colorizer/presets/Sky";
+          #   };
+          # }
           {
             iconTasks = {
               launchers = [
@@ -93,16 +127,15 @@
                 "applications:code.desktop"
                 "applications:kitty.desktop"
                 "applications:spotify.desktop"
-                "applications:vivaldi.desktop"
+                "applications:vivaldi-stable.desktop"
                 "applications:firefox-devedition.desktop"
                 "applications:steam.desktop"
               ];
-
             };
           }
           "org.kde.plasma.appmenu"
           "org.kde.plasma.marginsseparator"
-          "org.kde.plasma.systemtray"
+          { systemTray.items.hidden = [ "org.kde.plasma.brightness" ]; }
           {
             name = "org.kde.plasma.digitalclock";
             config.Appearance = {
@@ -118,9 +151,7 @@
     # Some mid-level settings:
     #
     startup.startupScript = {
-      steam = {
-        text = "steam -silent";
-      };
+      steam.text = "steam -silent";
     };
     shortcuts = {
       ksmserver = {
@@ -137,24 +168,25 @@
         "Switch Window Right" = "Meta+L";
         "Switch Window Up" = "Meta+K";
       };
-      plasmashell."activate application launcher" = lib.mkForce "Meta+|+CapsLock+,+,+,";
-
     };
     powerdevil = {
       AC = {
         powerButtonAction = lib.mkForce "nothing";
       };
     };
-    # Some low-level settings:
-    configFile = {
-      "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
-      "kwinrc"."Desktops"."Number" = {
-        value = 2;
-        # Forces kde to not change this value (even through the settings app).
-        immutable = true;
-      };
-    };
+    window-rules = [
+      {
+        apply.noborder = {
+          value = true;
+          apply = "initially";
+        };
+        description = "Hide titlebar by default";
+        match.window-class = {
+          value = ".*";
+          type = "regex";
+        };
+      }
+    ];
   };
   xdg.configFile."mime/packages/inode-directory.xml".text = ''
     <?xml version="1.0" encoding="UTF-8"?>

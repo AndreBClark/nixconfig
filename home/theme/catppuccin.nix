@@ -1,22 +1,32 @@
-{inputs, pkgs, ...}:
-let flavor = "mocha"; in {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+let
+  flavor = "mocha";
+  Flavor = "Mocha";
+  Accent = "Sky";
+  accent = "sky";
+in
+{
   imports = with inputs; [
     catppuccin.homeModules.catppuccin
   ];
 
   home.packages = with pkgs; [
-      dracula-icon-theme
-#       darkly
-      papirus-folders
-
+    dracula-icon-theme
+    #       darkly
+    papirus-folders
+    catppuccin-cursors."${flavor}${Accent}"
     (catppuccin-kde.override {
-      accents = ["sky"];
-      flavour = ["mocha"];
+      accents = [ accent ];
+      flavour = [ flavor ];
     })
   ];
   catppuccin = {
     enable = true;
-    accent = "sky";
+    accent = accent;
     flavor = flavor;
     kvantum.enable = false;
     kitty.enable = true;
@@ -30,8 +40,8 @@ let flavor = "mocha"; in {
       flavor = flavor;
     };
     cursors = {
-      enable = true;
-      accent = "sky";
+      enable = false;
+      accent = accent;
       flavor = flavor;
     };
   };

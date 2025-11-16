@@ -86,7 +86,10 @@
         fish_indicator = "󰈺 fsh";
         disabled = false;
       };
-      nix_shell.disabled = false;
+      nix_shell = {
+        disabled = false;
+        format = "via [$symbol( \($name\))]($style) ";
+      };
       python = {
         symbol = "";
         style = "bold yellow";
