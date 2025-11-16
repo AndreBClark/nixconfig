@@ -88,7 +88,7 @@
       };
       nix_shell = {
         disabled = false;
-        format = "via [$symbol( \($name\))]($style) ";
+        format = "[$symbol(\($name\))]($style) ";
       };
       python = {
         symbol = "";
@@ -97,7 +97,7 @@
       };
       nodejs.format = "[$symbol$version]($style)";
       cmd_duration = {
-        format = "took $duration";
+        format = "took $duration ";
         disabled = false;
         min_time_to_notify = 45000;
       };

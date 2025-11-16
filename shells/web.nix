@@ -3,6 +3,7 @@
   nodePackages ? pkgs.nodePackages,
 }:
 pkgs.mkShell {
+  name = "web";
   buildInputs =
     with pkgs;
     with nodePackages;

@@ -12,8 +12,6 @@
     ./blockfile.nix
     ./common.nix
     ./steam.nix
-    ./home.nix
     ./unity3d.nix
-    ./dunst.nix
   ];
 }

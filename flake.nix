@@ -108,6 +108,7 @@
           modules = [
             nur.modules.nixos.default
             ./hosts/seadragon
+            ./home/seadragon
           ];
         };
 
@@ -123,18 +124,18 @@
             ./home
           ];
         };
-        devShells."${system}" = {
-          default = import ./shells/web.nix {
-            inherit pkgs;
-            nodePackages = pkgs.nodePackages;
-          };
-          python = import ./shells/python.nix {
+      };
+      devShells."${system}" = {
+        default = import ./shells/web.nix {
+          inherit pkgs;
+          nodePackages = pkgs.nodePackages;
+        };
+        python = import ./shells/python.nix {
           inherit pkgs;
         };
       };
-    };
       homeConfigurations = {
-        "${username}@seadragon" =home-manager.lib.homeManagerConfiguration {
+        "${username}@seadragon" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs username;
@@ -153,6 +154,6 @@
             ./home/owlthulu.nix
           ];
         };
+      };
     };
-  };
 }
