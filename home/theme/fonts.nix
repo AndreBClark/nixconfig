@@ -5,7 +5,7 @@
   };
 
   home.packages = with pkgs; [
-    google-fonts
+    # google-fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
   ];

@@ -94,9 +94,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      systems = [
-        system
-      ];
+      systems = [ system ];
       username = "andrec";
       pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -125,38 +123,36 @@
             ./home
           ];
         };
-
-        "${system}".iso = import ./isoImage.nix {
-          inherit
-            pkgs
-            inputs
-            system
-            username
-            ;
-        };
-      };
-
-      devShells."${system}" = {
-        default = import ./shells/web.nix {
-          inherit pkgs;
-          nodePackages = pkgs.nodePackages;
-        };
-        python = import ./shells/python.nix {
+        devShells."${system}" = {
+          default = import ./shells/web.nix {
+            inherit pkgs;
+            nodePackages = pkgs.nodePackages;
+          };
+          python = import ./shells/python.nix {
           inherit pkgs;
         };
-      };
-
-      homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = {
-          inherit inputs username;
-        };
-        modules = [
-          ./home
-        ];
       };
     };
+      homeConfigurations = {
+        "${username}@seadragon" =home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs username;
+          };
+          modules = [
+            ./home/seadragon.nix
+          ];
+        };
+
+        "${username}@owlthulu" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs username system;
+          };
+          modules = [
+            ./home/owlthulu.nix
+          ];
+        };
+    };
+  };
 }

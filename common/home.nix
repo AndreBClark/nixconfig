@@ -19,4 +19,6 @@
     sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
     useUserPackages = true;
   };
+
+    home.stateVersion = "25.05";
 }

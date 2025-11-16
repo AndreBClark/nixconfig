@@ -15,7 +15,6 @@
         "https://gist.github.com" = {
           helper = "!gh auth git-credential";
         };
-        helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       };
       push = {
         autoSetupRemote = true;
