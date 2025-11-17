@@ -5,5 +5,6 @@
     ./vscode.nix
     ./programs.nix
     ./spotify.nix
+    ./games.nix
   ];
 }

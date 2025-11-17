@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -8,14 +8,14 @@
         name = "AndreBClark";
         email = "andre@cosmicdivision.dev";
       };
-      credential = {
-        "https:github.com" = {
-          helper = "!gh auth git-credential";
-        };
-        "https://gist.github.com" = {
-          helper = "!gh auth git-credential";
-        };
-      };
+      # credential = {
+      #   "https:github.com" = {
+      #     helper = "!gh auth git-credential";
+      #   };
+      #   "https://gist.github.com" = {
+      #     helper = "!gh auth git-credential";
+      #   };
+      # };
       push = {
         autoSetupRemote = true;
       };
@@ -26,7 +26,6 @@
   };
   programs.gh = {
     enable = true;
-    gitCredentialHelper.enable = false;
+    gitCredentialHelper.enable = true;
   };
-
 }

@@ -21,6 +21,7 @@
       qtwayland
       qttools
       plasma-browser-integration
+      utterly-round-plasma-style
     ];
 
   imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
@@ -54,7 +55,7 @@
     # Some high-level settings:
     #
     workspace = {
-      theme = "breeze-dark";
+      theme = "Utterly-Round";
       colorScheme = "CatppuccinMochaSky";
       clickItemTo = "select";
       lookAndFeel = "Catppuccin-Mocha-Sky";
@@ -107,6 +108,12 @@
               General = {
                 icon = "nix-snowflake-white";
                 alphaSort = true;
+                "show_requestLogout" = false;
+                "show_lockScreen" = false;
+                "show_requestShutDown" = false;
+                "show_requestReboot" = false;
+                "show_requestLogoutScreen" = true;
+                "show_suspendToDisk" = true;
               };
             };
           }
@@ -123,6 +130,7 @@
           {
             iconTasks = {
               launchers = [
+                "applications:rofi.desktop"
                 "applications:org.kde.dolphin.desktop"
                 "applications:code.desktop"
                 "applications:kitty.desktop"
@@ -169,9 +177,15 @@
         "Switch Window Up" = "Meta+K";
       };
     };
+    kscreenlocker.autoLock = false;
     powerdevil = {
       AC = {
         powerButtonAction = lib.mkForce "nothing";
+        autoSuspend = {
+          action = "sleep";
+          idleTimeout = 60 * 60;
+        };
+        whenSleepingEnter = "hybridSleep";
       };
     };
     window-rules = [
@@ -197,4 +211,13 @@
           <glob-deleteall/>
       </mime-type>
     </mime-info>'';
+  xdg.desktopEntries = {
+    rofi = {
+      name = "Rofi";
+      genericName = "Application Launcher";
+      exec = "rofi -show combi";
+      terminal = false;
+      icon = "nix-snowflake-white";
+    };
+  };
 }

@@ -9,11 +9,12 @@
         "$directory"
         "$git_branch"
         "$git_status"
+        "$status"
         "$character"
       ];
       right_format = lib.concatStrings [
         "$cmd_duration"
-        "$status"
+        # "$status"
         "$direnv"
         "$nix_shell"
         "$php"
@@ -72,12 +73,22 @@
           "[ ](fg:prev_bg bg:none)"
         ];
         success_symbol = lib.concatStrings [
-          "[ ](fg:prev_bg bg:green)"
+          "[            ](fg:prev_bg bg:green)"
         ];
         error_symbol = lib.concatStrings [
-          "[ ](fg:prev_bg bg:red)"
+          "[](fg:prev_bg bg:red)"
         ];
       };
+      status = {
+        disabled = false;
+        format = lib.concatStrings [
+          "[]($style fg:prev_bg)"
+          "[  $common_meaning $signal_name]($style)"
+        ];
+        failure_style = "prev_fg bg:red";
+        success_style = "prev_fg bg:green";
+      };
+
       #     right side
       git_commit.disabled = false;
       git_metrics.disabled = false;
