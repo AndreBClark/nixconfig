@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  username,
   ...
 }:
 {
@@ -51,6 +52,7 @@
         KDE = {
           widgetStyle = lib.mkForce "Darkly";
         };
+        "General"."BrowserApplication" = "vivaldi";
       };
     };
     #
@@ -192,13 +194,4 @@
           <glob-deleteall/>
       </mime-type>
     </mime-info>'';
-  xdg.desktopEntries = {
-    rofi = {
-      name = "Rofi";
-      genericName = "Application Launcher";
-      exec = ''rofi -show menu -modi menu:rofi-power-menu -location 7 yoffset -64'';
-      terminal = false;
-      icon = "nix-snowflake-white";
-    };
-  };
 }

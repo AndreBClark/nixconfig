@@ -16,7 +16,6 @@ in
 
   home.packages = with pkgs; [
     dracula-icon-theme
-    #       darkly
     papirus-folders
     # catppuccin-cursors."${flavor}${Accent}"
     (catppuccin-kde.override {
@@ -35,10 +34,6 @@ in
     rofi.flavor = flavor;
     alacritty.enable = true;
     vscode.profiles.default.enable = false;
-    dunst = {
-      enable = true;
-      flavor = flavor;
-    };
     cursors = {
       enable = true;
       accent = accent;
