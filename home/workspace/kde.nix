@@ -29,13 +29,14 @@
     enable = true;
     platformTheme.name = "kde";
     style = {
-      name = "Darkly";
+      name = lib.mkForce "Darkly";
       package = pkgs.darkly;
     };
   };
   programs.plasma = {
     enable = true;
-    overrideConfig = true;
+    immutableByDefault = true;
+    # overrideConfig = true;
     # Some low-level settings:
     configFile = {
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
@@ -44,23 +45,17 @@
         # Forces kde to not change this value (even through the settings app).
         immutable = true;
       };
-
-      configFile."panel-colorizer/presets/" = {
-        enable = true;
-        recursive = true;
-        source = "/home/andrec/.config/panel-colorizer/data/presets/";
-      };
     };
     #
     # Some high-level settings:
     #
     workspace = {
-      theme = "Utterly-Round";
+      lookAndFeel = "Catppuccin-Mocha-Sky";
+      theme = lib.mkForce "Utterly-Round";
       colorScheme = "CatppuccinMochaSky";
       clickItemTo = "select";
-      lookAndFeel = "Catppuccin-Mocha-Sky";
       cursor.theme = "catppuccin-mocha-sky-cursors";
-      cursor.size = 16;
+      cursor.size = 24;
       iconTheme = "Dracula";
       soundTheme = lib.mkForce "nothing";
       enableMiddleClickPaste = true;
@@ -100,33 +95,9 @@
       # Windows-like panel at the bottom
       {
         location = "bottom";
-        height = 48;
+        height = lib.mkForce 48;
+        opacity = "opaque";
         widgets = [
-          {
-            name = "org.kde.plasma.lock_logout";
-            config = {
-              General = {
-                icon = "nix-snowflake-white";
-                alphaSort = true;
-                "show_requestLogout" = false;
-                "show_lockScreen" = false;
-                "show_requestShutDown" = false;
-                "show_requestReboot" = false;
-                "show_requestLogoutScreen" = true;
-                "show_suspendToDisk" = true;
-              };
-            };
-          }
-          "org.kde.plasma.marginsseparator"
-          # {
-          #   name = "luisbocanegra.panel.colorizer";
-
-          #   config.General = {
-          #     isEnabled = true;
-          #     hideWidget = true;
-          #     lastPreset = "/home/andrec/.config/panel-colorizer/presets/Sky";
-          #   };
-          # }
           {
             iconTasks = {
               launchers = [
@@ -215,7 +186,7 @@
     rofi = {
       name = "Rofi";
       genericName = "Application Launcher";
-      exec = "rofi -show combi";
+      exec = ''rofi -show menu -modi menu:rofi-power-menu -location 7 yoffset -64'';
       terminal = false;
       icon = "nix-snowflake-white";
     };

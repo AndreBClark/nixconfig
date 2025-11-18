@@ -3,11 +3,9 @@
   inputs,
   system,
   username,
-  hostname,
   ...
 }:
 {
-  # You can import other NixOS modules here
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -17,6 +15,6 @@
     };
     backupFileExtension = lib.mkOverride 100 "hm-backup";
     useUserPackages = true;
+    useGlobalPkgs = true;
   };
-
 }

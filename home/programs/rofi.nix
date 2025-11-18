@@ -1,10 +1,12 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
 {
+  home.packages = with pkgs; [
+    rofi-power-menu
+  ];
   programs.rofi = {
     enable = true;
     modes = [
@@ -21,7 +23,6 @@
       rofi-calc
       rofi-emoji
       rofi-games
-      rofi-power-menu
       rofi-file-browser
     ];
     extraConfig = {
@@ -92,7 +93,7 @@
           background-color = mkLiteral "transparent";
           margin = mkLiteral "12px 0 0";
           lines = mkLiteral "8";
-          columns = mkLiteral "2";
+          # columns = mkLiteral "2";
           fixed-height = false;
           border = mkLiteral "0";
         };
