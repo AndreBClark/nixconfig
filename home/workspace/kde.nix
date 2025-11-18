@@ -14,7 +14,6 @@
       kwin
       xwayland
       kwayland
-      qt5.qtwayland
       plasma-wayland-protocols
       qtstyleplugin-kvantum
       qt6ct
@@ -27,11 +26,17 @@
   imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
   qt = {
     enable = true;
-    platformTheme.name = "kde";
+    platformTheme.name = "qtct";
     style = {
-      name = lib.mkForce "Darkly";
-      package = pkgs.darkly;
+      name = "Darkly";
+      package = [
+        pkgs.darkly-qt5
+        pkgs.darkly
+      ];
     };
+  };
+  home.sessionVariables = {
+    QT_STYLE_OVERRIDE = "Darkly";
   };
   programs.plasma = {
     enable = true;
@@ -44,6 +49,11 @@
         value = 2;
         # Forces kde to not change this value (even through the settings app).
         immutable = true;
+      };
+      kdeglobals = {
+        KDE = {
+          widgetStyle = lib.mkForce "Darkly";
+        };
       };
     };
     #
@@ -59,7 +69,10 @@
       iconTheme = "Dracula";
       soundTheme = lib.mkForce "nothing";
       enableMiddleClickPaste = true;
-      wallpaper = "/home/andrec/nixconfig/fallingfrontier.jpg";
+      wallpaper = builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/AndreBClark/nixconfig/7a91f0364061518fdf1d6e721508288521d15984/fallingfrontier.jpg";
+        sha256 = "1nadjcyx357md29mj02cx1f62g1v1b5jhcyfxr3g5v9ji822fdix";
+      };
     };
     fonts = {
       general = {
