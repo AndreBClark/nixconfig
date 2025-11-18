@@ -2,7 +2,6 @@
 {
   nix = {
     settings = {
-      always-allow-substituters = false;
       trusted-users = [
         username
         "admin"

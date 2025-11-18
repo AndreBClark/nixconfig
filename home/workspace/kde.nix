@@ -16,6 +16,7 @@
       kwayland
       plasma-wayland-protocols
       qtstyleplugin-kvantum
+      libsForQt5.qt5ct
       qt6ct
       qtwayland
       qttools
@@ -26,17 +27,13 @@
   imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
   qt = {
     enable = true;
-    platformTheme.name = "qtct";
+    platformTheme.name = "kde";
     style = {
-      name = "Darkly";
       package = [
         pkgs.darkly-qt5
         pkgs.darkly
       ];
     };
-  };
-  home.sessionVariables = {
-    QT_STYLE_OVERRIDE = "Darkly";
   };
   programs.plasma = {
     enable = true;
