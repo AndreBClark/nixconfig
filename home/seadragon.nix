@@ -4,8 +4,8 @@
     ./default.nix
     ./programs
     ./terminal
-    ./workspace
     ./theme
+    ./workspace
     ./cli
   ];
 }

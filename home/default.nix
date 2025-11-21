@@ -1,14 +1,9 @@
 {
   lib,
   username,
-  inputs,
-  system,
   ...
 }:
 {
-  imports = [
-    ./nixpkgs.nix
-  ];
   home = {
     username = username;
     homeDirectory = "/home/${username}";
@@ -18,4 +13,9 @@
 
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    TERMINAL = "kitty";
+  };
 }

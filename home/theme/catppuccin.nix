@@ -15,8 +15,7 @@ in
   ];
 
   home.packages = with pkgs; [
-    dracula-icon-theme
-    papirus-folders
+    # dracula-icon-theme
     # catppuccin-cursors."${flavor}${Accent}"
     (catppuccin-kde.override {
       accents = [ accent ];
@@ -24,20 +23,22 @@ in
     })
   ];
   catppuccin = {
-    enable = true;
+    enable = false;
     accent = accent;
     flavor = flavor;
-    kvantum.enable = false;
-    kitty.enable = true;
-    starship.enable = true;
-    rofi.enable = true;
-    rofi.flavor = flavor;
-    alacritty.enable = true;
-    vscode.profiles.default.enable = false;
-    cursors = {
-      enable = true;
-      accent = accent;
-      flavor = flavor;
-    };
+    nvim.enable = true;
+    # kvantum.enable = false;
+    # kitty.enable = true;
+    # starship.enable = false;
+    # rofi.enable = true;
+    # rofi.flavor = flavor;
+    # alacritty.enable = true;
+    # vscode.profiles.default.enable = false;
+    # fzf.enable = false;
+    # cursors = {
+    #   enable = true;
+    #   accent = accent;
+    #   flavor = flavor;
+    # };
   };
 }

@@ -29,23 +29,23 @@
 
       os = {
         disabled = false;
-        style = "bg:crust fg:sky";
+        style = "bg:base10 fg:base15";
         format = lib.concatStrings [
           "[ $symbol]($style)"
-          "[ ](fg:crust bg:sky)"
+          "[ ](fg:base10 bg:base15)"
         ];
       };
 
       directory = {
-        style = "bold crust bg:prev_bg";
+        style = "bold base10 bg:prev_bg";
         format = lib.concatStrings [
           "[$path ]($style)"
-          "[ ](fg:prev_bg bg:base)"
+          "[ ](fg:prev_bg bg:base00)"
         ];
-        repo_root_style = "bold crust bg:prev_bg";
+        repo_root_style = "bold base10 bg:prev_bg";
         repo_root_format = lib.concatStrings [
           "[ $repo_root]($repo_root_style)[$path]($style)"
-          "[ ](fg:prev_bg bg:base)"
+          "[ ](fg:prev_bg bg:base00)"
         ];
         substitutions = {
           "GitHub" = " ";

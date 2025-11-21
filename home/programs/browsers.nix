@@ -4,6 +4,7 @@
     firefox = {
       package = pkgs.firefox-devedition;
       enable = true;
+      profiles.dev-edition-default.extensions.force = true;
     };
     vivaldi = {
       enable = true;

@@ -15,12 +15,12 @@
     globals = {
       mapleader = " ";
     };
-    colorschemes.catppuccin = {
-      enable = true;
-      settings = {
-        flavour = "mocha";
-      };
-    };
+    # colorschemes.catppuccin = {
+    #   enable = true;
+    #   settings = {
+    #     flavour = "mocha";
+    #   };
+    # };
     opts = {
       number = true;
       relativenumber = true;
@@ -93,7 +93,6 @@
       lualine = {
         enable = true;
         settings = {
-          options.theme = lib.mkForce "catppuccin";
           extensions = [
             "fzf"
             "oil"
@@ -225,6 +224,31 @@
         mode = "n";
         key = "<C-m>";
         action.__raw = "function() require'harpoon':list():select(4) end";
+      }
+      {
+        key = "<C-p>";
+        action = "<cmd>FZF<CR>";
+      }
+      {
+        key = "<C-`>";
+        action = "<cmd>split+terminal<CR>";
+      }
+      {
+        mode = "n";
+        key = "<Tab>";
+        action = "<cmd>BufferLineCycleNext<cr>";
+        options = {
+          desc = "Cycle to next buffer";
+        };
+      }
+
+      {
+        mode = "n";
+        key = "<S-Tab>";
+        action = "<cmd>BufferLineCyclePrev<cr>";
+        options = {
+          desc = "Cycle to previous buffer";
+        };
       }
       {
         key = "<Leader>na";

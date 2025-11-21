@@ -82,6 +82,11 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rofi-launchers.url = "./pkgs/rofi-launchers";
   };
 
   outputs =
@@ -89,12 +94,21 @@
       self,
       nixpkgs,
       home-manager,
-      nur,
+      stylix,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       username = "andrec";
+      commonModules = [
+        stylix.nixosModules.stylix
+        inputs.nur.modules.nixos.default
+      ];
+      commonHomeModules = [
+        stylix.homeModules.stylix
+        inputs.plasma-manager.homeModules.plasma-manager
+        home/unfree.nix
+      ];
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -104,8 +118,7 @@
             inherit inputs system username;
             hostName = "seadragon";
           };
-          modules = [
-            nur.modules.nixos.default
+          modules = commonModules ++ [
             ./hosts/seadragon
           ];
         };
@@ -138,7 +151,7 @@
           extraSpecialArgs = {
             inherit inputs username;
           };
-          modules = [
+          modules = commonHomeModules ++ [
             ./home/seadragon.nix
           ];
         };
@@ -148,7 +161,7 @@
           extraSpecialArgs = {
             inherit inputs username system;
           };
-          modules = [
+          modules = commonHomeModules ++ [
             ./home/owlthulu.nix
           ];
         };

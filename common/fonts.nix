@@ -1,15 +1,22 @@
-{pkgs, inputs, lib, system, ...}:
+{
+  pkgs,
+  inputs,
+  lib,
+  system,
+  config,
+  ...
+}:
 {
   fonts = {
     enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {
-      monospace = [
-        "JetBrainsMono Nerd Font"
-      ];
-      emoji = [
-        "Noto Color Emoji"
-      ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+        ];
+        emoji = [
+          "Noto Color Emoji"
+        ];
       };
     };
     packages = with pkgs; [

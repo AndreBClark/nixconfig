@@ -1,7 +1,7 @@
 {
   pkgs,
-  inputs,
   lib,
+  config,
   username,
   ...
 }:
@@ -16,16 +16,25 @@
       xwayland
       kwayland
       plasma-wayland-protocols
-      qtstyleplugin-kvantum
-      libsForQt5.qt5ct
       qt6ct
       qtwayland
       qttools
+      darkly
       plasma-browser-integration
       utterly-round-plasma-style
     ];
 
-  imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+  stylix.targets = {
+    qt = {
+      enable = false;
+      platform = "kde";
+    };
+    kde = {
+      enable = false;
+      useWallpaper = true;
+      decorations = "Utterly-Round";
+    };
+  };
   qt = {
     enable = true;
     platformTheme.name = "kde";
@@ -36,10 +45,14 @@
       ];
     };
   };
+
   programs.plasma = {
     enable = true;
-    immutableByDefault = true;
+    # immutableByDefault = true;
     # overrideConfig = true;
+    # resetFilesExclude = [
+    # "plasma-org.kde.plasma.desktop-appletsrc"
+    # ];
     # Some low-level settings:
     configFile = {
       "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
@@ -52,50 +65,40 @@
         KDE = {
           widgetStyle = lib.mkForce "Darkly";
         };
-        "General"."BrowserApplication" = "vivaldi";
+        "General" = {
+          "BrowserApplication" = "vivaldi";
+        };
+      };
+      klaunchrc = {
+        # No bouncy cursor
+        BusyCursorSettings.Bouncing = false;
+        FeedbackStyle.BusyCursor = false;
       };
     };
+
     #
     # Some high-level settings:
     #
     workspace = {
-      lookAndFeel = "Catppuccin-Mocha-Sky";
+      # lookAndFeel = "Catppuccin-Mocha-Sky";
       theme = lib.mkForce "Utterly-Round";
       colorScheme = "CatppuccinMochaSky";
       clickItemTo = "select";
-      cursor.theme = "catppuccin-mocha-sky-cursors";
-      cursor.size = 24;
-      iconTheme = "Dracula";
+      cursor.theme = config.stylix.cursor.name;
+      cursor.size = config.stylix.cursor.size;
+      iconTheme = config.stylix.icons.dark;
+      wallpaper = config.stylix.image;
       soundTheme = lib.mkForce "nothing";
       enableMiddleClickPaste = true;
-      wallpaper = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/AndreBClark/nixconfig/7a91f0364061518fdf1d6e721508288521d15984/fallingfrontier.jpg";
-        sha256 = "1nadjcyx357md29mj02cx1f62g1v1b5jhcyfxr3g5v9ji822fdix";
-      };
+      splashScreen.theme = "None";
     };
-    fonts = {
-      general = {
-        family = "JetBrains Mono";
-        pointSize = 12;
-        styleHint = "monospace";
-      };
-      fixedWidth = {
-        family = "JetBrains Mono";
-        pointSize = 12;
-        styleHint = "monospace";
-      };
-      menu = {
-        family = "JetBrains Mono";
-        pointSize = 10;
-        styleHint = "monospace";
-      };
-    };
+
     session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
     hotkeys.commands = {
       "launch-rofi" = {
         name = "Launch Rofi";
         key = "Meta";
-        command = "rofi -show combi";
+        command = "launcher_t2";
       };
       "launch-filebrowser" = {
         name = "Launch File Browser";
@@ -111,9 +114,18 @@
         opacity = "opaque";
         widgets = [
           {
+            name = "org.kde.plasma.quicklaunch";
+            config.General.launcherUrls = [
+              "file:///etc/profiles/per-user/${username}/share/applications/powermenu.desktop"
+            ];
+          }
+          "org.kde.plasma.pager"
+          "org.kde.plasma.showdesktop"
+          "org.kde.plasma.panelspacer"
+          {
             iconTasks = {
               launchers = [
-                "applications:rofi.desktop"
+                "applications:systemsettings.desktop"
                 "applications:org.kde.dolphin.desktop"
                 "applications:code.desktop"
                 "applications:kitty.desktop"
@@ -124,8 +136,8 @@
               ];
             };
           }
+          "org.kde.plasma.panelspacer"
           "org.kde.plasma.appmenu"
-          "org.kde.plasma.marginsseparator"
           { systemTray.items.hidden = [ "org.kde.plasma.brightness" ]; }
           {
             name = "org.kde.plasma.digitalclock";
@@ -150,6 +162,7 @@
           "Screensaver"
           "Meta+Ctrl+Alt+L"
         ];
+        "Log Out" = "Ctrl+Alt+Del";
       };
 
       kwin = {
@@ -160,7 +173,27 @@
         "Switch Window Up" = "Meta+K";
       };
     };
-    kscreenlocker.autoLock = false;
+    fonts = {
+      general = {
+        family = config.stylix.fonts.monospace.name;
+        pointSize = 12;
+        styleHint = "monospace";
+      };
+      fixedWidth = {
+        family = config.stylix.fonts.monospace.name;
+        pointSize = 12;
+        styleHint = "monospace";
+      };
+      menu = {
+        family = config.stylix.fonts.monospace.name;
+        pointSize = 10;
+        styleHint = "monospace";
+      };
+    };
+    kscreenlocker = {
+      autoLock = false;
+      appearance.wallpaper = config.stylix.image;
+    };
     powerdevil = {
       AC = {
         powerButtonAction = lib.mkForce "nothing";
