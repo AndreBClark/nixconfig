@@ -32,12 +32,12 @@
     web-devicons.enable = true;
     telescope = {
       enable = true;
-      enabledExtensions = [
-        "project"
-        "frecency"
-        "fzf-native"
-        "zoxide"
-      ];
+      extensions = {
+        project.enable = true;
+        frecency.enable = true;
+        fzf-native.enable = true;
+        zoxide.enable = true;
+      };
     };
     harpoon = {
       enable = true;
