@@ -1,13 +1,10 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     ./fzf.nix
     ./tmux.nix
     ./zoxide.nix
+    ./nvim
   ];
   home.packages = with pkgs; [
     nixpkgs-fmt

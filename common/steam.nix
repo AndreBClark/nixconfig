@@ -7,7 +7,7 @@
   environment.systemPackages = [
     pkgs.xwayland
     pkgs.samrewritten
-    (pkgs.callPackage ../pkgs/sgdboop.nix { })
+    (pkgs.callPackage ../pkgs/sgdboop/package.nix {})
   ];
   programs.xwayland.enable = true;
   programs.steam = {

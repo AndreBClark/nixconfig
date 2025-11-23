@@ -17,16 +17,16 @@ in
   home.packages = with pkgs; [
     # dracula-icon-theme
     # catppuccin-cursors."${flavor}${Accent}"
-    (catppuccin-kde.override {
-      accents = [ accent ];
-      flavour = [ flavor ];
-    })
+    # (catppuccin-kde.override {
+    #   accents = [ accent ];
+    #   flavour = [ flavor ];
+    # })
   ];
   catppuccin = {
     enable = false;
     accent = accent;
     flavor = flavor;
-    nvim.enable = true;
+    # nvim.enable = true;
     # kvantum.enable = false;
     # kitty.enable = true;
     # starship.enable = false;

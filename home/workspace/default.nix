@@ -2,7 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   imports = [
-    ./kde.nix
-    ./gtk.nix
+    ./kde
+    # ./gtk.nix
   ];
 }

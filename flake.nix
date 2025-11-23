@@ -95,6 +95,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      plasma-manager,
       ...
     }@inputs:
     let
@@ -106,7 +107,7 @@
       ];
       commonHomeModules = [
         stylix.homeModules.stylix
-        inputs.plasma-manager.homeModules.plasma-manager
+        plasma-manager.homeModules.plasma-manager
         home/unfree.nix
       ];
       pkgs = nixpkgs.legacyPackages.${system};

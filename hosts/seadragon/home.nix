@@ -1,16 +1,20 @@
 {
   username,
   inputs,
+  pkgs,
   ...
 }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../../common/home.nix
+    ../../home/theme/stylix.nix
+  ];
+  environment.systemPackages = [
+    pkgs.dracula-icon-theme
   ];
   home-manager = {
     sharedModules = [
-      inputs.stylix.homeModules.stylix
       inputs.plasma-manager.homeModules.plasma-manager
     ];
     users."${username}" = import ../../home/seadragon.nix;

@@ -16,9 +16,6 @@ let
   };
 in
 {
-  home.packages = [
-    pkgs.dracula-icon-theme
-  ];
   stylix = {
     enable = true;
     # homeManagerIntegration.followsSystem = false;
@@ -49,8 +46,8 @@ in
     targets = {
       gtk.enable = false;
       gnome.enable = false;
-      rofi.enable = false;
-      firefox.profileNames = [ "dev-edition-default" ];
+      # rofi.enable = false;
+      # firefox.profileNames = lib.mkIf config.programs.firefox.enable [ "dev-edition-default" ];
       gnome-text-editor.enable = lib.mkForce false;
       nixvim.plugin = "base16-nvim";
     };

@@ -5,6 +5,10 @@
     unityhub
     nh
   ];
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-dev-edition;
+  };
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -13,15 +17,4 @@
     flake = "/home/andrec/nixconfig/"; # sets NH_OS_FLAKE variable for you
   };
   programs.defaultBrowser = "vivaldi";
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-    dotnet-runtime-wrapped-7
-    .0
-    .20
-    dotnet-runtime-7
-    .0
-    .20
-  ];
 }
