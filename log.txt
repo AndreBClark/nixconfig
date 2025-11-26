@@ -1,0 +1,3 @@
+[1m<<<[0m /run/current-system
+[1m>>>[0m /nix/store/9kjxny8qc970jmy5nlwc63xx6999mr9v-nixos-system-seadragon-25.11.20251120.a8d610a
+

@@ -45,8 +45,23 @@
     infercase = true;
     clipboard = "unnamedplus";
     foldlevel = 99; # Folds with a level higher than this number will be closed
-    foldcolumn = "1";
+    foldcolumn = "0";
     foldenable = true;
     foldlevelstart = 99;
+    fillchars = {
+      horiz = "━";
+      horizup = "┻";
+      horizdown = "┳";
+      vert = "┃";
+      vertleft = "┫";
+      vertright = "┣";
+      verthoriz = "╋";
+      eob = " ";
+      diff = "╱";
+      fold = " ";
+      foldopen = "";
+      foldclose = "";
+      msgsep = "‾";
+    };
   };
 }

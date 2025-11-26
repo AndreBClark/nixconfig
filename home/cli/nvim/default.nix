@@ -13,22 +13,16 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+    userCommands = {
+      W = {
+        command = "w";
+      };
+      Q = {
+        command = "q";
+      };
+    };
     globals = {
       mapleader = " ";
     };
-    extraConfigLua = ''
-      local cmp_enabled = true
-      vim.api.nvim_create_user_command("ToggleAutoComplete", function()
-        if cmp_enabled then
-          require("cmp").setup.buffer({ enabled = false })
-          require("notify")("Disabled Autocomplete", "info")
-          cmp_enabled = false
-        else
-          require("cmp").setup.buffer({ enabled = true })
-          require("notify")("Enabled Autocomplete", "info")
-          cmp_enabled = true
-        end
-      end, {})
-    '';
   };
 }

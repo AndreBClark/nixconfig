@@ -3,7 +3,7 @@
 
   inputs = {
     # global, so they can be `.follow`ed
-    systems.url = "github:nix-systems/x86_64-linux";
+    system.url = "github:nix-systems/x86_64-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     hardware.url = "github:NixOS/nixos-hardware/master";
     nur = {
@@ -14,10 +14,6 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
     };
 
     flake-parts = {
@@ -91,7 +87,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       stylix,
@@ -99,7 +94,7 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+      system = inputs.system;
       username = "andrec";
       commonModules = [
         stylix.nixosModules.stylix

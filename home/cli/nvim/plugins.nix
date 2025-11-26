@@ -15,6 +15,10 @@
     lazygit.enable = true;
     toggleterm.enable = true;
     mini.enable = true;
+    mini-pairs.enable = true;
+    mini-surround.enable = true;
+    mini-map.enable = true;
+    tiny-inline-diagnostic.enable = true;
     oil.enable = true;
     illuminate.enable = true;
     scrollview.enable = true;
@@ -30,6 +34,7 @@
     lint.enable = true;
     commentary.enable = true;
     web-devicons.enable = true;
+    nvim-ufo.enable = true;
     telescope = {
       enable = true;
       extensions = {
@@ -38,6 +43,10 @@
         fzf-native.enable = true;
         zoxide.enable = true;
       };
+      settings.file_ignore_patterns = [
+        "^.git/"
+        "*.lock"
+      ];
     };
     harpoon = {
       enable = true;
