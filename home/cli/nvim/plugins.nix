@@ -18,14 +18,20 @@
     mini-pairs.enable = true;
     mini-surround.enable = true;
     mini-map.enable = true;
-    tiny-inline-diagnostic.enable = true;
+    tiny-inline-diagnostic = {
+      enable = true;
+      settings = {
+        virt_texts = {
+          priority = 2048;
+        };
+      };
+    };
     oil.enable = true;
     illuminate.enable = true;
     scrollview.enable = true;
     bufferline.enable = true;
     # gitsigns.enable = true;
     gitgutter.enable = true;
-    gitblame.enable = true;
     # transparent.enable = true;
     twilight.enable = true;
     nix-develop.enable = true;
@@ -35,6 +41,7 @@
     commentary.enable = true;
     web-devicons.enable = true;
     nvim-ufo.enable = true;
+    bufdelete.enable = true;
     telescope = {
       enable = true;
       extensions = {
@@ -46,6 +53,8 @@
       settings.file_ignore_patterns = [
         "^.git/"
         "*.lock"
+        "*.jpg"
+        "*.png"
       ];
     };
     harpoon = {

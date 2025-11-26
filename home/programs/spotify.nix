@@ -13,8 +13,8 @@ in
   ];
   programs.spicetify = {
     enable = true;
-    theme = lib.mkDefault spicePkgs.themes.catppuccin;
-    colorScheme = lib.mkDefault "mocha";
+    # theme = lib.mkDefault spicePkgs.themes.catppuccin;
+    # colorScheme = lib.mkDefault "mocha";
     enabledCustomApps = with spicePkgs.apps; [
       betterLibrary
       localFiles

@@ -94,7 +94,7 @@
       ...
     }@inputs:
     let
-      system = inputs.system;
+      system = builtins.head (import inputs.system);
       username = "andrec";
       commonModules = [
         stylix.nixosModules.stylix

@@ -65,6 +65,11 @@
       }
       {
         mode = "n";
+        key = "<C-w>";
+        action = "Bdelete";
+      }
+      {
+        mode = "n";
         key = "zR";
         action = "<cmd>lua require('ufo').openAllFolds()<cr>";
         options = {
