@@ -23,7 +23,9 @@ pkgs.mkShell {
     ];
 
   shellHook = ''
+    export PATH="$PWD/node_modules/.bin/:$PATH"
     alias run='pnpm run'
+    alias serve='netlify dev:exec'
     alias test='pnpm test'
     alias lint='biome lint'
     alias format='biome format'

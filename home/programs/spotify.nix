@@ -16,8 +16,6 @@ in
     # theme = lib.mkDefault spicePkgs.themes.catppuccin;
     # colorScheme = lib.mkDefault "mocha";
     enabledCustomApps = with spicePkgs.apps; [
-      betterLibrary
-      localFiles
       newReleases
       marketplace
     ];
@@ -36,7 +34,6 @@ in
       history
       playNext
       # sectionMarker makes progressbar illegible with catpuccin theme
-      oldLikeButton
     ];
   };
 }

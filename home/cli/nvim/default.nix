@@ -4,10 +4,8 @@
     inputs.nixvim.homeModules.nixvim
     ./options.nix
     ./lsp.nix
-    ./plugins.nix
+    ./plugins
     ./keymaps.nix
-    ./treesitter.nix
-    ./cmp.nix
   ];
 
   programs.nixvim = {
@@ -24,5 +22,6 @@
     globals = {
       mapleader = " ";
     };
+    dependencies.ripgrep.enable = true;
   };
 }

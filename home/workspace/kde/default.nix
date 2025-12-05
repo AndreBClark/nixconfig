@@ -119,9 +119,9 @@ in
       platform = qtPlatform;
     };
     kde = {
-      enable = true;
+      enable = false;
       useWallpaper = true;
-      decorations = "Utterly-Round-Dark";
+      decorations = "Utterly-Round-Dark-Solid";
     };
   };
   qt = {

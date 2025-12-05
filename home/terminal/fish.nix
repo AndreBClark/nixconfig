@@ -5,6 +5,7 @@
       enable = true;
       interactiveShellInit = ''
         set fish_greeting ""
+        ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
     };
     kitty.shellIntegration.enableFishIntegration = true;

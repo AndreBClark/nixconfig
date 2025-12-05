@@ -4,6 +4,6 @@
     ./fonts.nix
     ./catppuccin.nix
     ./rofi
-    ./stylix.nix
+    ./stylix
   ];
 }

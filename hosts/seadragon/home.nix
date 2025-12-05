@@ -8,7 +8,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../../common/home.nix
-    ../../home/theme/stylix.nix
+    ../../home/theme/stylix/theme.nix
   ];
   environment.systemPackages = [
     pkgs.dracula-icon-theme
