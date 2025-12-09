@@ -15,6 +15,7 @@
   ];
   home-manager = {
     sharedModules = [
+      inputs.vicinae.homeManagerModules.default
       inputs.plasma-manager.homeModules.plasma-manager
     ];
     users."${username}" = import ../../home/seadragon.nix;

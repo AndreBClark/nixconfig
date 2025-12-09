@@ -20,7 +20,11 @@ in
     enable = true;
     # homeManagerIntegration.followsSystem = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${colorscheme}-${variant}.yaml";
-    override = { };
+    opacity = {
+      desktop = 1.0;
+      popups = 1.0;
+      applications = 1.0;
+    };
     icons = {
       enable = true;
       dark = lib.mkForce "Dracula";
@@ -28,8 +32,8 @@ in
       package = pkgs.dracula-icon-theme;
     };
     # cursor = {
-    #   #   name = "${colorscheme}-${flavor}-${accent}-cursors";
-    #   #   package = pkgs.catppuccin-cursors.mochaSky;
+    #   name = "Volantes Cursors";
+    #   package = pkgs.volantes-cursors;
     #   size = 24;
     # };
     image = theme.wallpaper;

@@ -14,7 +14,7 @@
         {
           name = "org.kde.plasma.quicklaunch";
           config.General.launcherUrls = [
-            "file:///etc/profiles/per-user/${username}/share/applications/powermenu.desktop"
+            "vicinae://toggle"
           ];
         }
         "org.kde.plasma.pager"

@@ -5,16 +5,31 @@
 }:
 {
   programs.plasma.workspace = {
-    # lookAndFeel = "Catppuccin-Mocha-Sky";
-    theme = lib.mkForce "Utterly-Round";
-    colorScheme = config.lib.stylix.colors.scheme;
-    clickItemTo = "select";
-    # cursor.theme = config.stylix.cursor.name;
-    # cursor.size = config.stylix.cursor.size;
+    theme = lib.mkForce "Utterly-Round-Solid";
+    colorScheme = lib.concatStrings (
+      lib.filter lib.isString (builtins.split "[^a-zA-Z]" config.lib.stylix.colors.scheme)
+    );
+    widgetStyle = lib.mkForce "Darkly";
+    windowDecorations = {
+      theme = "Utterly-Round-Dark-Solid";
+      library = "org.kde.kwin.aurorae";
+    };
     iconTheme = config.stylix.icons.dark;
+    clickItemTo = "select";
+    cursor = {
+      cursorFeedback = "Static";
+      animationTime = 2;
+      theme = "volantes_cursors";
+      size = 24;
+      taskManagerFeedback = true;
+    };
     soundTheme = lib.mkForce "nothing";
     enableMiddleClickPaste = true;
-    splashScreen.theme = "None";
-    wallpaperSlideShow.path = ./. + "~/Pictures/";
+    splashScreen.theme = lib.mkForce "None";
+    wallpaperFillMode = "preserveAspectCrop";
+    wallpaperSlideShow = {
+      path = ./. + "~/Pictures/";
+      interval = 300;
+    };
   };
 }

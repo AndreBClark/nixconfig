@@ -4,13 +4,12 @@
   inputs = {
     # global, so they can be `.follow`ed
     system.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     hardware.url = "github:NixOS/nixos-hardware/master";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # flake-compat.url = "github:edolstra/flake-compat";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,21 +67,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    tokyonight.url = "github:mrjones2014/tokyonight.nix";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nix-colors-adapters.url = "gitlab:vfosnar/nix-colors-adapters";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rofi-launchers.url = "./pkgs/rofi-launchers";
+    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae-extensions.url = "github:vicinaehq/extensions";
   };
 
   outputs =
@@ -91,6 +87,8 @@
       home-manager,
       stylix,
       plasma-manager,
+      nur,
+      vicinae,
       ...
     }@inputs:
     let
@@ -98,11 +96,12 @@
       username = "andrec";
       commonModules = [
         stylix.nixosModules.stylix
-        inputs.nur.modules.nixos.default
+        nur.modules.nixos.default
       ];
       commonHomeModules = [
         stylix.homeModules.stylix
         plasma-manager.homeModules.plasma-manager
+        vicinae.homeManagerModules.default
         home/unfree.nix
       ];
       pkgs = nixpkgs.legacyPackages.${system};

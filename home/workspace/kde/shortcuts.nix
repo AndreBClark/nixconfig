@@ -19,15 +19,10 @@
       };
     };
     hotkeys.commands = {
-      "launch-rofi" = {
+      "vicinae" = {
         name = "Launch Rofi";
         key = "Meta";
-        command = "launcher_t2";
-      };
-      "launch-filebrowser" = {
-        name = "Launch File Browser";
-        key = "Meta+f";
-        command = "rofi -show file-browser-extended";
+        command = "vicinae open";
       };
     };
   };

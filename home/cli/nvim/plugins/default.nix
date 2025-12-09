@@ -27,7 +27,7 @@
       enable = true;
       settings = {
         virt_texts = {
-          priority = 248;
+          priority = 2048;
         };
       };
     };

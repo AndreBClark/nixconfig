@@ -7,7 +7,7 @@
   environment.systemPackages = [
     pkgs.xwayland
     pkgs.samrewritten
-    (pkgs.callPackage ../pkgs/sgdboop/package.nix {})
+    pkgs.sgdboop
   ];
   programs.xwayland.enable = true;
   programs.steam = {
@@ -27,6 +27,7 @@
       pkgs.keyutils
       pkgs.lsfg-vk
       pkgs.lsfg-vk-ui
+      pkgs.volantes-cursors
     ];
     extraCompatPackages = [
       pkgs.proton-ge-bin

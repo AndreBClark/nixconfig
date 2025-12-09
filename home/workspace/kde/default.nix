@@ -5,7 +5,7 @@
   ...
 }:
 let
-  plasmaStyle = "Utterly-Round";
+  plasmaStyle = "Utterly-Round-Solid";
   qtPlatform = "kde";
   defaultBrowser = "vivaldi";
 in
@@ -16,9 +16,9 @@ in
     ./panels.nix
     ./workspace.nix
   ];
-
+  programs.kate.enable = false;
   programs.plasma = {
-    # immutableByDefault = true;
+    immutableByDefault = true;
     # overrideConfig = true;
     # resetFilesExclude = [
     # "plasma-org.kde.plasma.desktop-appletsrc"
@@ -32,9 +32,6 @@ in
         immutable = true;
       };
       kdeglobals = {
-        KDE = {
-          widgetStyle = lib.mkForce "Darkly";
-        };
         "General" = {
           "BrowserApplication" = "vivaldi";
         };
@@ -43,7 +40,10 @@ in
       klaunchrc = {
         # No bouncy cursor
         BusyCursorSettings.Bouncing = false;
-        FeedbackStyle.BusyCursor = false;
+      };
+      kxkbrc.Layout = {
+        Model = "pc86";
+        Options = "caps:escape";
       };
     };
 
@@ -53,23 +53,6 @@ in
       steam.text = "steam -silent";
     };
 
-    # fonts = {
-    #   general = {
-    #     family = config.stylix.fonts.monospace.name;
-    #     pointSize = 12;
-    #     styleHint = "monospace";
-    #   };
-    #   fixedWidth = {
-    #     family = config.stylix.fonts.monospace.name;
-    #     pointSize = 12;
-    #     styleHint = "monospace";
-    #   };
-    #   menu = {
-    #     family = config.stylix.fonts.monospace.name;
-    #     pointSize = 10;
-    #     styleHint = "monospace";
-    #   };
-    # };
     kscreenlocker = {
       autoLock = false;
       appearance.wallpaper = config.stylix.image;
@@ -81,19 +64,30 @@ in
           action = "sleep";
           idleTimeout = 60 * 60;
         };
-        whenSleepingEnter = "hybridSleep";
+        whenSleepingEnter = "standbyThenHibernate";
       };
     };
     window-rules = [
       {
         apply.noborder = {
           value = true;
-          apply = "initially";
+          apply = "force";
         };
         description = "Hide titlebar by default";
-        match.window-class = {
-          value = ".*";
-          type = "regex";
+        match = {
+          window-class = {
+            value = ".*";
+            type = "regex";
+          };
+          window-types = [ "normal" ];
+        };
+      }
+      {
+        apply.above = "force";
+        description = "Show Picture in Picture above all";
+        match.title = {
+          value = "Picture in picture";
+          type = "exact";
         };
       }
     ];
@@ -112,6 +106,7 @@ in
     pkgs.darkly
     pkgs.kdePackages.plasma-browser-integration
     pkgs.utterly-round-plasma-style
+    pkgs.volantes-cursors
   ];
   stylix.targets = {
     qt = {
@@ -120,7 +115,7 @@ in
     };
     kde = {
       enable = false;
-      useWallpaper = true;
+      useWallpaper = false;
       decorations = "Utterly-Round-Dark-Solid";
     };
   };

@@ -2,8 +2,14 @@
 {
   programs.tmux = {
     enable = true;
-    plugins = [
-      pkgs.tmuxPlugins.vim-tmux-navigator
+    keyMode = "vi";
+    terminal = "kitty";
+    shell = "${pkgs.fish}/bin/fish";
+    tmuxinator.enable = true;
+    customPaneNavigationAndResize = true;
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+      sensible
     ];
   };
 }

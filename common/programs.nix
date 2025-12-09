@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    mono
-    unityhub
-    nh
-  ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-dev-edition;
