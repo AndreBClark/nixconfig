@@ -3,8 +3,17 @@
   programs.nixvim = {
     keymaps = [
       {
+        key = "<SPACE>";
+        action = "";
+      }
+      {
         key = "<C-p>";
         action = "<cmd>Telescope fd<CR>";
+      }
+      {
+        key = "<leader>w";
+        action = "<cmd>Bdelete<CR>";
+        mode = [ "n" ];
       }
       {
         mode = [

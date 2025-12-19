@@ -24,7 +24,7 @@
         opacity = config.stylix.opacity.popups;
         rounding = 10;
       };
-      theme.name = config.lib.stylix.colors.scheme;
+      theme.name = config.lib.stylix.colors.scheme-slug;
     };
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
       nix

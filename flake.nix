@@ -4,7 +4,7 @@
   inputs = {
     # global, so they can be `.follow`ed
     system.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:NixOS/nixos-hardware/master";
     nur = {
       url = "github:nix-community/NUR";
@@ -24,38 +24,16 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
+    niri.url = "github:sodiboo/niri-flake";
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
-    };
-
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
     };
 
     home-manager = {
@@ -89,6 +67,7 @@
       plasma-manager,
       nur,
       vicinae,
+      dankMaterialShell,
       ...
     }@inputs:
     let
@@ -97,6 +76,7 @@
       commonModules = [
         stylix.nixosModules.stylix
         nur.modules.nixos.default
+        dankMaterialShell.nixosModules.greeter
       ];
       commonHomeModules = [
         stylix.homeModules.stylix
@@ -125,7 +105,7 @@
           };
           modules = with inputs; [
             hardware.nixosModules.dell-xps-15-9560
-            ./common
+            ./nixos
             ./hosts/owlthulu
             ./home
           ];
@@ -134,7 +114,6 @@
       devShells."${system}" = {
         default = import ./shells/web.nix {
           inherit pkgs;
-          nodePackages = pkgs.nodePackages;
         };
         python = import ./shells/python.nix {
           inherit pkgs;

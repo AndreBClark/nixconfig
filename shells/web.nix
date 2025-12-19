@@ -1,26 +1,22 @@
 {
   pkgs ? import <nixpkgs> { },
-  nodePackages ? pkgs.nodePackages,
 }:
 pkgs.mkShell {
   name = "web";
-  buildInputs =
-    with pkgs;
-    with nodePackages;
-    [
-      pkg-config
-      python3
-      nodejs
-      node-gyp
-      node-gyp-build
-      deno
-      pnpm
-      vips
-      typescript
-      typescript-language-server
-      biome # Add Biome.js for linting, formatting, and more
-      prettier # Optional if you prefer Prettier alongside
-    ];
+  buildInputs = with pkgs.nodePackages; [
+    pkgs.pkg-config
+    pkgs.python3
+    pkgs.deno
+    pkgs.vips
+    pkgs.biome
+    nodejs
+    node-gyp
+    node-gyp-build
+    pnpm
+    typescript
+    typescript-language-server
+    prettier
+  ];
 
   shellHook = ''
     export PATH="$PWD/node_modules/.bin/:$PATH"
@@ -29,5 +25,6 @@ pkgs.mkShell {
     alias test='pnpm test'
     alias lint='biome lint'
     alias format='biome format'
+    exec fish
   '';
 }

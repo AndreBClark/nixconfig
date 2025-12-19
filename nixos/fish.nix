@@ -1,4 +1,4 @@
-{pkgs, inputs, system, lib, ... }:
+{ pkgs, ... }:
 {
   programs.fish = {
     enable = true;
@@ -6,4 +6,5 @@
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
     '';
   };
+  documentation.man.generateCaches = false;
 }

@@ -12,16 +12,14 @@
     enable = true;
     defaultEditor = true;
     userCommands = {
-      W = {
-        command = "w";
-      };
-      Q = {
-        command = "q";
-      };
+      W.command = "w";
+      Q.command = "q";
     };
     globals = {
       mapleader = " ";
     };
-    dependencies.ripgrep.enable = true;
+    dependencies = {
+      ripgrep.enable = true;
+    };
   };
 }

@@ -7,7 +7,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ../../common/home.nix
+    ../../nixos/home.nix
     ../../home/theme/stylix/theme.nix
   ];
   environment.systemPackages = [
@@ -17,6 +17,8 @@
     sharedModules = [
       inputs.vicinae.homeManagerModules.default
       inputs.plasma-manager.homeModules.plasma-manager
+      inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+      inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     ];
     users."${username}" = import ../../home/seadragon.nix;
   };
