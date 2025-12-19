@@ -4,7 +4,6 @@
     enable = true;
     niri = {
       enableKeybinds = true; # Automatic keybinding configuration
-      enableSpawn = true; # Auto-start DMS with niri
     };
     systemd = {
       enable = true; # Systemd service for auto-start
