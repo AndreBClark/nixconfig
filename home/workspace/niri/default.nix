@@ -17,6 +17,7 @@ in
           bottom = -16;
         };
       };
+      input.keyboard.xkb.options = "caps:escape";
       window-rules = [
         {
           geometry-corner-radius = {
@@ -26,6 +27,7 @@ in
             bottom-right = radius;
           };
           clip-to-geometry = true;
+          open-maximized = true;
         }
         {
           matches = [
@@ -54,14 +56,11 @@ in
         };
         "Mod+T".action.spawn-sh = "kitty";
 
-        # "Mod+C".action.spawn-sh = "obsidian";
-
         "Mod+W".action.toggle-window-floating = [ ];
         "Mod+E".action.switch-focus-between-floating-and-tiling = [ ];
         "Mod+BracketLeft".action.consume-or-expel-window-left = [ ];
         "Mod+BracketRight".action.consume-or-expel-window-right = [ ];
 
-        # "Mod+Return".action.spawn-sh = "kitty -- lf";
         "Mod+Return".action.toggle-overview = [ ];
 
         "Mod+H".action.focus-column-left = [ ];

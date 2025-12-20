@@ -13,6 +13,8 @@ in
   ];
   programs.spicetify = {
     enable = true;
+    wayland = true;
+    windowManagerPatch = true;
     # theme = lib.mkDefault spicePkgs.themes.catppuccin;
     # colorScheme = lib.mkDefault "mocha";
     enabledCustomApps = with spicePkgs.apps; [
