@@ -31,11 +31,11 @@ in
       light = config.stylix.icons.dark;
       package = pkgs.dracula-icon-theme;
     };
-    # cursor = {
-    #   name = "Volantes Cursors";
-    #   package = pkgs.volantes-cursors;
-    #   size = 24;
-    # };
+    cursor = {
+      name = "Volantes Cursors";
+      package = pkgs.volantes-cursors;
+      size = 24;
+    };
     image = theme.wallpaper;
     polarity = "dark";
   };
