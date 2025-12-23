@@ -5,6 +5,6 @@
     ./kde
     ./niri
     ./dms
-    # ./gtk.nix
+    ./gtk.nix
   ];
 }

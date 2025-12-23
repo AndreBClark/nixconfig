@@ -1,16 +1,11 @@
-{ lib, ... }: {
-
-#   gtk = {
-#     enable = true;
-#     iconTheme = {
-#       name = "Papirus-Dark";
-#       package = pkgs.catppuccin-papirus-folders.override {
-#         flavor =  "mocha";
-#         accent = "lavender";
-#       };
-#     };
-#     gtk3 = {
-#       extraConfig.gtk-application-prefer-dark-theme = true;
-#     };
-#   };
+{
+  gtk = {
+    enable = true;
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+    gtk4 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+  };
 }
