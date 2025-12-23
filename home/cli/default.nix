@@ -11,10 +11,6 @@
     ./nvim
   ];
   home.packages = with pkgs; [
-    nixpkgs-fmt
-    nixfmt-rfc-style
     devenv
-    jq
-    nil
   ];
 }

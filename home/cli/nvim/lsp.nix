@@ -1,54 +1,70 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
-{
+{ pkgs, ... }: {
   programs.nixvim = {
+    lsp = {
+      inlayHints.enable = true;
+      servers = {
+        ts_ls.enable = true;
+        biome.enable = true;
+        cssls.enable = true; # CSS
+        tailwindcss.enable = true; # TailwindCSS
+        html.enable = true; # HTML
+        astro.enable = true; # AstroJS
+        jsonls.enable = true;
+        phpactor.enable = true; # PHP
+        svelte.enable = true;
+        pyright.enable = true; # Python
+        marksman.enable = true; # Markdown
+        nixd = {
+          enable = true;
+          settings = {
+            formatting = {
+              command = [ "nixfmt" ];
+            };
+          };
+        };
+        dockerls.enable = true; # Docker
+        bashls.enable = true; # Bash
+        yamlls.enable = true; # YAML
+      };
+    };
     plugins = {
-      lsp-format.enable = true;
+      lsp.enable = true;
       lspkind.enable = true;
+      lsp-format.enable = true;
       none-ls = {
         enable = true;
         enableLspFormat = true;
-        sources.formatting = {
-          alejandra.enable = true;
-          nixpkgs_fmt.enable = true;
-          biome.enable = true;
-          prettier.enable = true;
-          prettierd.enable = true;
-          stylua.enable = true;
+        sources = {
+          formatting = {
+            nixpkgs_fmt.enable = true;
+            biome.enable = true;
+            stylua.enable = true;
+          };
+          diagnostics = {
+            statix.enable = true;
+            deadnix.enable = true;
+          };
+          code_actions = {
+            refactoring.enable = true;
+            ts_node_action.enable = true;
+            statix.enable = true;
+          };
         };
       };
-      lsp = {
+      typescript-tools = {
         enable = true;
-        inlayHints = true;
-        servers = {
-          biome.enable = true;
-          cssls.enable = true; # CSS
-          tailwindcss.enable = true; # TailwindCSS
-          html.enable = true; # HTML
-          astro.enable = true; # AstroJS
-          jsonls.enable = true;
-          phpactor.enable = true; # PHP
-          svelte.enable = false; # Svelte
-          pyright.enable = true; # Python
-          marksman.enable = true; # Markdown
-          nil_ls = {
-            enable = true; # Nix
-            settings = {
-              nix.flake.autoArchive = true;
-              formatting.command = [ "${lib.getExe pkgs.nixfmt}" ];
-            };
-          };
-          dockerls.enable = true; # Docker
-          bashls.enable = true; # Bash
-          yamlls.enable = true; # YAML
+        settings = {
+          separate_diagnostic_server = true;
+          complete_function_calls = false;
         };
       };
       lint.lintersByFt = {
         json = [ "jq" ];
       };
     };
+    extraPackages = [
+      pkgs.jq
+      pkgs.nixfmt
+    ];
   };
 }

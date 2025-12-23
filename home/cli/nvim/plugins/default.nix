@@ -1,4 +1,3 @@
-{ ... }:
 {
   imports = [
     ./treesitter.nix
@@ -8,13 +7,13 @@
   programs.nixvim = {
     plugins = {
       dashboard.enable = true;
+      trouble.enable = true;
       notify.enable = true;
       lualine = {
         enable = true;
         settings = {
           extensions = [
             "fzf"
-            "oil"
           ];
         };
       };
@@ -73,13 +72,50 @@
           };
         };
       };
-      oil.enable = true;
       illuminate.enable = true;
       scrollview.enable = true;
       bufferline = {
         enable = true;
         settings = {
           options = {
+            mode = "buffers";
+            themable = true;
+            numbers = "none";
+            buffer_close_icon = "󰅖";
+            modified_icon = "●";
+            close_icon = "";
+            indicator = {
+              style = "icon";
+              icon = "▎";
+            };
+            separator_style = "slope";
+            max_name_length = 20;
+            max_prefix_length = 15;
+            truncate_names = true;
+            tab_size = 20;
+            color_icons = true;
+            show_buffer_icons = true;
+            show_buffer_close_icons = true;
+            show_close_icon = true;
+            show_tab_indicators = true;
+            diagnostics = "nvim_lsp";
+            diagnostics_indicator =
+              # Lua
+              ''
+                function(count, level, diagnostics_dict, context)
+                  local s = ""
+                  for e, n in pairs(diagnostics_dict) do
+                    local sym = e == "error" and " "
+                      or (e == "warning" and " " or "" )
+                    if(sym ~= "") then
+                      s = s .. " " .. n .. sym
+                    end
+                  end
+                  return s
+                end
+              '';
+            sort_by = "insert_after_current";
+            always_show_bufferline = true;
             offsets = [
               {
                 filetype = "neo-tree";
@@ -88,9 +124,6 @@
                 highlight = "Directory";
               }
             ];
-            diagnostics = "nvim_lsp";
-            show_buffer_close_icons = true;
-            show_close_icon = false;
           };
         };
       };
@@ -122,6 +155,9 @@
               "^.git/"
               "*.ico"
               "*.lock"
+              "flake.lock"
+              "pnpm-lock.yaml"
+              "package-lock.json"
               "*.jpg"
               "*.jpeg"
               "*.png"
@@ -133,18 +169,31 @@
             };
             sorting_strategy = "ascending";
           };
+          pickers = {
+
+            git_files = {
+              show_untracked = true;
+              recurse_submodules = false;
+            };
+          };
         };
+
         extensions = {
-          project.enable = true;
+          project = {
+            enable = true;
+            settings = {
+              base_dirs = [
+                "~/repos"
+                "~/nixconfig"
+              ];
+              hidden_files = false;
+            };
+          };
           frecency.enable = true;
           fzf-native.enable = true;
           zoxide.enable = true;
           advanced-git-search.enable = true;
         };
-      };
-      harpoon = {
-        enable = true;
-        enableTelescope = true;
       };
     };
   };
