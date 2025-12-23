@@ -30,8 +30,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
     };
@@ -67,7 +67,7 @@
       plasma-manager,
       nur,
       vicinae,
-      dankMaterialShell,
+      dms,
       ...
     }@inputs:
     let
@@ -76,12 +76,13 @@
       commonModules = [
         stylix.nixosModules.stylix
         nur.modules.nixos.default
-        dankMaterialShell.nixosModules.greeter
+        dms.nixosModules.greeter
       ];
       commonHomeModules = [
         stylix.homeModules.stylix
         plasma-manager.homeModules.plasma-manager
         vicinae.homeManagerModules.default
+        dms.homeModules.DankMaterialShell.default
         home/unfree.nix
       ];
       pkgs = nixpkgs.legacyPackages.${system};

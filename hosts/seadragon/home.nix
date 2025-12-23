@@ -1,8 +1,7 @@
-{
-  username,
-  inputs,
-  pkgs,
-  ...
+{ username
+, inputs
+, pkgs
+, ...
 }:
 {
   imports = [
@@ -17,8 +16,8 @@
     sharedModules = [
       inputs.vicinae.homeManagerModules.default
       inputs.plasma-manager.homeModules.plasma-manager
-      inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-      inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+      inputs.dms.homeModules.dankMaterialShell.default
+      inputs.dms.homeModules.dankMaterialShell.niri
     ];
     users."${username}" = import ../../home/seadragon.nix;
   };
