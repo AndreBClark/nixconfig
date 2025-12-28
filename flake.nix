@@ -82,7 +82,7 @@
         stylix.homeModules.stylix
         plasma-manager.homeModules.plasma-manager
         vicinae.homeManagerModules.default
-        dms.homeModules.DankMaterialShell.default
+        dms.homeModules.dankMaterialShell.default
         home/unfree.nix
       ];
       pkgs = nixpkgs.legacyPackages.${system};
