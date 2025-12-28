@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     lsp = {
       inlayHints.enable = true;
@@ -16,7 +17,7 @@
         marksman.enable = true; # Markdown
         nixd = {
           enable = true;
-          settings = {
+          config = {
             formatting = {
               command = [ "nixfmt" ];
             };
@@ -64,7 +65,7 @@
     };
     extraPackages = [
       pkgs.jq
-      pkgs.nixfmt
+      pkgs.nixfmt-rfc-style
     ];
   };
 }
