@@ -2,6 +2,7 @@
   imports = [
     ./boot.nix
     ./nix.nix
+    ./keyboard.nix
     ./substituters.nix
     ./nixpkgs.nix
     ./fish.nix

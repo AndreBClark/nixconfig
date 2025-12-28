@@ -1,14 +1,10 @@
 {
   lib,
-  username,
   ...
 }:
 {
-  home = {
-    username = username;
-    homeDirectory = "/home/${username}";
-    stateVersion = lib.mkForce "24.05";
-  };
+  imports = [ ./config.nix ];
+
   programs.git.enable = lib.mkForce true;
 
   programs.home-manager.enable = true;
@@ -18,4 +14,6 @@
     EDITOR = "nvim";
     TERMINAL = "kitty";
   };
+
+  home.stateVersion = lib.mkForce "24.05";
 }

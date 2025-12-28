@@ -4,10 +4,8 @@
     pciutils
     envsubst
   ];
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-  };
+  services.xserver.enable = true;
+
   systemd.user.services.orca.enable = false;
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
