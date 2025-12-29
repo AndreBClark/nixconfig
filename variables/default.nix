@@ -6,6 +6,7 @@
     model = "pc86";
   };
   terminal = "kitty";
+  editor = "nvim";
   browser = "vivaldi";
   shell = "fish";
 }
