@@ -3,7 +3,10 @@
   ...
 }:
 {
-  imports = [ ./config.nix ];
+  imports = [
+    ./config.nix
+    ./releasechecks.nix
+  ];
 
   programs.git.enable = lib.mkForce true;
 
