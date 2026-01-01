@@ -1,22 +1,22 @@
 # nixconfig — personal Nix flake (annotated & usage guide)
 
-This repository is a flake-based NixOS / Home Manager configuration for the user `andrec` and the host `seadragon`. It wires several community flakes (stylix, vicinae, plasma-manager, niri, nixvim, DankMaterialShell, etc.) to provide a visually-consistent desktop setup and a curated collection of packages and dotfiles.
+A flake-based NixOS / Home Manager configuration for the user `andrec` on the host `seadragon`. This repository wires several community flakes (stylix, vicinae, plasma-manager, niri, nixvim, Da...).
 
-I inspected the repository to generate this README. The inspection used the GitHub contents API and may be incomplete — view the full tree in the GitHub UI for more files and context:
+View the full tree on GitHub for additional files and context:
 https://github.com/AndreBClark/nixconfig/tree/main
 
-Important note: this repository does not use nixpkgs overlays for custom packages. Any local package expressions under pkgs/ are simple package expressions (not applied to nixpkgs via overlays).
+Important note: this repository does not use nixpkgs overlays for custom packages. Any local package expressions under `pkgs/` are simple package expressions (not applied to nixpkgs via overlays).
 
 Quick summary
 - Flake: top-level `flake.nix` (pins inputs in `flake.lock`).
 - System host: `hosts/seadragon` — system config, hardware, and host home glue.
-- User/home-manager: `home/seadragon.nix` and the `home/` tree (theme, programs, terminal, cli, workspace).
+- User / home-manager: `home/seadragon.nix` and the `home/` tree (theme, programs, terminal, cli, workspace).
 - Neovim is configured via nixvim under `home/cli/nvim`.
 - Window / desktop setups:
   - KDE / Plasma: files under `home/workspace/kde/`.
   - Niri / Wayland integration: `display/niri.nix` (with home-level niri integrations).
-- Theme & styling: `home/theme/stylix` and `home/theme/fonts.nix` (wallpaper: fallingfrontier.jpg).
-- Note: rofi and dunst fragments exist, but you indicated they are not used; they are safe to remove if you want a cleaner tree.
+- Theme & styling: `home/theme/stylix` and `home/theme/fonts.nix` (wallpaper: `fallingfrontier.jpg`).
+- Note: rofi and dunst fragments exist but may not be used; they can be removed if you want a cleaner tree.
 
 Repository layout (most relevant)
 - flake.nix — inputs/outputs and `nixosConfigurations.seadragon`.
@@ -49,7 +49,7 @@ Getting started (minimal)
    - with NH_FLAKE set: nh os switch -H seadragon
 5. Home manager (user `andrec`):
    - nh home switch . -c andrec
-   - with NH_HOME_FLAKE/NH_FLAKE: nh home switch -c andrec
+   - with NH_HOME_FLAKE / NH_FLAKE: nh home switch -c andrec
 
 Neovim (nixvim) — where and what
 Location: home/cli/nvim/
@@ -61,15 +61,15 @@ Files:
 - lsp.nix — language server settings and LSP-related configuration.
 - plugins/ — place for plugin overrides or additions.
 
-Current behaviour and where to change:
+Behavior and where to change:
 - nixvim is enabled via `programs.nixvim.enable = true` in `default.nix`.
 - To change editor options: edit `home/cli/nvim/options.nix`.
-- To add/change keybindings: edit `home/cli/nvim/keymaps.nix`.
-- To add or customize plugins: place overrides or additional plugin expressions in `home/cli/nvim/plugins/` (this repo imports that directory).
+- To change keybindings: edit `home/cli/nvim/keymaps.nix`.
+- To add or customize plugins: place overrides or additional plugin expressions in `home/cli/nvim/plugins/`.
 - LSP servers and per-language overrides live in `home/cli/nvim/lsp.nix`.
 
 Window managers & desktop environments
-This repository configures multiple desktop paths; you pick which to activate by enabling the appropriate modules.
+Multiple desktop paths are available; enable the appropriate modules to pick which to activate.
 
 KDE / Plasma
 - Files: `home/workspace/kde/` (default.nix, workspace.nix, panels.nix).
@@ -77,9 +77,9 @@ KDE / Plasma
   - `programs.plasma.enable = true` and a set of Plasma customizations (theme, icon theme, cursor, kwin rules).
   - Bottom panel configured in `panels.nix` with quicklaunch, pager, task manager, system tray, and clock.
   - Packages for Plasma (kwin, kwayland, plasma-wayland-protocols, plasma-browser-integration, styles, cursors) are included in the home-level package list in `home/workspace/kde/default.nix`.
-  - Where to change:
-    - Panels & widgets: edit `home/workspace/kde/panels.nix`.
-    - Global plasma settings: edit `home/workspace/kde/workspace.nix`.
+- Where to change:
+  - Panels & widgets: edit `home/workspace/kde/panels.nix`.
+  - Global plasma settings: edit `home/workspace/kde/workspace.nix`.
 
 Niri (Wayland compositor) integration
 - File: `display/niri.nix` (imported by host configuration).
@@ -88,20 +88,20 @@ Niri (Wayland compositor) integration
   - Adds Wayland-related packages to `environment.systemPackages` (wl-clipboard, wayland-utils, cage, gamescope, xdg-desktop-portal-gnome, etc).
   - Sets `environment.variables.NIXOS_OZONE_WL = "1"`.
 - Where to change:
-  - `display/niri.nix` to change package choices or environment variables.
-  - The home-level `home/workspace/niri` (if present) or `home/` imports that reference `dms.niri` or `vicinae` modules to configure greeter/compositor integration.
+  - Edit `display/niri.nix` to change package choices or environment variables.
+  - See any home-level integrations (e.g., `home/workspace/niri`) or modules referencing `dms.niri` or `vicinae` for greeter/compositor integration.
 
 Theme & visuals
 - Stylix is used via `home/theme/stylix/`:
   - Colorscheme: tokyo-night (variant: storm).
-  - Wallpaper: `fallingfrontier.jpg` in repository (referenced with a fetchurl and sha in `theme.nix`).
+  - Wallpaper: `fallingfrontier.jpg` (referenced in `theme.nix`).
   - Fonts in `home/theme/fonts.nix`: JetBrainsMono Nerd Font, Fira Code Nerd Font, Noto Color Emoji.
-- Vicinae and DankMaterialShell (dms) modules are included in sharedModules for home-manager, but note that `display/dms.nix` currently has greeter enablement commented out. Enable if you intend to use dms as a greeter.
+- If you change the wallpaper file, update the SHA in `home/theme/stylix/theme.nix` or use a local path instead of fetchurl.
 
 Packages & local package expressions
-- Local package expressions in pkgs/ exist (for example, a rofi-launchers expression), but this repository does not use overlays to inject packages into nixpkgs.
-- To add system packages: edit the appropriate `nixos/` module or `hosts/seadragon/*` (add to environment.systemPackages).
-- To add user packages: add to `home.packages` in `home/seadragon.nix` or the module that makes sense (home/programs, home/cli, home/terminal).
+- Local package expressions in `pkgs/` exist (for example, a rofi-launchers expression), but this repository does not use overlays to inject packages into nixpkgs.
+- To add system packages: edit the appropriate `nixos/` module or `hosts/seadragon/*` (add to `environment.systemPackages`).
+- To add user packages: add to `home.packages` in `home/seadragon.nix` or the module that makes sense (e.g., `home/programs`, `home/cli`, `home/terminal`).
 
 Commands & cheatsheet
 - Dev / nh:
@@ -120,14 +120,13 @@ Commands & cheatsheet
   - nix flake update
 
 Notes & troubleshooting
-- Activation issues: use NH_SHOW_ACTIVATION_LOGS=1 to view activation logs.
+- Activation issues: use `NH_SHOW_ACTIVATION_LOGS=1` to view activation logs.
 - Neovim issues: rebuild home or inspect plugin logs; `nh home build` helps to validate derivations.
-- If you change the wallpaper file, update the SHA in `home/theme/stylix/theme.nix` or use a local path instead of fetchurl.
 - If you remove unused fragments (rofi, dunst), make sure nothing imports them.
 
-Next step (ready-to-commit)
-I updated the README content to reflect that you do not use overlays. I can:
-- (1) Prepare a commit patch that replaces the repository README.md with this content on a branch you name, or
-- (2) Open a PR from that branch (if you want).
+Contributing
+- If you make changes to files referenced elsewhere (for example, wallpapers or package expressions), update any dependent SHAs or references.
+- Prefer adding local package expressions to `pkgs/` and referencing them explicitly rather than using overlays.
 
-Tell me which branch name to use (e.g. `readme/update`), and whether to push it directly or open a PR.
+License and attribution
+- See repository files for licensing and attribution where applicable.
