@@ -193,8 +193,28 @@
           fzf-native.enable = true;
           zoxide.enable = true;
           advanced-git-search.enable = true;
+          live-grep-args = {
+            enable = true;
+            settings = {
+              auto_quoting = true;
+            };
+          };
         };
       };
     };
+    extraConfigLua = ''
+      function getVisualSelection()
+        vim.cmd('noau normal! "vy"')
+        local text = vim.fn.getreg('v')
+        vim.fn.setreg("v", {})
+
+        text = string.gsub(text, "\n", "")
+        if #text > 0 then
+          return text
+        else
+          return ""
+        end
+      end
+    '';
   };
 }

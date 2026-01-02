@@ -78,6 +78,22 @@
           silent = true;
         };
       }
+      {
+        key = "<S-f>";
+        mode = [
+          "n"
+          "v"
+        ];
+        action.__raw = ''
+          function()
+            local text = getVisualSelection()
+            require('telescope').extensions.live_grep_args.live_grep_args({
+              default_text = text,
+            })
+          end
+        '';
+        options.desc = "find in files";
+      }
     ];
     plugins = {
       lsp.keymaps = {
@@ -90,10 +106,9 @@
       };
       telescope.keymaps = {
         "<C-p>" = "find_files";
-        "<S-f>" = "live_grep";
         "<leader><Tab>" = "buffers";
         "<leader>fd" = "find_files";
-        "<leader>ff" = "live_grep";
+        "<leader>ff" = "live_grep_args";
         "<leader>fb" = "buffers";
         "<leader>fh" = "help_tags";
         "<leader>fp" = "project";
