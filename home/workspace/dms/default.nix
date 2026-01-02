@@ -1,13 +1,14 @@
-{ ... }:
+{ inputs, ... }:
 {
+  imports = [
+    inputs.dms.homeModules.dankMaterialShell.default
+  ];
+
   programs.dankMaterialShell = {
     enable = true;
-    niri = {
-      enableKeybinds = true; # Automatic keybinding configuration
-    };
     systemd = {
-      enable = true; # Systemd service for auto-start
-      restartIfChanged = true; # Auto-restart dms.service when dankMaterialShell changes
+      enable = true;
+      restartIfChanged = true;
     };
 
     # Core features
