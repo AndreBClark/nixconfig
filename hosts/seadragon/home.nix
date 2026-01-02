@@ -1,7 +1,8 @@
-{ username
-, inputs
-, pkgs
-, ...
+{
+  username,
+  inputs,
+  pkgs,
+  ...
 }:
 {
   imports = [
@@ -12,13 +13,14 @@
   environment.systemPackages = [
     pkgs.dracula-icon-theme
   ];
+
+  stylix.enableReleaseChecks = false;
   home-manager = {
     sharedModules = [
       inputs.vicinae.homeManagerModules.default
       inputs.plasma-manager.homeModules.plasma-manager
-      inputs.dms.homeModules.dankMaterialShell.default
-      inputs.dms.homeModules.dankMaterialShell.niri
     ];
+
     users."${username}" = import ../../home/seadragon.nix;
   };
 }
