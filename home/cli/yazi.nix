@@ -23,10 +23,12 @@
       };
     };
     plugins = {
-      starship = pkgs.yaziPlugins.starship;
-      bypass = pkgs.yaziPlugins.bypass;
-      projects = pkgs.yaziPlugins.projects;
-      git = pkgs.yaziPlugins.git;
+      inherit (pkgs.yaziPlugins)
+        starship
+        bypass
+        projects
+        git
+        ;
     };
   };
 }
