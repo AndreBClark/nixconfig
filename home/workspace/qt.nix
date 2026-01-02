@@ -1,20 +1,26 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
-  qtPlatform = "qtct";
+  qtPlatform = "kde";
 in
 {
+  home.packages = [
+    pkgs.kdePackages.qt6ct
+    pkgs.kdePackages.qtwayland
+    pkgs.kdePackages.qttools
+  ];
+
   qt = {
     enable = true;
-    platformTheme.name = qtPlatform;
+    platformTheme.name = lib.mkForce qtPlatform;
     style = {
       package = [
-        pkgs.darkly-qt5
         pkgs.darkly
+        pkgs.darkly-qt5
       ];
     };
   };
   stylix.targets.qt = {
-    enable = true;
+    enable = false;
     platform = qtPlatform;
   };
 }
