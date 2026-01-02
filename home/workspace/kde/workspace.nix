@@ -26,10 +26,11 @@
     soundTheme = lib.mkForce "nothing";
     enableMiddleClickPaste = true;
     splashScreen.theme = lib.mkForce "None";
-    wallpaperFillMode = "preserveAspectCrop";
-    wallpaperSlideShow = {
-      path = ./. + "~/Pictures/";
-      interval = 300;
-    };
+    wallpaper = null;
+    # wallpaperFillMode = "preserveAspectCrop";
+    # wallpaperSlideShow = {
+    #   path = ./. + "~/Pictures/";
+    #   interval = 300;
+    # };
   };
 }

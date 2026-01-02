@@ -1,15 +1,6 @@
-{ system, ... }:
 {
   programs.plasma = {
     shortcuts = {
-      ksmserver = {
-        "Lock Session" = [
-          "Screensaver"
-          "Meta+Ctrl+Alt+L"
-        ];
-        "Log Out" = "Ctrl+Alt+Del";
-      };
-
       kwin = {
         "Expose" = "Meta+,";
         "Switch Window Down" = "Meta+J";
@@ -20,7 +11,7 @@
     };
     hotkeys.commands = {
       "vicinae" = {
-        name = "Launch Rofi";
+        name = "Launcher";
         key = "Meta";
         command = "vicinae open";
       };

@@ -11,7 +11,7 @@ in
 {
   imports = [
     ./shortcuts.nix
-    ./panels.nix
+    # ./panels.nix
     ./workspace.nix
     ./startup.nix
     ./power.nix
@@ -24,9 +24,7 @@ in
     pkgs.xwayland
     pkgs.kdePackages.kwayland
     pkgs.kdePackages.plasma-wayland-protocols
-    pkgs.kdePackages.qt6ct
-    pkgs.kdePackages.qtwayland
-    pkgs.kdePackages.qttools
+    pkgs.kdePackages.kirigami
     pkgs.darkly
     pkgs.kdePackages.plasma-browser-integration
     pkgs.utterly-round-plasma-style
