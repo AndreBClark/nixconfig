@@ -7,9 +7,8 @@
 with config.lib.stylix;
 with config.stylix;
 let
-  radius = "12";
-  gap = "16";
-  inset = "-${gap}";
+  gaps = "16";
+  inset = "-${toString (lib.toIntBase10 gaps - 2)}";
 in
 {
   home.packages = [
@@ -28,17 +27,21 @@ in
     "niri/config.kdl" = {
       text = lib.mkAfter ''
         include "default-config.kdl"
-        // Optional: Include DMS-generated configs for theming
         include "dms/binds.kdl"
         include "dms/colors.kdl"
         include "dms/layout.kdl"
         include "dms/alttab.kdl"
         include "dms/wpblur.kdl"
-
+        spawn-at-startup "dms" "run" "-d"
         prefer-no-csd
-
+        output "DP-2" {
+            focus-at-startup
+          }
+        output "HDMI-A-1" {
+          position x=0 y=0
+        }
         layout {
-          gaps ${gap}
+          gaps ${gaps}
           struts {
               left ${inset}
               right ${inset}
@@ -54,8 +57,8 @@ in
           xcursor-size ${toString cursor.size}
         }
 
-        ${import ./bindings.nix}
-        ${import ./window-rules.nix { inherit radius; }}
+        ${import ./binds.nix}
+        ${import ./window-rules.nix}
 
       '';
     };
