@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 let
   pythonEnv = pkgs.python313.withPackages (ps: [
     ps.requests
@@ -14,4 +16,7 @@ pkgs.mkShell {
     libffi
     openssl
   ];
+  shellHook = ''
+    exec ${pkgs.fish}/bin/fish
+  '';
 }
