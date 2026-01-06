@@ -1,14 +1,8 @@
 {
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
-{
   imports = [
     ./default.nix
     ./theme
-    (import ./services { inherit pkgs inputs config; })
+    ./services
     ./programs
     ./terminal
     ./workspace
