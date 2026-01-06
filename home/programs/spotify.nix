@@ -36,5 +36,15 @@ in
       playNext
       # sectionMarker makes progressbar illegible with catpuccin theme
     ];
+    enabledSnippets = [
+      "Remove Popular sections from homepage"
+      "Thicker Bars"
+      "Default Progress Bar"
+      "Pointers"
+      "Modern ScrollBar"
+      "Fix 'DJ' Icon"
+      "Fix 'Liked' Icon"
+      "Fix 'Episodes' Icon"
+    ];
   };
 }
