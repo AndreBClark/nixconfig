@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   config,
   pkgs,
   ...
@@ -9,7 +10,6 @@
   ];
   services.vicinae = {
     enable = true; # default: false
-    autoStart = true; # default: true
     settings = {
       faviconServices = "twenty";
       popToRootOnClose = true;
@@ -24,7 +24,7 @@
         opacity = config.stylix.opacity.popups;
         rounding = 10;
       };
-      theme.name = config.lib.stylix.colors.scheme-slug;
+      theme.name = lib.mkForce config.lib.stylix.colors.scheme-slug;
     };
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
       nix
