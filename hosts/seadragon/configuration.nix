@@ -4,7 +4,7 @@
 {
   imports = [
     ../../nixos
-    ../../display/dms.nix
+    # ../../display/dms.nix
     ../../display/niri.nix
     ../../display/plasma.nix
   ];

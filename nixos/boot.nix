@@ -1,21 +1,21 @@
-{pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       timeout = 5;
     };
-    initrd.systemd.enable = true;
+    # initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "cgroup_no_v1=all"
       "systemd.unified_cgroup_hierarchy=yes"
-      "console=tty1"
+      # "console=tty1"
       "mitigations=off"
       "nowatchdog"
       "tsc=reliable"
       "b43.allhwsupport=1"
-      "loglevel=3"
       "quiet"
     ];
     kernelModules = [ "tcp_bbr" ];
@@ -60,15 +60,15 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
     };
-  supportedFilesystems = lib.mkForce [
-    "btrfs"
-    "reiserfs"
-    "vfat"
-    "f2fs"
-    "xfs"
-    "ntfs"
-    "cifs"
-  ];
+    supportedFilesystems = lib.mkForce [
+      "btrfs"
+      "reiserfs"
+      "vfat"
+      "f2fs"
+      "xfs"
+      "ntfs"
+      "cifs"
+    ];
     tmp.cleanOnBoot = true;
   };
 }

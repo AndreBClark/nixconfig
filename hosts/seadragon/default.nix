@@ -1,8 +1,8 @@
 {
   imports = [
-    ./configuration.nix
-    ./hardware.nix
     ./hardware-configuration.nix
+    ./hardware.nix
+    ./configuration.nix
     ./home.nix
   ];
 }
