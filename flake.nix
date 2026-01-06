@@ -31,9 +31,8 @@
     };
 
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
     };
 
     home-manager = {
@@ -65,7 +64,6 @@
       home-manager,
       stylix,
       plasma-manager,
-      nur,
       vicinae,
       dms,
       ...
@@ -75,8 +73,6 @@
       username = "andrec";
       commonModules = [
         stylix.nixosModules.stylix
-        nur.modules.nixos.default
-        dms.nixosModules.greeter
       ];
       commonHomeModules = [
         stylix.homeModules.stylix
@@ -113,7 +109,10 @@
         };
       };
       devShells."${system}" = {
-        default = import ./shells/web.nix {
+        default = import ./shells/nix.nix {
+          inherit pkgs;
+        };
+        web = import ./shells/web.nix {
           inherit pkgs;
         };
         python = import ./shells/python.nix {

@@ -54,11 +54,21 @@
         key = "<C-`>";
         action = "<cmd>ToggleTerm<CR>";
         options.desc = "Toggle terminal";
+        mode = [
+          "n"
+          "t"
+        ];
       }
       {
         key = "<leader>`";
         action = "<cmd>ToggleTerm<CR>";
         options.desc = "Toggle terminal";
+      }
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>NvimTreeToggle<CR>";
+        options.desc = "Toggle File Tree";
       }
       {
         mode = "n";
