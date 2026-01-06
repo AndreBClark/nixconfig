@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;
@@ -10,8 +11,9 @@
         astro
         json
         yaml
+        kdl
       ];
-      folding = true;
+      folding.enable = true;
       settings.highlight.enable = true;
     };
     ts-context-commentstring.enable = true;

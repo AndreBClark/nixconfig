@@ -37,29 +37,11 @@
       toggleterm = {
         enable = true;
         settings = {
-          # VSCode-like horizontal terminal at bottom
-          direction = "horizontal";
-          size = 20; # Similar to VSCode's default terminal height
-
-          # Terminal behavior matching VSCode
-          start_in_insert = true;
-          auto_scroll = true;
-          close_on_exit = false; # Keep terminal open like VSCode
-          persist_size = true;
-          persist_mode = true;
-
-          # Clean appearance like VSCode
-          shade_terminals = false; # No shading for clean look
-          hide_numbers = true;
-
-          # Minimal border like VSCode
-          float_opts = {
-            border = "single";
-            winblend = 0;
-          };
-          # Terminal mappings for VSCode-like behavior
-          insert_mappings = true;
-          terminal_mappings = false;
+          size = 20;
+          close_on_exit = false;
+          shade_terminals = false;
+          terminal_mappings = true;
+          open_mapping = "[[<c-`>]]";
         };
       };
       mini-pairs.enable = true;
