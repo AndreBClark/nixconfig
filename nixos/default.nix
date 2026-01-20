@@ -3,6 +3,7 @@
     ./boot.nix
     ./nix.nix
     ./keyboard.nix
+    ./outputs.nix
     ./substituters.nix
     ./nixpkgs.nix
     ./fish.nix
@@ -15,6 +16,5 @@
     ./blockfile.nix
     ./common.nix
     ./steam.nix
-    ./unity3d.nix
   ];
 }
