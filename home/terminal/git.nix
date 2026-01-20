@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -22,8 +21,20 @@
       pull = {
         rebase = true;
       };
+      advice = {
+        addIgnoredFile = false;
+      };
+      init.defaultBranch = "main";
+      stash.showIncludeUntracked = true;
+      status = {
+        short = true;
+        branch = true;
+        showStash = true;
+        showUntrackedFiles = "all";
+      };
     };
   };
+
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;
