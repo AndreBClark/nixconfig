@@ -11,7 +11,7 @@ pkgs.mkShellNoCC {
     nixd
     cachix
     niv
-    nixfmt-classic
+    nixfmt
     statix
     vulnix
   ];
