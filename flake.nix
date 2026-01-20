@@ -1,6 +1,4 @@
 {
-  description = "Your new nix config";
-
   inputs = {
     # global, so they can be `.follow`ed
     system.url = "github:nix-systems/x86_64-linux";
@@ -22,8 +20,8 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
+
     niri.url = "github:sodiboo/niri-flake";
     dgop = {
       url = "github:AvengeMedia/dgop";
@@ -59,85 +57,99 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      stylix,
-      plasma-manager,
-      vicinae,
-      dms,
-      ...
-    }@inputs:
+    inputs@{ flake-parts, system, ... }:
     let
-      system = builtins.head (import inputs.system);
-      username = "andrec";
+      inherit (import ./variables/default.nix) username;
       commonModules = [
-        stylix.nixosModules.stylix
+        inputs.stylix.nixosModules.stylix
       ];
       commonHomeModules = [
-        stylix.homeModules.stylix
-        plasma-manager.homeModules.plasma-manager
-        vicinae.homeManagerModules.default
-        dms.homeModules.dankMaterialShell.default
+        inputs.stylix.homeModules.stylix
+        inputs.plasma-manager.homeModules.plasma-manager
+        inputs.vicinae.homeManagerModules.default
+        inputs.dms.homeModules.dank-material-shell
         home/unfree.nix
       ];
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      nixosConfigurations = {
-        seadragon = nixpkgs.lib.nixosSystem {
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      mkHost =
+        hostName: modules: extraSpecialArgs:
+        inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs system username;
-            hostName = "seadragon";
+            inherit
+              inputs
+              username
+              system
+              hostName
+              ;
+          }
+          // extraSpecialArgs;
+          modules = commonModules ++ modules;
+        };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+      ];
+
+      perSystem =
+        { pkgs, system, ... }:
+        {
+          # Development shells
+          devShells = {
+            default = import ./shells/nix.nix { inherit pkgs; };
+            web = import ./shells/web.nix { inherit pkgs; };
+            python = import ./shells/python.nix { inherit pkgs; };
           };
-          modules = commonModules ++ [
-            ./hosts/seadragon
-          ];
+
+          # Packages
+          packages = {
+            nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
+              inherit system;
+              module = {
+                imports = [
+                  inputs.stylix.nixosModules.stylix
+                  ./home/theme
+                  ./home/cli/nvim
+                ];
+              };
+            };
+          };
         };
 
-        owlthulu = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs system;
-            hostName = "owlthulu";
-          };
-          modules = with inputs; [
-            hardware.nixosModules.dell-xps-15-9560
-            ./nixos
+      flake = {
+        nixosConfigurations = {
+          seadragon = mkHost "seadragon" [ ./hosts/seadragon ] { };
+          owlthulu = mkHost "owlthulu" [
+            inputs.hardware.nixosModules.dell-xps-15-9560
             ./hosts/owlthulu
             ./home
-          ];
+          ] { };
+          pioneer = mkHost "pioneer" [
+            ./hosts/pioneer
+          ] { };
         };
-      };
-      devShells."${system}" = {
-        default = import ./shells/nix.nix {
-          inherit pkgs;
-        };
-        web = import ./shells/web.nix {
-          inherit pkgs;
-        };
-        python = import ./shells/python.nix {
-          inherit pkgs;
-        };
-      };
-      homeConfigurations = {
-        "${username}@seadragon" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs username;
+        # Home manager configurations
+        homeConfigurations = {
+          "andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs username;
+            };
+            modules = commonHomeModules ++ [
+              ./home/seadragon.nix
+            ];
           };
-          modules = commonHomeModules ++ [
-            ./home/seadragon.nix
-          ];
-        };
 
-        "${username}@owlthulu" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs username system;
+          "andrec@owlthulu" = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs username system;
+            };
+            modules = commonHomeModules ++ [
+              ./home/unfree.nix
+              ./home/owlthulu.nix
+            ];
           };
-          modules = commonHomeModules ++ [
-            ./home/owlthulu.nix
-          ];
         };
       };
     };
