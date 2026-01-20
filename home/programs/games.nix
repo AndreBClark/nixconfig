@@ -1,7 +1,10 @@
 { pkgs, ... }:
+let
+  inherit (pkgs) starsector beyond-all-reason;
+in
 {
-  home.packages = with pkgs; [
+  home.packages = [
     starsector
-    vintagestory
+    beyond-all-reason
   ];
 }
