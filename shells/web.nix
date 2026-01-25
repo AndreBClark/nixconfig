@@ -1,30 +1,36 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-pkgs.mkShell {
+pkgs.mkShellNoCC {
   name = "web";
-  buildInputs = with pkgs.nodePackages; [
+  nativeBuildInputs = [
     pkgs.pkg-config
     pkgs.python3
+    pkgs.node-gyp
+    pkgs.node-gyp-build
+    pkgs.fish
+  ];
+  buildInputs = [
+    pkgs.nodejs
+    pkgs.pnpm
     pkgs.deno
     pkgs.vips
     pkgs.biome
-    nodejs
-    node-gyp
-    node-gyp-build
-    pnpm
-    typescript
-    typescript-language-server
-    prettier
+    pkgs.typescript
+    pkgs.typescript-language-server
+    pkgs.prettier
   ];
-
+  LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+    pkgs.stdenv.cc.cc
+    pkgs.openssl
+    pkgs.zlib
+    pkgs.vips
+  ];
+  NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+  BIOME_BINARY = "${pkgs.biome}/bin/biome";
   shellHook = ''
-    exec ${pkgs.fish}/bin/fish
     export PATH="$PWD/node_modules/.bin/:$PATH"
     alias run='pnpm run'
     alias serve='netlify dev:exec'
-    alias test='pnpm test'
-    alias lint='biome lint'
-    alias format='biome format'
   '';
 }
