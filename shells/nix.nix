@@ -7,6 +7,7 @@ pkgs.mkShellNoCC {
     nix-direnv
     devenv
     nix-prefetch
+    nix-output-monitor
     jq
     nixd
     cachix
@@ -14,8 +15,11 @@ pkgs.mkShellNoCC {
     nixfmt
     statix
     vulnix
+    flake-checker
   ];
   shellHook = ''
-    exec ${pkgs.fish}/bin/fish
+    # Enable better error reporting
+    export NIX_SHOW_WARN=1
+    export NIX_ERROR_COLOR=auto
   '';
 }
