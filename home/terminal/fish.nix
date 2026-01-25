@@ -4,7 +4,6 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-        # Remove greeting message
         set --export fish_greeting
 
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
@@ -26,6 +25,7 @@
     lazygit.enableFishIntegration = true;
     yazi.enableFishIntegration = true;
     eza.enableFishIntegration = true;
+    direnv.enableFishIntegration = true;
     tmux.shell = "${pkgs.fish}/bin/fish";
   };
 }
