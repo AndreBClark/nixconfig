@@ -7,14 +7,21 @@
         ts_ls.enable = true;
         biome.enable = true;
         cssls.enable = true; # CSS
-        tailwindcss.enable = true; # TailwindCSS
+        tailwindcss.enable = true;
         html.enable = true; # HTML
         astro.enable = true; # AstroJS
         jsonls.enable = true;
         phpactor.enable = true; # PHP
         svelte.enable = true;
         pyright.enable = true; # Python
-        marksman.enable = true; # Markdown
+        marksman = {
+          enable = true;
+          config = {
+            markdown = {
+              preferredLinkStyle = "wiki";
+            };
+          };
+        };
         nixd = {
           enable = true;
           config = {

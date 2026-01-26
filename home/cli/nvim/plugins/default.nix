@@ -1,10 +1,13 @@
+{ lib, ... }:
 {
   imports = [
     ./bufferline.nix
     ./cmp.nix
     ./noice.nix
+    ./nvim-tree.nix
     ./telescope.nix
     ./treesitter.nix
+    ./obsidian-md.nix
   ];
   programs.nixvim = {
     plugins = {
@@ -16,8 +19,8 @@
       mini-surround.enable = true;
       nix-develop.enable = true;
       notify.enable = true;
-      nvim-tree.enable = true;
       nvim-ufo.enable = true;
+      render-markdown.enable = lib.mkDefault true;
       scrollview.enable = true;
       smart-splits.enable = true;
       tmux-navigator.enable = true;
@@ -26,26 +29,12 @@
       twilight.enable = true;
       vim-css-color.enable = true;
       web-devicons.enable = true;
-
       gitsigns = {
         enable = true;
         settings = {
           signcolumn = true;
           numhl = false;
           current_line_blame = true;
-        };
-      };
-
-      obsidian = {
-        enable = true;
-        settings = {
-          legacy_commands = false;
-          workspaces = [
-            {
-              name = "coursenotes";
-              path = "~/Documents/coursenotes";
-            }
-          ];
         };
       };
 
