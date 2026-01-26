@@ -7,8 +7,7 @@
 let
   theme = {
     colorscheme = "tokyo-night";
-    accent = "sky";
-    variant = "storm";
+    variant = "moon";
     wallpaper = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/AndreBClark/nixconfig/7a91f0364061518fdf1d6e721508288521d15984/fallingfrontier.jpg";
       sha256 = "1nadjcyx357md29mj02cx1f62g1v1b5jhcyfxr3g5v9ji822fdix";
