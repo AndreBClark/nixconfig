@@ -4,8 +4,6 @@
   config,
   ...
 }:
-with config.lib.stylix;
-with config.stylix;
 let
   gaps = "16";
   inset = "-${toString (lib.toIntBase10 gaps - 2)}";
@@ -33,12 +31,13 @@ in
         include "dms/alttab.kdl"
         include "dms/wpblur.kdl"
         spawn-at-startup "dms" "run" "-d"
+
         prefer-no-csd
         output "DP-2" {
             focus-at-startup
           }
         output "HDMI-A-1" {
-          position x=0 y=0
+          position x=0 y=720
         }
         layout {
           gaps ${gaps}
@@ -54,7 +53,7 @@ in
         }
         cursor {
           xcursor-theme "default"
-          xcursor-size ${toString cursor.size}
+          xcursor-size ${toString config.stylix.cursor.size}
         }
 
         ${import ./binds.nix}
