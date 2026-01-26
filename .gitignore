@@ -1,2 +1,3 @@
 *.gcow
 result/
+.direnv
