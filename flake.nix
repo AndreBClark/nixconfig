@@ -61,6 +61,7 @@
     let
       inherit (import ./variables/default.nix) username;
       commonModules = [
+        inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
       ];
       commonHomeModules = [
@@ -123,9 +124,6 @@
             inputs.hardware.nixosModules.dell-xps-15-9560
             ./hosts/owlthulu
             ./home
-          ] { };
-          pioneer = mkHost "pioneer" [
-            ./hosts/pioneer
           ] { };
         };
         # Home manager configurations
