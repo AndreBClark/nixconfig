@@ -1,9 +1,5 @@
 {
   pkgs,
-  inputs,
-  lib,
-  system,
-  config,
   ...
 }:
 {
@@ -19,11 +15,11 @@
         ];
       };
     };
-    packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.fira-code
-      noto-fonts
-      noto-fonts-color-emoji
+    packages = with pkgs.nerd-fonts; [
+      jetbrains-mono
+      fira-code
+      pkgs.noto-fonts
+      pkgs.noto-fonts-color-emoji
     ];
   };
 }
