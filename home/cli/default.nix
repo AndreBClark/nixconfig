@@ -12,6 +12,6 @@
     ./nvim
   ];
   home.packages = with pkgs; [
-    devenv
+    basalt
   ];
 }

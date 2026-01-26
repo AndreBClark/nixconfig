@@ -10,6 +10,7 @@
     frei0r
     audacity
     ocenaudio
+    obsidian
     shared-mime-info
   ];
 }
