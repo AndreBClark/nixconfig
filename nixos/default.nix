@@ -4,6 +4,8 @@
     ./nix.nix
     ./keyboard.nix
     ./outputs.nix
+    ./xdg
+    ./programs
     ./substituters.nix
     ./nixpkgs.nix
     ./fish.nix
@@ -12,9 +14,7 @@
     ./loginscreen.nix
     ./locale.nix
     ./fonts.nix
-    ./xdg.nix
     ./blockfile.nix
     ./common.nix
-    ./steam.nix
   ];
 }
