@@ -106,6 +106,10 @@
           packages = {
             nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
               inherit system;
+              extraSpecialArgs = {
+                inherit inputs;
+                lib = inputs.nixpkgs.lib.extend inputs.nixvim.lib.overlay;
+              };
               module = {
                 imports = [
                   inputs.stylix.nixosModules.stylix
