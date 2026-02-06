@@ -7,14 +7,17 @@
         name = "AndreBClark";
         email = "andre@cosmicdivision.dev";
       };
-      # credential = {
-      #   "https:github.com" = {
-      #     helper = "!gh auth git-credential";
-      #   };
-      #   "https://gist.github.com" = {
-      #     helper = "!gh auth git-credential";
-      #   };
-      # };
+      interactive.diffFilter = "delta --color-only";
+      diff = {
+        colorMoved = "default";
+      };
+      delta = {
+        diff-so-fancy = true;
+        line-numbers = true;
+      };
+      alias = {
+        delta = "!f() { git diff \"$@\" | delta --side-by-side; }; f";
+      };
       push = {
         autoSetupRemote = true;
       };
