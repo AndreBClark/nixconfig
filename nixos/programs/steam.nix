@@ -40,8 +40,9 @@
       ];
       extraCompatPackages = [
         pkgs.proton-ge-bin
+        pkgs.steamtinkerlaunch
       ];
-      gamescopeSession.enable = true;
+      gamescopeSession.enable = lib.mkDefault false;
     };
     gamescope.enable = true;
     xwayland.enable = true;
