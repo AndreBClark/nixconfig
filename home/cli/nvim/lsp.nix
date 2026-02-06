@@ -54,7 +54,6 @@
           };
           code_actions = {
             refactoring.enable = true;
-            ts_node_action.enable = true;
             statix.enable = true;
           };
         };

@@ -69,7 +69,10 @@
           open_mapping = "[[<c-`>]]";
         };
       };
-
+      refactoring = {
+        enable = true;
+        enableTelescope = true; # If you use telescope
+      };
       which-key = {
         enable = true;
         settings = {
