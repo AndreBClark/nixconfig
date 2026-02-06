@@ -77,5 +77,8 @@
     direnv.enableFishIntegration = true;
     tmux.shell = "${pkgs.fish}/bin/fish";
   };
-  home.packages = [ pkgs.grc ];
+  home.packages = [
+    pkgs.grc
+    pkgs.jq
+  ];
 }
