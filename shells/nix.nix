@@ -16,6 +16,7 @@ pkgs.mkShellNoCC {
     statix
     vulnix
     flake-checker
+    home-manager
   ];
   shellHook = ''
     # Enable better error reporting
