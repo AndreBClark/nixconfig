@@ -57,7 +57,7 @@
   };
 
   outputs =
-    inputs@{ flake-parts, system, ... }:
+    inputs@{ flake-parts, ... }:
     let
       inherit (import ./variables/default.nix) username;
       commonModules = [
@@ -67,10 +67,9 @@
       commonHomeModules = [
         inputs.stylix.homeModules.stylix
         inputs.plasma-manager.homeModules.plasma-manager
-        inputs.vicinae.homeManagerModules.default
-        inputs.dms.homeModules.dank-material-shell
         home/unfree.nix
       ];
+      system = inputs.system.system or inputs.system.defaultSystem or "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       mkHost =
         hostName: modules: extraSpecialArgs:
@@ -91,13 +90,14 @@
       systems = [
         "x86_64-linux"
       ];
-
       perSystem =
         { pkgs, system, ... }:
         {
           # Development shells
           devShells = {
-            default = import ./shells/nix.nix { inherit pkgs; };
+            default = import ./shells/nix.nix {
+              inherit pkgs;
+            };
             web = import ./shells/web.nix { inherit pkgs; };
             python = import ./shells/python.nix { inherit pkgs; };
           };
