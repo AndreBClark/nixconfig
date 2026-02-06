@@ -17,7 +17,6 @@
   stylix.enableReleaseChecks = false;
   home-manager = {
     sharedModules = [
-      inputs.vicinae.homeManagerModules.default
       inputs.plasma-manager.homeModules.plasma-manager
     ];
 

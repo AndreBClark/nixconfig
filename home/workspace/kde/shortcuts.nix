@@ -9,12 +9,5 @@
         "Switch Window Up" = "Meta+K";
       };
     };
-    hotkeys.commands = {
-      "vicinae" = {
-        name = "Launcher";
-        key = "Meta";
-        command = "vicinae open";
-      };
-    };
   };
 }
