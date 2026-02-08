@@ -1,6 +1,5 @@
-{ ... }:
 {
-  programs.nixvim.plugins = {
+  plugins = {
     cmp-nvim-lsp-signature-help.enable = true;
     cmp = {
       enable = true;

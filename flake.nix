@@ -110,8 +110,6 @@
               };
               module = {
                 imports = [
-                  inputs.stylix.nixosModules.stylix
-                  ./home/theme
                   ./home/cli/nvim
                 ];
               };

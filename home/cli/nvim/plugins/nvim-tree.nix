@@ -1,21 +1,20 @@
 {
-  programs.nixvim.plugins = {
+  plugins = {
     nvim-tree = {
       enable = true;
-      autoClose = true;
-      openOnSetup = true;
-      openOnSetupFile = true;
       ignoreFtOnSetup = [
         "startify"
         "alpha"
+        "dashboard"
       ];
-
+      autoClose = false; # Prevent buffer naming conflicts
       settings = {
         view = {
-          side = "right"; # Open on the right side
+          side = "right";
         };
 
         filesystem_watchers = {
+          enable = true;
           ignore_dirs = [
             "node_modules"
             ".git"
@@ -25,6 +24,9 @@
         };
 
         git = {
+          enable = true;
+          ignore = true;
+          show_on_dirs = true;
           timeout = 200;
         };
 
@@ -37,13 +39,9 @@
             enable = true;
           };
           icons = {
-            glyphs = {
-              git = {
-                unstaged = "✗";
-                staged = "✓";
-                untracked = "★";
-              };
-              modified = "●";
+            show = {
+              git = true;
+              modified = true;
             };
           };
         };
@@ -57,6 +55,14 @@
         };
       };
     };
-
   };
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>e";
+      action = "<cmd>NvimTreeToggle<CR>";
+      options.desc = "Toggle File Tree";
+    }
+  ];
 }

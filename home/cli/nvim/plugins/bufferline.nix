@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins = {
+  plugins = {
     bufferline = {
       enable = true;
       settings = {
@@ -9,7 +9,7 @@
             style = "icon";
             icon = "▎";
           };
-          separator_style = "slope";
+          separator_style = "thick";
           max_name_length = 20;
           tab_size = 20;
           diagnostics = "nvim_lsp";
@@ -31,7 +31,7 @@
           sort_by = "insert_after_current";
           offsets = [
             {
-              filetype = "neo-tree";
+              filetype = "nvim-tree";
               text = "File Explorer";
               text_align = "center";
               highlight = "Directory";
@@ -41,4 +41,18 @@
       };
     };
   };
+  keymaps = [
+    {
+      mode = "n";
+      key = "<Tab>";
+      action = "<cmd>BufferLineCycleNext<cr>";
+      options.desc = "Cycle to next buffer";
+    }
+    {
+      mode = "n";
+      key = "<S-Tab>";
+      action = "<cmd>BufferLineCyclePrev<cr>";
+      options.desc = "Cycle to previous buffer";
+    }
+  ];
 }

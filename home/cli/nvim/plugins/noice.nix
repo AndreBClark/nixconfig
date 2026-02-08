@@ -1,5 +1,5 @@
-{ ... }: {
-  programs.nixvim.plugins = {
+{
+  plugins = {
     noice = {
       enable = true;
       settings = {

@@ -10,7 +10,7 @@
     ./lazygit.nix
     ./yazi.nix
     ./eza.nix
-    ./nvim
+    ./nvim/home.nix
   ];
   home.packages = with pkgs; [
     basalt
