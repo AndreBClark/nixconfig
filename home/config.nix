@@ -1,19 +1,12 @@
-let
-  inherit (import ../variables/default.nix)
-    username
-    keyboard
-    terminal
-    editor
-    ;
-in
+{ config, ... }:
 {
   home = {
-    inherit username keyboard;
-    homeDirectory = "/home/${username}";
+    inherit (config) username keyboard;
+    homeDirectory = "/home/${config.username}";
 
     sessionVariables = {
-      EDITOR = editor;
-      TERMINAL = terminal;
+      EDITOR = config.editor;
+      TERMINAL = config.terminal;
     };
   };
 }

@@ -1,9 +1,9 @@
-{ username, ... }:
+{ config, ... }:
 {
   nix = {
     settings = {
       trusted-users = [
-        username
+        config.username
         "admin"
       ];
       download-buffer-size = 524288000;

@@ -2,7 +2,6 @@
   lib,
   inputs,
   system,
-  username,
   ...
 }:
 {
@@ -11,8 +10,11 @@
   ];
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs username system;
+      inherit inputs system;
     };
+    sharedModules = [
+      ../variables
+    ];
     backupFileExtension = lib.mkOverride 100 "hm-backup";
     useUserPackages = true;
     useGlobalPkgs = true;

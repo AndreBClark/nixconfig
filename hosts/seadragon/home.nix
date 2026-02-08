@@ -1,5 +1,5 @@
 {
-  username,
+  config,
   inputs,
   pkgs,
   ...
@@ -20,6 +20,6 @@
       inputs.plasma-manager.homeModules.plasma-manager
     ];
 
-    users."${username}" = import ../../home/seadragon.nix;
+    users."${config.username}" = import ../../home/seadragon.nix;
   };
 }

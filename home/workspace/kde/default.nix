@@ -5,7 +5,6 @@
   ...
 }:
 let
-  inherit (import ../../../variables) keyboard browser;
   plasmaStyle = "Utterly-Round-Solid";
 in
 {
@@ -45,14 +44,14 @@ in
         };
         kdeglobals = {
           "General" = {
-            "BrowserApplication" = browser;
+            "BrowserApplication" = config.browser;
           };
         };
         plasmarc.Theme.name = lib.mkForce plasmaStyle;
         klaunchrc = {
           BusyCursorSettings.Bouncing = false;
         };
-        kxkbrc.Layout = with keyboard; {
+        kxkbrc.Layout = with config.keyboard; {
           Layout = layout;
           Model = model;
           Options = options;

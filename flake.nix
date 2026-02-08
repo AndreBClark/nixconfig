@@ -57,12 +57,13 @@
   outputs =
     inputs@{ flake-parts, ... }:
     let
-      inherit (import ./variables/default.nix) username;
       commonModules = [
+        ./variables
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
       ];
       commonHomeModules = [
+        ./variables
         inputs.stylix.homeModules.stylix
         inputs.plasma-manager.homeModules.plasma-manager
         home/unfree.nix
@@ -75,7 +76,6 @@
           specialArgs = {
             inherit
               inputs
-              username
               system
               hostName
               ;
@@ -131,7 +131,7 @@
           "andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs username;
+              inherit inputs;
             };
             modules = commonHomeModules ++ [
               ./home/seadragon.nix
@@ -141,7 +141,7 @@
           "andrec@owlthulu" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs username system;
+              inherit inputs system;
             };
             modules = commonHomeModules ++ [
               ./home/unfree.nix

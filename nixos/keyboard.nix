@@ -1,10 +1,8 @@
-let
-  inherit (import ../variables/default.nix) keyboard;
-in
+{ config, ... }:
 {
   services.xserver = {
     xkb = {
-      inherit (keyboard) layout options model;
+      inherit (config.keyboard) layout options model;
     };
   };
 }
