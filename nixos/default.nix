@@ -11,7 +11,8 @@
     ./fish.nix
     ./users.nix
     ./home.nix
-    ./loginscreen.nix
+    ./greeter.nix
+    # ./loginscreen.nix
     ./locale.nix
     ./fonts.nix
     ./blockfile.nix
