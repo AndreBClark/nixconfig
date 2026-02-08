@@ -27,10 +27,10 @@ in
         include "default-config.kdl"
         include "dms/binds.kdl"
         include "dms/colors.kdl"
+        include "dms/cursor.kdl"
         include "dms/layout.kdl"
         include "dms/alttab.kdl"
         include "dms/wpblur.kdl"
-        spawn-at-startup "dms" "run" "-d"
 
         prefer-no-csd
         output "DP-2" {
