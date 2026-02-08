@@ -1,6 +1,5 @@
 {
   lib,
-  username,
   ...
 }:
 {
@@ -11,12 +10,6 @@
       height = lib.mkForce 48;
       opacity = "opaque";
       widgets = [
-        {
-          name = "org.kde.plasma.quicklaunch";
-          config.General.launcherUrls = [
-            "vicinae://toggle"
-          ];
-        }
         "org.kde.plasma.pager"
         "org.kde.plasma.showdesktop"
         "org.kde.plasma.panelspacer"
