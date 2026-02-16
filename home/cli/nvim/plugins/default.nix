@@ -22,11 +22,11 @@
     nvim-ufo.enable = true;
     render-markdown.enable = lib.mkDefault true;
     smart-splits.enable = true;
+    hmts.enable = true;
     tmux-navigator.enable = true;
     trouble.enable = true;
     trim.enable = true;
     twilight.enable = true;
-    vim-css-color.enable = true;
     web-devicons.enable = true;
     gitsigns = {
       enable = true;

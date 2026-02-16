@@ -3,7 +3,7 @@
   plugins = {
     treesitter = {
       enable = true;
-      nixGrammars = false;
+      nixGrammars = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         nix
         javascript
@@ -32,10 +32,5 @@
       };
     };
     # treesitter-context.enable = true;
-  };
-  dependencies = {
-    gcc.enable = true;
-    nodejs.enable = true;
-    tree-sitter.enable = true;
   };
 }

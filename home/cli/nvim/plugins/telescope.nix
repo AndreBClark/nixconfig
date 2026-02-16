@@ -78,7 +78,6 @@
         frecency.enable = true;
         fzf-native.enable = true;
         zoxide.enable = true;
-        advanced-git-search.enable = true;
         live-grep-args.enable = true;
         file-browser = {
           enable = true;
@@ -96,7 +95,6 @@
         };
       };
       keymaps = {
-        "<C-p>" = "find_files";
         "<leader><Tab>" = "buffers";
         "<leader>fd" = "find_files";
         "<leader>ff" = "live_grep_args";
@@ -105,7 +103,6 @@
         "<leader>fp" = "project";
         "<leader>fr" = "frecency";
         "<leader>cd" = "zoxide list";
-        # "<leader>fg" = "advanced_git_search";
         "<leader>fa" = "file_browser";
       };
     };
