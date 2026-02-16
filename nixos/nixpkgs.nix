@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -7,5 +7,6 @@
       allowUnfree = lib.mkForce true;
       allowUnfreePredicate = _: lib.mkForce true;
     };
+    overlays = [ inputs.millennium.overlays.default ];
   };
 }

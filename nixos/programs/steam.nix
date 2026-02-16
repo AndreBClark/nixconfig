@@ -12,6 +12,7 @@
       pkgs.xsettingsd
       pkgs.xorg.xrdb
       pkgs.steamtinkerlaunch
+      pkgs.volantes-cursors
     ];
   };
   xdg.icons.fallbackCursorThemes = lib.mkForce [
@@ -21,6 +22,7 @@
   programs = {
     steam = {
       enable = true;
+      package = pkgs.millennium-steam;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extraPackages = [
