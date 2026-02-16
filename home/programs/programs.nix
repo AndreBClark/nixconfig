@@ -6,10 +6,9 @@
     pavucontrol
     unzip
     ocenaudio
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     frei0r
     audacity
-    ocenaudio
     obsidian
     shared-mime-info
   ];
