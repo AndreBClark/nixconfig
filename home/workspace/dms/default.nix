@@ -6,6 +6,7 @@
   imports = [
     inputs.dms.homeModules.dank-material-shell
     inputs.danksearch.homeModules.dsearch
+    inputs.dms-plugin-registry.modules.default
     ./stylix-theme.nix
     ./sync.nix
   ];
@@ -19,9 +20,17 @@
       enableAudioWavelength = true;
       enableCalendarEvents = true;
       settings = builtins.fromJSON (builtins.readFile ./settings.json);
+      plugins = {
+        calculator.enable = true;
+        mediaPlayer.enable = true;
+        displayManager.enable = true;
+        niriWindows.enable = true;
+        powerUsagePlugin.enable = true;
+        nixMonitor.enable = true;
+        wallpaperDiscovery.enable = true;
+      };
+
     };
-    dsearch = {
-      enable = true;
-    };
+    dsearch.enable = true;
   };
 }
