@@ -35,6 +35,10 @@
       url = "github:AvengeMedia/danksearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +58,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs =
