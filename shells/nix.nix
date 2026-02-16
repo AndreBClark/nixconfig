@@ -6,7 +6,7 @@ pkgs.mkShellNoCC {
     direnv
     nix-direnv
     devenv
-    nix-prefetch
+    nurl
     nix-output-monitor
     jq
     nixd
@@ -17,10 +17,12 @@ pkgs.mkShellNoCC {
     vulnix
     flake-checker
     home-manager
+    fastfetch
   ];
   shellHook = ''
     # Enable better error reporting
-    export NIX_SHOW_WARN=1
+ export NIXPKGS_ALLOW_UNFREE=1
+ export NIX_SHOW_WARN=1
     export NIX_ERROR_COLOR=auto
   '';
 }
