@@ -4,8 +4,8 @@ let
     username = "andrec";
     keyboard = {
       layout = "us";
-      options = "caps:escape";
-      model = "pc86";
+      options = "caps:escape,altwin:swap_alt_win";
+      model = "pc105";
     };
     terminal = "kitty";
     editor = "nvim";
@@ -13,7 +13,6 @@ let
     shell = "fish";
   };
 in
-
 {
   options = {
     username = lib.mkOption {
