@@ -57,7 +57,7 @@
     }
     {
       mode = "n";
-      key = "<leader>fz";
+      key = "<C-p>";
       action = "<cmd>FZF<CR>";
       options = {
         desc = "FZF search";

@@ -90,17 +90,21 @@ in
     };
     eza.enable = true;
     zoxide.enable = true;
-    bat.enable = true;
+    bat = {
+      enable = true;
+      config = {
+        map-syntax = [ "*.astro:TypeScriptReact" ];
+      };
+    };
     fd = {
       enable = true;
       ignores = excludesList;
     };
   };
   home = {
-    packages = [
-      pkgs.fzf-preview
-      pkgs.file
-    ];
+    packages = builtins.attrValues {
+      inherit (pkgs) file;
+    };
     sessionVariables = {
       FZF_DEFAULT_COMMAND = fdCommand;
       FZF_CTRL_T_COMMAND = fdCommand;
