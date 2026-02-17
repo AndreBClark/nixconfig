@@ -1,8 +1,9 @@
 {
   xdg.configFile = {
     "niri/default-config.kdl".source = builtins.fetchurl {
-      url = "https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl";
-      hash = "sha256-Dxhu0qPtoWl/b2K6A8hwSDGAAlw6yTCPsBDb3b07S5U=";
+      url = "https://raw.githubusercontent.com/niri-wm/niri/refs/heads/main/resources/default-config.kdl";
+      sha256 = "sha256-AcRNVB6aN3Z4hr1cv83PPoQA7SzZlg4mE2vRCGVoZIc=";
+
     };
   };
 }

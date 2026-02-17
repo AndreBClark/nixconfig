@@ -1,5 +1,5 @@
 {
-  xdg.configFile."niri/window-rules.kdl".text = ''
+  xdg.configFile."niri/window-rules.kdl".text = /* kdl */ ''
     window-rule {
       match app-id="org.quickshell" title="Settings"
       open-maximized false

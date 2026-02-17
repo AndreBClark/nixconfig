@@ -7,6 +7,8 @@
     inputs.dms.homeModules.dank-material-shell
     inputs.danksearch.homeModules.dsearch
     inputs.dms-plugin-registry.modules.default
+    ./dms.kdl.nix
+    ./niri-binds.kdl.nix
     ./stylix-theme.nix
     ./sync.nix
   ];
@@ -29,7 +31,6 @@
         nixMonitor.enable = true;
         wallpaperDiscovery.enable = true;
       };
-
     };
     dsearch.enable = true;
   };

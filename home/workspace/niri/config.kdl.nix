@@ -14,8 +14,7 @@ in
   xdg.configFile = {
     "niri/config.kdl" = {
       text = lib.mkAfter /* kdl */ ''
-        include "dms/includes.kdl"
-        include "default-config.kdl"
+        include "dms-includes.kdl"
         include "window-rules.kdl"
 
         prefer-no-csd
