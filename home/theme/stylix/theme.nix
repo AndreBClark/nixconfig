@@ -15,10 +15,9 @@ let
   };
 in
 {
-  stylix = with theme; {
+  stylix = {
     enable = true;
-    # homeManagerIntegration.followsSystem = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${colorscheme}-${variant}.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme.colorscheme}-${theme.variant}.yaml";
     opacity = {
       desktop = 1.0;
       popups = 1.0;

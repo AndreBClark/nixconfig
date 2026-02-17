@@ -4,18 +4,20 @@
     treesitter = {
       enable = true;
       nixGrammars = true;
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        nix
-        javascript
-        typescript
-        lua
-        astro
-        json
-        yaml
-        kdl
-        html
-        css
-      ];
+      grammarPackages = builtins.attrValues {
+        inherit (pkgs.vimPlugins.nvim-treesitter.builtGrammars)
+          nix
+          javascript
+          typescript
+          lua
+          astro
+          json
+          yaml
+          kdl
+          html
+          css
+          ;
+      };
       folding.enable = true;
       settings = {
         highlight.enable = true;

@@ -1,28 +1,30 @@
 { pkgs }:
 pkgs.mkShellNoCC {
   name = "nix";
-  packages = with pkgs; [
-    nh
-    direnv
-    nix-direnv
-    devenv
-    nurl
-    nix-output-monitor
-    jq
-    nixd
-    cachix
-    niv
-    nixfmt
-    statix
-    vulnix
-    flake-checker
-    home-manager
-    fastfetch
-  ];
+  packages = builtins.attrValues {
+    inherit (pkgs)
+      nh
+      direnv
+      nix-direnv
+      devenv
+      nurl
+      nix-output-monitor
+      jq
+      nixd
+      cachix
+      niv
+      nixfmt
+      statix
+      vulnix
+      flake-checker
+      home-manager
+      fastfetch
+      npins
+      ;
+  };
   shellHook = ''
-    # Enable better error reporting
- export NIXPKGS_ALLOW_UNFREE=1
- export NIX_SHOW_WARN=1
+    export NIXPKGS_ALLOW_UNFREE=1
+    export NIX_SHOW_WARN=1
     export NIX_ERROR_COLOR=auto
   '';
 }

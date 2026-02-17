@@ -12,7 +12,7 @@
     ./eza.nix
     ./nvim/home.nix
   ];
-  home.packages = with pkgs; [
-    basalt
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs) basalt;
+  };
 }

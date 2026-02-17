@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    pciutils
-    envsubst
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs) pciutils envsubst;
+  };
   services.xserver.enable = true;
 
   systemd.user.services.orca.enable = false;

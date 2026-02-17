@@ -17,18 +17,22 @@ in
     ./window-rules.nix
   ];
 
-  home.packages = [
-    pkgs.wayland
-    pkgs.kdePackages.kwin
-    pkgs.xwayland
-    pkgs.kdePackages.kwayland
-    pkgs.kdePackages.plasma-wayland-protocols
-    pkgs.kdePackages.kirigami
-    pkgs.darkly
-    pkgs.kdePackages.plasma-browser-integration
-    pkgs.utterly-round-plasma-style
-    pkgs.volantes-cursors
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      wayland
+      xwayland
+      utterly-round-plasma-style
+      volantes-cursors
+      darkly
+      ;
+    inherit (pkgs.kdePackages)
+      kwin
+      kwayland
+      plasma-wayland-protocols
+      kirigami
+      plasma-browser-integration
+      ;
+  };
   programs = {
     kate.enable = false;
     konsole.enable = false;
@@ -51,11 +55,15 @@ in
         klaunchrc = {
           BusyCursorSettings.Bouncing = false;
         };
-        kxkbrc.Layout = with config.keyboard; {
-          Layout = layout;
-          Model = model;
-          Options = options;
-        };
+        kxkbrc.Layout =
+          let
+            xkb = config.keyboard;
+          in
+          {
+            Layout = xkb.layout;
+            Model = xkb.model;
+            Options = xkb.options;
+          };
       };
 
       kscreenlocker = {

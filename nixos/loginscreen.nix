@@ -4,8 +4,8 @@
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [
-    (catppuccin-sddm.override {
+  environment.systemPackages = [
+    (pkgs.catppuccin-sddm.override {
       flavor = "mocha";
       accent = "sky";
       font = "JetBrainsMono Nerd Font";

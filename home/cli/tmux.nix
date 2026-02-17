@@ -7,9 +7,11 @@
     shell = "${pkgs.fish}/bin/fish";
     tmuxinator.enable = true;
     customPaneNavigationAndResize = true;
-    plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      sensible
-    ];
+    plugins = builtins.attrValues {
+      inherit(pkgs.tmuxPlugins)
+        vim-tmux-navigator
+        sensible
+      ;
+    };
   };
 }

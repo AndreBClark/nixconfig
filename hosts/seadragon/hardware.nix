@@ -4,11 +4,13 @@
   ...
 }:
 {
-  imports = with inputs.hardware.nixosModules; [
-    common-cpu-intel
-    common-pc-ssd
-    common-gpu-nvidia-nonprime
-  ];
+  imports = builtins.attrValues {
+    inherit (inputs.hardware.nixosModules)
+      common-cpu-intel
+      common-pc-ssd
+      common-gpu-nvidia-nonprime
+      ;
+  };
 
   # security.rtkit.enable = true;
   services = {

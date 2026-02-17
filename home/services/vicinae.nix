@@ -1,10 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 {
   imports = [
   ];
@@ -26,16 +20,7 @@
       };
       theme.name = lib.mkForce config.lib.stylix.colors.scheme-slug;
     };
-    extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
-      nix
-      omarchy-menu
-      wifi-commander
-      kde-system-settings
-      fuzzy-files
-      player-pilot
-    ];
   };
-
   # changes the icon for plasma quicklauncher
   xdg.desktopEntries.vicinae-url-handler = {
     icon = "nix-snowflake-white";

@@ -23,9 +23,10 @@
       fontconfig.enable = true;
     };
   };
-  home.packages = with pkgs; [
-    # google-fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-  ];
+  home.packages = builtins.attrValues {
+    inherit  (pkgs.nerd-fonts)
+      jetbrains-mono
+      fira-code
+    ;
+  };
 }

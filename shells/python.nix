@@ -7,16 +7,13 @@ let
   ]);
 in
 pkgs.mkShell {
-  packages = with pkgs; [
-    pythonEnv
-
-    black
-    mypy
-
-    libffi
-    openssl
-  ];
-  shellHook = ''
-    exec ${pkgs.fish}/bin/fish
-  '';
+  packages = builtins.attrValues {
+    inherit (pkgs)
+      pythonEnv
+      black
+      mypy
+      libffi
+      openssl
+      ;
+  };
 }

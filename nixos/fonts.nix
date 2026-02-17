@@ -15,11 +15,14 @@
         ];
       };
     };
-    packages = with pkgs.nerd-fonts; [
-      jetbrains-mono
-      fira-code
-      pkgs.noto-fonts
-      pkgs.noto-fonts-color-emoji
-    ];
+    packages = builtins.attrValues {
+      inherit (pkgs.nerd-fonts)
+        jetbrains-mono
+        fira-code
+        ;
+      inherit (pkgs)
+        noto-fonts-color-emoji
+        ;
+    };
   };
 }

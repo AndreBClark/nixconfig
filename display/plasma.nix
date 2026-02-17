@@ -6,8 +6,8 @@
     enableQt5Integration = true;
   };
   xdg.portal = {
-    extraPortals = with pkgs; [
-      kdePackages.xdg-desktop-portal-kde
+    extraPortals = [
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     configPackages = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   };

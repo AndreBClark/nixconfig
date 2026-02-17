@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -13,31 +12,20 @@ in
     pkgs.volantes-cursors
   ];
   xdg.configFile = {
-    "niri/default-config.kdl".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/YaLTeR/niri/refs/heads/main/resources/default-config.kdl";
-      sha256 = "sha256-TS+DmRYcTynDsMpQ5ZQQl9n8jjc7JhKnCz0j1s1WaxU=";
-    };
-    "niri/dms/binds.kdl".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/AvengeMedia/DankMaterialShell/refs/heads/stable/core/internal/config/embedded/niri-binds.kdl";
-      sha256 = "sha256-XGuBIKJDMJJBYGykFdOJ1XsyXy7Qq2OaRUewCjKz+sE=";
-    };
-
     "niri/config.kdl" = {
-      text = lib.mkAfter ''
+      text = lib.mkAfter /* kdl */ ''
+        include "dms/includes.kdl"
         include "default-config.kdl"
-        include "dms/binds.kdl"
-        include "dms/colors.kdl"
-        include "dms/cursor.kdl"
-        include "dms/layout.kdl"
-        include "dms/alttab.kdl"
-        include "dms/wpblur.kdl"
+        include "window-rules.kdl"
 
         prefer-no-csd
         output "DP-2" {
-            focus-at-startup
-          }
+          focus-at-startup
+          variable-refresh-rate on-demand=true
+        }
         output "HDMI-A-1" {
           position x=0 y=720
+          variable-refresh-rate on-demand=true
         }
         layout {
           gaps ${gaps}
@@ -51,14 +39,6 @@ in
             width 0
           }
         }
-        cursor {
-          xcursor-theme "default"
-          xcursor-size ${toString config.stylix.cursor.size}
-        }
-
-        ${import ./binds.nix}
-        ${import ./window-rules.nix}
-
       '';
     };
   };
