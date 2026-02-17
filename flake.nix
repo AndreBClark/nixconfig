@@ -17,7 +17,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
+    import-tree.url = "github:vic/import-tree";
     nixvim = {
       url = "github:nix-community/nixvim";
     };
@@ -100,9 +100,8 @@
         {
           # Development shells
           devShells = {
-            default = import ./shells/nix.nix {
-              inherit pkgs;
-            };
+            default = import ./shells/nix.nix { inherit pkgs; };
+            nix = import ./shells/nix.nix { inherit pkgs; };
             web = import ./shells/web.nix { inherit pkgs; };
             python = import ./shells/python.nix { inherit pkgs; };
           };
