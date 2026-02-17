@@ -17,7 +17,7 @@ in
     enable = true;
     wayland = true;
     windowManagerPatch = true;
-    theme = lib.mkForce spicePkgs.themes.ziro;
+    theme = lib.mkForce spicePkgs.themes.comfy;
     colorScheme = lib.mkForce "custom";
     customColorScheme = {
       text = colors.base05;
