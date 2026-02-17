@@ -10,7 +10,7 @@
       pkgs.samrewritten
       pkgs.sgdboop
       pkgs.xsettingsd
-      pkgs.xorg.xrdb
+      pkgs.xrdb
       pkgs.steamtinkerlaunch
       pkgs.volantes-cursors
     ];
