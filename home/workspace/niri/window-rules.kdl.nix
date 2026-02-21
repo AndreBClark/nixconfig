@@ -1,19 +1,15 @@
 {
   xdg.configFile."niri/window-rules.kdl".text = /* kdl */ ''
     window-rule {
-      match app-id="org.quickshell" title="Settings"
-      open-maximized false
-    }
-
-    window-rule {
-      match title="Bitwarden"
+      match app-id="(?i)Bitwarden"
+      match title="(?i)$Bitwarden^"
       open-maximized false
       open-floating true
     }
 
     window-rule {
-      match title="^Picture in picture$"
-      match title="^Picture-in-Picture$"
+      match title="(?i)^Picture in picture$"
+      match title="(?i)^Picture-in-Picture$"
       open-floating true
       open-maximized false
       default-column-width { proportion 0.25; }
@@ -22,12 +18,7 @@
     }
 
     window-rule {
-      match app-id=r#"^steam_app_.*"#
-      open-fullscreen true
-      variable-refresh-rate true
-    }
-    window-rule {
-      match app-id="spotify"
+      match app-id="(?i)spotify"
       open-on-workspace "2"
       open-on-output "HDMI-A-1"
       open-maximized true

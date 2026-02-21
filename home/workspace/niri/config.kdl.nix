@@ -14,30 +14,39 @@ in
   xdg.configFile = {
     "niri/config.kdl" = {
       text = lib.mkAfter /* kdl */ ''
-        include "dms-includes.kdl"
-        include "window-rules.kdl"
+          include "dms-includes.kdl"
+          include "window-rules.kdl"
+          include "binds.kdl"
 
-        prefer-no-csd
-        output "DP-2" {
-          focus-at-startup
-          variable-refresh-rate on-demand=true
-        }
-        output "HDMI-A-1" {
-          position x=0 y=720
-          variable-refresh-rate on-demand=true
-        }
-        layout {
-          gaps ${gaps}
-          struts {
-              left ${inset}
-              right ${inset}
-              top ${inset}
-              bottom ${inset}
+          output "DP-2" {
+            focus-at-startup
+            variable-refresh-rate on-demand=true
           }
-          border {
-            width 0
+          output "HDMI-A-1" {
+            position x=0 y=720
+            variable-refresh-rate on-demand=true
           }
+
+          workspace "1" {
+            open-on-output "DP-2"
         }
+          workspace "2" {
+            open-on-output "HDMI-A-1"
+          }
+          workspace "3" { }
+
+          layout {
+            gaps ${gaps}
+            struts {
+                left ${inset}
+                right ${inset}
+                top ${inset}
+                bottom ${inset}
+            }
+            border {
+              width 0
+            }
+          }
       '';
     };
   };

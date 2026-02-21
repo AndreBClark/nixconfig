@@ -1,5 +1,7 @@
 {
-  xdg.configFile."niri/binds.kdl".text = ''
-    hotkey-overlay { skip-at-startup; }
+  xdg.configFile."niri/binds.kdl".text = /* kdl */ ''
+    binds {
+       Mod+T hotkey-overlay-title="Open Terminal" { spawn-sh "$TERMINAL"; }
+    }
   '';
 }
