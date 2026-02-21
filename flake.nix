@@ -4,10 +4,7 @@
     system.url = "github:nix-systems/x86_64-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:NixOS/nixos-hardware/master";
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
