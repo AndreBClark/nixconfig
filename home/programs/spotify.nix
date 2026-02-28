@@ -7,51 +7,61 @@
 }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+  sources = import ../../npins;
   inherit (config.lib.stylix) colors;
+  stylixColorScheme = {
+    text = colors.base05;
+    subtext = colors.base05;
+    main = colors.base00;
+    main-elevated = colors.base02;
+    highlight = colors.base02;
+    highlight-elevated = colors.base03;
+    sidebar = colors.base01;
+    player = colors.base04;
+    card = colors.base03;
+    shadow = colors.base00;
+    selected-row = colors.base04;
+    button = colors.base04;
+    button-active = colors.base04;
+    button-disabled = colors.base03;
+    tab-active = colors.base02;
+    notification = colors.base02;
+    notification-error = colors.base08;
+    equalizer = colors.base0B;
+    misc = colors.base02;
+  };
 in
 {
   imports = [
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
+  stylix.targets.spicetify.enable = false;
   programs.spicetify = {
     enable = true;
     wayland = true;
     windowManagerPatch = true;
-    theme = lib.mkForce spicePkgs.themes.comfy;
-    colorScheme = lib.mkForce "custom";
-    customColorScheme = {
-      text = colors.base05;
-      subtext = colors.base05;
-      main = colors.base00;
-      main-elevated = colors.base02;
-      highlight = colors.base02;
-      highlight-elevated = colors.base03;
-      sidebar = colors.base01;
-      player = colors.base04;
-      card = colors.base03;
-      shadow = colors.base00;
-      selected-row = colors.base04;
-      button = colors.base04;
-      button-active = colors.base04;
-      button-disabled = colors.base03;
-      tab-active = colors.base02;
-      notification = colors.base02;
-      notification-error = colors.base08;
-      equalizer = colors.base0B;
-      misc = colors.base02;
-    };
+    colorScheme = "custom";
+    customColorScheme = stylixColorScheme;
     # https://gerg-l.github.io/spicetify-nix/custom-apps.html
-    enabledCustomApps = builtins.attrValues {
-      inherit (spicePkgs.apps)
-        newReleases
-        marketplace
-        lyricsPlus
-        ;
-    };
+    enabledCustomApps =
+      builtins.attrValues {
+        inherit (spicePkgs.apps)
+          newReleases
+          marketplace
+          lyricsPlus
+          ;
+      }
+      ++ [
+        {
+          src = sources.spicetify-playlist-maker;
+          name = "playlist-maker";
+        }
+      ];
     # https://gerg-l.github.io/spicetify-nix/extensions.html
     enabledExtensions =
       builtins.attrValues {
         inherit (spicePkgs.extensions)
+          allOfArtist
           keyboardShortcut
           fullAppDisplay
           shuffle
@@ -73,26 +83,22 @@ in
       }
       ++ [
         {
-          src = pkgs.fetchFromGitHub {
-            owner = "hoeci";
-            repo = "sort-play";
-            rev = "eed7a38b490f718cfc9d2d7307d8da37e850f4a2";
-            hash = "sha256-jrk+uWmvCVwj8Qvg9enDcYaa8yH/dOYark7UzjWnWmk=";
-          };
+          src = sources.sortPlay;
           name = "sort-play.js";
+        }
+        {
+          src = "${sources.spicetify-extensions}/playback-bar-waveform/dist";
+          name = "playback-bar-waveform.js";
         }
       ];
     # View all snippets: https://github.com/spicetify/marketplace/blob/main/resources/snippets.json
     enabledSnippets = [
-
       "Remove Popular sections from homepage"
       "Remove Unused Space in Topbar"
       "Remove top spacing"
-      "Default Progress Bar"
       "Pointers"
       "Modern ScrollBar"
       "Fix 'DJ' Icon"
-      "Fix 'Liked' Icon"
       "Fix 'Episodes' Icon"
       "Queue Top Side Panel"
     ];
