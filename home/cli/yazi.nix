@@ -2,6 +2,7 @@
 {
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
     settings = {
       mgr = {
         sort_dir_first = true;
