@@ -15,7 +15,6 @@ in
     style = {
       package = [
         pkgs.darkly
-        pkgs.darkly-qt5
       ];
     };
   };
