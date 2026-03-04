@@ -1,16 +1,52 @@
 { pkgs, config, ... }:
 let
   nixConfigRepo = config.programs.nh.flake or "${config.home.homeDirectory}/nixconfig";
+  dmsSyncScript = pkgs.writeShellScriptBin "dms-sync" ''
+    # Target file path using variable
+    TARGET_FILE="${nixConfigRepo}/home/workspace/dms/settings.json"
+
+    # Search for the most recent DMS settings entry containing currentThemeName
+    SEARCH_RESULT=$(${pkgs.dms-shell}/bin/dms cl search --limit 1 '"currentThemeName":' --json 2>/dev/null)
+
+    # Extract the ID from the search result
+    ENTRY_ID=$(echo "$SEARCH_RESULT" | ${pkgs.jq}/bin/jq -r '.entries[0].id // empty')
+
+    if [ -z "$ENTRY_ID" ]; then
+      echo "No settings.json entry found in clipboard history" >&2
+      exit 1
+    fi
+
+    # Get the clipboard data and validate it's JSON
+    CLIPBOARD_DATA=$(${pkgs.dms-shell}/bin/dms cl paste)
+
+    # Validate the data is valid JSON
+    if ! echo "$CLIPBOARD_DATA" | ${pkgs.jq}/bin/jq empty 2>/dev/null; then
+      echo "Error: Clipboard data is not valid JSON" >&2
+      exit 1
+    fi
+
+    # Additional validation: Check for required DMS settings keys
+    if ! echo "$CLIPBOARD_DATA" | ${pkgs.jq}/bin/jq -e 'has("configVersion") and has("currentThemeName")' >/dev/null 2>&1; then
+      echo "Error: Clipboard data does not appear to be DMS settings (missing required keys)" >&2
+      exit 1
+    fi
+
+    # Write the validated data to file
+    if echo "$CLIPBOARD_DATA" > "$TARGET_FILE"; then
+      echo "Successfully replaced settings.json with validated clipboard data"
+
+      # Add the updated file to git
+      if git add "$TARGET_FILE"; then
+        echo "File staged in git"
+      else
+        echo "Warning: Failed to stage file in git" >&2
+      fi
+    else
+      echo "Failed to write to file" >&2
+      exit 1
+    fi
+  '';
 in
 {
-  home.packages = [
-    (pkgs.writeShellApplication {
-      name = "dms-sync";
-      text = ''
-        install -Dm644 ~/.config/DankMaterialShell/settings.json \
-          ${nixConfigRepo}/home/workspace/dms/settings.json
-        echo "Settings synced to Nix config."
-      '';
-    })
-  ];
+  home.packages = [ dmsSyncScript ];
 }
