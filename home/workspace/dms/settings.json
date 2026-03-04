@@ -3,12 +3,12 @@
   "currentThemeCategory": "dynamic",
   "customThemeFile": "/home/andrec/.config/DankMaterialShell/themes/tokyoNight/theme.json",
   "registryThemeVariants": {},
-  "matugenScheme": "scheme-tonal-spot",
+  "matugenScheme": "scheme-vibrant",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 0.9,
   "dockTransparency": 1,
-  "widgetBackgroundColor": "sc",
+  "widgetBackgroundColor": "sch",
   "widgetColorMode": "colorful",
   "controlCenterTileColorMode": "primary",
   "buttonColorMode": "primary",
@@ -22,6 +22,7 @@
   "mangoLayoutGapsOverride": -1,
   "mangoLayoutRadiusOverride": -1,
   "mangoLayoutBorderSize": -1,
+  "firstDayOfWeek": 2,
   "use24HourClock": true,
   "showSeconds": false,
   "padHours12Hour": false,
@@ -36,6 +37,15 @@
   "modalAnimationSpeed": 1,
   "modalCustomAnimationDuration": 150,
   "enableRippleEffects": true,
+  "m3ElevationEnabled": true,
+  "m3ElevationIntensity": 12,
+  "m3ElevationOpacity": 30,
+  "m3ElevationColorMode": "default",
+  "m3ElevationLightDirection": "top",
+  "m3ElevationCustomColor": "#000000",
+  "modalElevationEnabled": true,
+  "popoutElevationEnabled": true,
+  "barElevationEnabled": false,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": true,
@@ -170,8 +180,8 @@
     }
   ],
   "centeringMode": "index",
-  "clockDateFormat": "ddd MMM d",
-  "lockDateFormat": "dddd, MMMM d",
+  "clockDateFormat": "yyyy-MM-dd",
+  "lockDateFormat": "yy-MM-dd ddd",
   "mediaSize": 1,
   "appLauncherViewMode": "grid",
   "spotlightModalViewMode": "grid",
@@ -196,7 +206,7 @@
   "useAutoLocation": true,
   "weatherEnabled": true,
   "networkPreference": "auto",
-  "iconTheme": "System Default",
+  "iconTheme": "Dracula",
   "cursorSettings": {
     "dwl": {
       "cursorHideTimeout": 0
@@ -208,9 +218,9 @@
     },
     "niri": {
       "hideAfterInactiveMs": 0,
-      "hideWhenTyping": false
+      "hideWhenTyping": true
     },
-    "size": 24,
+    "size": 32,
     "theme": "volantes_cursors"
   },
   "launcherLogoMode": "os",
@@ -220,9 +230,9 @@
   "launcherLogoBrightness": 0.5,
   "launcherLogoContrast": 1,
   "launcherLogoSizeOffset": 12,
-  "fontFamily": "JetBrainsMono Nerd Font Propo",
-  "monoFontFamily": "JetBrainsMonoNL Nerd Font Mono",
-  "fontWeight": 800,
+  "fontFamily": "JetBrainsMono Nerd Font Mono",
+  "monoFontFamily": "JetBrainsMono Nerd Font",
+  "fontWeight": 900,
   "fontScale": 1,
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
@@ -263,7 +273,7 @@
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
-  "terminalsAlwaysDark": true,
+  "terminalsAlwaysDark": false,
   "runDmsMatugenTemplates": true,
   "matugenTemplateGtk": true,
   "matugenTemplateNiri": true,
@@ -276,11 +286,11 @@
   "matugenTemplateZenBrowser": false,
   "matugenTemplateVesktop": false,
   "matugenTemplateEquibop": false,
-  "matugenTemplateGhostty": true,
+  "matugenTemplateGhostty": false,
   "matugenTemplateKitty": true,
   "matugenTemplateFoot": false,
   "matugenTemplateAlacritty": false,
-  "matugenTemplateNeovim": true,
+  "matugenTemplateNeovim": false,
   "matugenTemplateWezterm": false,
   "matugenTemplateDgop": true,
   "matugenTemplateKcolorscheme": true,
@@ -327,9 +337,14 @@
   "lockAtStartup": false,
   "enableFprint": false,
   "maxFprintTries": 3,
+  "enableU2f": false,
+  "u2fMode": "or",
   "lockScreenActiveMonitor": "DP-2",
   "lockScreenInactiveColor": "#000000",
   "lockScreenNotificationMode": 0,
+  "lockScreenVideoEnabled": false,
+  "lockScreenVideoPath": "",
+  "lockScreenVideoCycling": false,
   "hideBrightnessSlider": false,
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 8000,
@@ -438,8 +453,8 @@
       "bottomGap": 0,
       "centerWidgets": [
         {
-          "id": "music",
           "enabled": true,
+          "id": "music",
           "mediaSize": 3
         },
         {
@@ -455,8 +470,8 @@
           "id": "cpuTemp"
         },
         {
-          "id": "memUsage",
           "enabled": true,
+          "id": "memUsage",
           "showSwap": false
         },
         {
@@ -513,9 +528,9 @@
           "id": "controlCenterButton"
         },
         {
-          "id": "clock",
+          "clockCompactMode": false,
           "enabled": true,
-          "clockCompactMode": false
+          "id": "clock"
         },
         {
           "enabled": true,
@@ -622,5 +637,5 @@
   "clipboardEnterToPaste": false,
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
-  "configVersion": 5
+  "configVersion": 6
 }
