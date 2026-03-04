@@ -18,8 +18,15 @@
     }
 
     window-rule {
-      match app-id="(?i)spotify"
+      match app-id=r#"steam_app_\d+"#
+      open-fullscreen true
+      open-on-output "DP-2"
       open-on-workspace "2"
+    }
+
+    window-rule {
+      match app-id="(?i)spotify"
+      open-on-workspace "3"
       open-on-output "HDMI-A-1"
       open-maximized true
     }
