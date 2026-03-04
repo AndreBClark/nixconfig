@@ -3,6 +3,8 @@
   imports = [
     ./bufferline.nix
     ./cmp.nix
+    ./gitsigns.nix
+    ./lualine.nix
     ./noice.nix
     ./nvim-tree.nix
     ./telescope.nix
@@ -24,30 +26,11 @@
     smart-splits.enable = true;
     hmts.enable = true;
     tmux-navigator.enable = true;
+    kitty-navigator.enable = true;
     trouble.enable = true;
     trim.enable = true;
     twilight.enable = true;
     web-devicons.enable = true;
-    gitsigns = {
-      enable = true;
-      settings = {
-        signcolumn = true;
-        numhl = false;
-        current_line_blame = true;
-      };
-    };
-
-    lualine = {
-      enable = true;
-      settings = {
-        extensions = [
-          "fzf"
-          "nvim-tree"
-          "toggleterm"
-        ];
-      };
-    };
-
     tiny-inline-diagnostic = {
       enable = true;
       settings = {

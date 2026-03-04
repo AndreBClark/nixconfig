@@ -15,7 +15,8 @@ in
   };
   colorschemes.base16 = {
     enable = !stylixEnabled;
-    colorscheme = lib.mkDefault "tokyo-night-dark";
+    colorscheme = lib.mkDefault config.lib.stylix.colors.scheme or "tokyo-night-moon";
+    settings.lualine_bold = true;
   };
   globals = {
     mapleader = " ";
