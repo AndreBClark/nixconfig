@@ -5,17 +5,24 @@
 }:
 {
   environment = {
-    systemPackages = [
-      pkgs.xwayland
-      pkgs.samrewritten
-      pkgs.sgdboop
-      pkgs.xsettingsd
-      pkgs.xrdb
-      pkgs.steamtinkerlaunch
-      pkgs.volantes-cursors
-    ];
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        samrewritten
+        sgdboop
+        volantes-cursors
+        lsfg-vk-ui
+        ;
+    };
+    sessionVariables = {
+      XCURSOR_THEME = "volantes-cursors";
+      XCURSOR_SIZE = "24";
+      PROTON_NO_FSYNC = "1";
+      PROTON_NO_ESYNC = "1";
+    };
   };
+
   xdg.icons.fallbackCursorThemes = lib.mkForce [
+    "volantes-cursors"
     "volantes_cursors"
     "breeze_cursors"
   ];
@@ -24,22 +31,21 @@
       enable = true;
       package = pkgs.millennium-steam;
       remotePlay.openFirewall = true;
+      protontricks.enable = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraPackages = [
-        pkgs.gamescope
-        pkgs.gamemode
-        pkgs.openssl
-        pkgs.nghttp2
-        pkgs.libidn2
-        pkgs.rtmpdump
-        pkgs.libpsl
-        pkgs.curl
-        pkgs.krb5
-        pkgs.keyutils
-        pkgs.lsfg-vk
-        pkgs.lsfg-vk-ui
-        pkgs.volantes-cursors
-      ];
+      extraPackages =
+        builtins.attrValues {
+          inherit (pkgs)
+            gamescope
+            mangohud
+            lsfg-vk
+            winetricks
+            volantes-cursors
+            ;
+        }
+        ++ [
+          pkgs.winePackages.wayland
+        ];
       extraCompatPackages = [
         pkgs.proton-ge-bin
         pkgs.steamtinkerlaunch
@@ -50,5 +56,4 @@
     xwayland.enable = true;
     gamemode.enable = true;
   };
-  # services.getty.autologinUser = username;
 }
