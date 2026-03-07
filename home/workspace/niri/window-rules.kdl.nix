@@ -18,8 +18,12 @@
     }
 
     window-rule {
+      match app-id="(?i)^steam$" title="(?i)^Steam$"
+      open-maximized true
+    }
+
+    window-rule {
       match app-id=r#"steam_app_\d+"#
-      open-fullscreen true
       open-on-output "DP-2"
       open-on-workspace "2"
     }
