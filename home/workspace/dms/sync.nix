@@ -35,6 +35,12 @@ let
     if echo "$CLIPBOARD_DATA" > "$TARGET_FILE"; then
       echo "Successfully replaced settings.json with validated clipboard data"
 
+      # Change to repository directory before git operations
+      cd "${nixConfigRepo}" || {
+        echo "Warning: Failed to change to repository directory" >&2
+        exit 1
+      }
+
       # Add the updated file to git
       if git add "$TARGET_FILE"; then
         echo "File staged in git"
