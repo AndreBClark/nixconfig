@@ -49,6 +49,7 @@ in
         kdeglobals = {
           "General" = {
             "BrowserApplication" = config.browser;
+            "TerminalApplication" = config.terminal;
           };
         };
         plasmarc.Theme.name = lib.mkForce plasmaStyle;
