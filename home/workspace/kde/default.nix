@@ -26,10 +26,7 @@ in
       darkly
       ;
     inherit (pkgs.kdePackages)
-      kwin
-      kwayland
       plasma-wayland-protocols
-      kirigami
       plasma-browser-integration
       ;
   };
