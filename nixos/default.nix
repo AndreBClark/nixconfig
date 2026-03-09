@@ -1,5 +1,6 @@
 {
   imports = [
+    ./services
     ./boot.nix
     ./nix.nix
     ./keyboard.nix
@@ -11,7 +12,6 @@
     ./users.nix
     ./home.nix
     ./greeter.nix
-    # ./loginscreen.nix
     ./locale.nix
     ./fonts.nix
     ./blockfile.nix

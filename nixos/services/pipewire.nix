@@ -1,10 +1,11 @@
+{ pkgs, ... }:
 {
   environment.systemPackages = [
     pkgs.rnnoise-plugin
   ];
-    security.rtkit.enable = true;
-    services = {
-      pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services = {
+    pulseaudio.enable = false;
 
     pipewire = {
       enable = true;
