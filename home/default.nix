@@ -6,6 +6,7 @@
   imports = [
     ./config.nix
     ./symlinks.nix
+    ./directories.nix
     ./releasechecks.nix
   ];
 
