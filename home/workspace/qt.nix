@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  qtPlatform = "kde";
+  qtPlatform = "qt6ct";
 in
 {
   home.packages = [
