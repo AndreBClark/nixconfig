@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, ...}:
 {
   environment.systemPackages = [
     pkgs.rnnoise-plugin
