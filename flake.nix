@@ -63,7 +63,6 @@
     let
       commonModules = [
         ./variables
-        inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
       ];
       commonHomeModules = [
@@ -123,11 +122,7 @@
       flake = {
         nixosConfigurations = {
           seadragon = mkHost "seadragon" [ ./hosts/seadragon ] { };
-          owlthulu = mkHost "owlthulu" [
-            inputs.hardware.nixosModules.dell-xps-15-9560
-            ./hosts/owlthulu
-            ./home
-          ] { };
+          dragonfly = mkHost "dragonfly" [ ./hosts/dragonfly ] { };
         };
         # Home manager configurations
         homeConfigurations = {
@@ -141,14 +136,14 @@
             ];
           };
 
-          "andrec@owlthulu" = inputs.home-manager.lib.homeManagerConfiguration {
+          "andrec@dragonfly" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
               inherit inputs system;
             };
             modules = commonHomeModules ++ [
               ./home/unfree.nix
-              ./home/owlthulu.nix
+              ./home/dragonfly.nix
             ];
           };
         };

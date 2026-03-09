@@ -5,7 +5,6 @@
     ./keyboard.nix
     ./outputs.nix
     ./xdg
-    ./programs
     ./substituters.nix
     ./nixpkgs.nix
     ./fish.nix

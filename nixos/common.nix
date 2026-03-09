@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs) pciutils envsubst;
@@ -8,5 +8,5 @@
   systemd.user.services.orca.enable = false;
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # This variable fixes electron apps in wayland
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = lib.mkDefault "24.05";
 }

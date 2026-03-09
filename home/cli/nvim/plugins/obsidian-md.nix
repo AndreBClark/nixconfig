@@ -20,7 +20,7 @@
         workspaces = [
           {
             name = "coursenotes";
-            path = "~/Documents/coursenotes";
+            path = "~/repos/ls-coursenotes";
           }
         ];
         note_id_func.__raw = ''
