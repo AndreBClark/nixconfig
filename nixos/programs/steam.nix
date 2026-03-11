@@ -46,10 +46,13 @@
         ++ [
           pkgs.winePackages.wayland
         ];
-      extraCompatPackages = [
-        pkgs.proton-ge-bin
-        pkgs.steamtinkerlaunch
-      ];
+      extraCompatPackages = builtins.attrValues {
+        inherit (pkgs)
+          proton-ge-bin
+          steamtinkerlaunch
+          steam-play-none
+          ;
+      };
       gamescopeSession.enable = lib.mkDefault false;
     };
     gamescope.enable = true;
