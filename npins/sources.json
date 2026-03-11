@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "246b6c44b0357783fe447855a600c5cf2f473dea",
-      "url": "https://github.com/AvengeMedia/DankMaterialShell/archive/246b6c44b0357783fe447855a600c5cf2f473dea.tar.gz",
-      "hash": "sha256-M7S+6DMIcXEbksIHyGyTzTmcKNLlXvoAU7P562qN0Lk="
+      "revision": "0fef4d515eb9876cc6d7b09f244e6dfb480c9b78",
+      "url": "https://github.com/AvengeMedia/DankMaterialShell/archive/0fef4d515eb9876cc6d7b09f244e6dfb480c9b78.tar.gz",
+      "hash": "sha256-//T5UEEKazrYSOKEGfFuB3jgQ12QiiE6gKD0Avu3FOw="
     },
     "dms-plugin-registry": {
       "type": "Git",
@@ -77,9 +77,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "22a7996fcced3fcb4f8922d75fea62673e70be01",
-      "url": "https://github.com/AvengeMedia/dms-plugin-registry/archive/22a7996fcced3fcb4f8922d75fea62673e70be01.tar.gz",
-      "hash": "sha256-bI8zm8NcksCDhaiMiAbzODeQSxiXTpW3Anr6SA2VydU="
+      "revision": "d3260fca96c373309025dbdc5e1c6426d22824ed",
+      "url": "https://github.com/AvengeMedia/dms-plugin-registry/archive/d3260fca96c373309025dbdc5e1c6426d22824ed.tar.gz",
+      "hash": "sha256-T9BX2tCOO0gQ71WkMnb5hisLIPk6vRwG6SAbZRKSja0="
     },
     "fish-abbreviation-tips": {
       "type": "GitRelease",
@@ -132,9 +132,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "41c6b421bdc301b2624486e11905c9af7b8ec68e",
-      "url": "https://github.com/NixOS/nixos-hardware/archive/41c6b421bdc301b2624486e11905c9af7b8ec68e.tar.gz",
-      "hash": "sha256-qwcDBtrRvJbrrnv1lf/pREQi8t2hWZxVAyeMo7/E9sw="
+      "revision": "3966ce987e1a9a164205ac8259a5fe8a64528f72",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/3966ce987e1a9a164205ac8259a5fe8a64528f72.tar.gz",
+      "hash": "sha256-mUJxsNOrBMNOUJzN0pfdVJ1r2pxeqm9gI/yIKXzVVbk="
     },
     "home-manager": {
       "type": "Git",
@@ -145,9 +145,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "924e61f5c2aeab38504028078d7091077744ab17",
-      "url": "https://github.com/nix-community/home-manager/archive/924e61f5c2aeab38504028078d7091077744ab17.tar.gz",
-      "hash": "sha256-bdr6ueeXO1Xg91sFkuvaysYF0mVdwHBpdyhTjBEWv+s="
+      "revision": "bb014746edb2a98d975abde4dd40fa240de4cf86",
+      "url": "https://github.com/nix-community/home-manager/archive/bb014746edb2a98d975abde4dd40fa240de4cf86.tar.gz",
+      "hash": "sha256-u/96NoAyN8BSRuM3ZimGf7vyYgXa3pLx4MYWjokuoH4="
     },
     "millennium": {
       "type": "Git",
@@ -158,9 +158,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "41d8c701e1f1ed4362e8378d12bbe5cb0cb811d6",
-      "url": "https://github.com/SteamClientHomebrew/Millennium/archive/41d8c701e1f1ed4362e8378d12bbe5cb0cb811d6.tar.gz",
-      "hash": "sha256-3yQlDZz9JZqPFiYYj8fQkpCXUzjlAw4s7zaZ2n0wFmE="
+      "revision": "293401478502ac4f224c55468f0191083a3ef59b",
+      "url": "https://github.com/SteamClientHomebrew/Millennium/archive/293401478502ac4f224c55468f0191083a3ef59b.tar.gz",
+      "hash": "sha256-U1XMtoBNs00icBqWeLZ8hfP5Ra+uTcc8jHaUU/BkI9w="
     },
     "niri": {
       "type": "GitRelease",
@@ -194,8 +194,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre957475.72b1d820cb01/nixexprs.tar.xz",
-      "hash": "sha256-JVA3N5t5II0xI9+sJ44UgaN6tMrZGOox0w2xZzKYt9Q="
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre960315.608d0cadfed2/nixexprs.tar.xz",
+      "hash": "sha256-ng4mTBcXO6Nc1cTlXxCPkI49nDJbwFNg/DBhx7YkymE="
     },
     "nixpkgs_2": {
       "type": "Git",
@@ -206,9 +206,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "8c809a146a140c5c8806f13399592dbcb1bb5dc4",
-      "url": "https://github.com/nixos/nixpkgs/archive/8c809a146a140c5c8806f13399592dbcb1bb5dc4.tar.gz",
-      "hash": "sha256-WGV2hy+VIeQsYXpsLjdr4GvHv5eECMISX1zKLTedhdg="
+      "revision": "9dcb002ca1690658be4a04645215baea8b95f31d",
+      "url": "https://github.com/nixos/nixpkgs/archive/9dcb002ca1690658be4a04645215baea8b95f31d.tar.gz",
+      "hash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs="
     },
     "nixvim": {
       "type": "Git",
@@ -245,9 +245,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "7f645686f0bb2a75a689992ba0ab7fa01973836a",
-      "url": "https://github.com/hoeci/sort-play/archive/7f645686f0bb2a75a689992ba0ab7fa01973836a.tar.gz",
-      "hash": "sha256-p+9aAJKj40iJaaWMgGndh1r/8NvsoSywSqwfRU3C1ZM="
+      "revision": "a21333c20969ea9e698bf18f69f380d750afb5b3",
+      "url": "https://github.com/hoeci/sort-play/archive/a21333c20969ea9e698bf18f69f380d750afb5b3.tar.gz",
+      "hash": "sha256-MjJFGwLadvU7ehqfL0+xaeBBaGyYoJxqVhIFVa7AcEg="
     },
     "spicetify-apps": {
       "type": "Git",
@@ -271,9 +271,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "22f33deafb304b38cea8570660cd434cd2e624e0",
-      "url": "https://github.com/Konsl/spicetify-extensions/archive/22f33deafb304b38cea8570660cd434cd2e624e0.tar.gz",
-      "hash": "sha256-YmAYXN69GWfx3NgQelnro1Ugj6K5PjeN3AS9gZz2qKE="
+      "revision": "bb3f5c5af2349cdf0a67dffc1880c97caabb8a93",
+      "url": "https://github.com/Konsl/spicetify-extensions/archive/bb3f5c5af2349cdf0a67dffc1880c97caabb8a93.tar.gz",
+      "hash": "sha256-l5fdGxl3jwNEmsNhfeKQI+xgCbe+enVCRzDQFl/Qz3U="
     },
     "spicetify-nix": {
       "type": "Git",
@@ -284,9 +284,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "915ab06b046d05613041780c575c62a32fe67cea",
-      "url": "https://github.com/Gerg-L/spicetify-nix/archive/915ab06b046d05613041780c575c62a32fe67cea.tar.gz",
-      "hash": "sha256-6ksgNAFXVK+Cg/6ww7bB2nJUPZlnS75UwZC7G+L03EE="
+      "revision": "434e63b851f9139aaeddc3b8de44d47992828b3b",
+      "url": "https://github.com/Gerg-L/spicetify-nix/archive/434e63b851f9139aaeddc3b8de44d47992828b3b.tar.gz",
+      "hash": "sha256-4NtiCDH3RunKbrlWvPCB6dyTjCwqdrHaBDeMCzG6gIA="
     },
     "spicetify-playlist-maker": {
       "type": "Tarball",
