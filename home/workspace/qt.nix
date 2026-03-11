@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  qtPlatform = "qt6ct";
+  qtPlatform = "qtct";
 in
 {
   home.packages = [
@@ -11,15 +11,9 @@ in
 
   qt = {
     enable = true;
-    platformTheme.name = lib.mkForce qtPlatform;
-    style = {
-      package = [
-        pkgs.darkly
-      ];
-    };
   };
   stylix.targets.qt = {
-    enable = false;
+    enable = true;
     platform = qtPlatform;
   };
 }
