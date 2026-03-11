@@ -11,13 +11,14 @@
         sgdboop
         volantes-cursors
         lsfg-vk-ui
+        steamtinkerlaunch
         ;
     };
     sessionVariables = {
       XCURSOR_THEME = "volantes-cursors";
       XCURSOR_SIZE = "24";
-      PROTON_NO_FSYNC = "1";
-      PROTON_NO_ESYNC = "1";
+      # PROTON_NO_FSYNC = "1";
+      # PROTON_NO_ESYNC = "1";
     };
   };
 
