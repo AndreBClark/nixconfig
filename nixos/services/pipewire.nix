@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   environment.systemPackages = [
     pkgs.rnnoise-plugin
@@ -6,18 +6,15 @@
   security.rtkit.enable = true;
   services = {
     pulseaudio.enable = false;
-
     pipewire = {
       enable = true;
-      # Enable sound with pipewire.
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-      # jack.enable = true;
-      extraConfig = {
-        # https://discourse.nixos.org/t/pipewire-rnnoise-module-wont-work/58975/12
-        pipewire."99-input-denoising" = {
+      extraConfig.pipewire = {
+
+        "99-input-denoising" = {
           "context.modules" = [
             {
               name = "libpipewire-module-filter-chain";
@@ -42,11 +39,12 @@
                 "capture.props" = {
                   "node.name" = "capture.rnnoise_source";
                   "node.passive" = true;
+                  "node.always-process" = false;
                   "audio.rate" = 48000;
                 };
                 "playback.props" = {
                   "node.name" = "rnnoise_source";
-                  "media.class" = "Audio/Source";
+                  "media.class" = "Audio/Source/Virtual";
                   "audio.rate" = 48000;
                 };
               };

@@ -30,6 +30,7 @@
         powerUsagePlugin.enable = true;
         nixMonitor.enable = true;
         wallpaperDiscovery.enable = true;
+        easyEffects.enable = true;
       };
     };
     dsearch.enable = true;

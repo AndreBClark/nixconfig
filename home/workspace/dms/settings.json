@@ -182,6 +182,17 @@
   "centeringMode": "index",
   "clockDateFormat": "yyyy-MM-dd ddd",
   "lockDateFormat": "dddd, MMMM d",
+  "greeterRememberLastSession": true,
+  "greeterRememberLastUser": true,
+  "greeterEnableFprint": false,
+  "greeterEnableU2f": false,
+  "greeterWallpaperPath": "",
+  "greeterUse24HourClock": true,
+  "greeterShowSeconds": false,
+  "greeterPadHours12Hour": false,
+  "greeterLockDateFormat": "",
+  "greeterFontFamily": "",
+  "greeterWallpaperFillMode": "",
   "mediaSize": 1,
   "appLauncherViewMode": "grid",
   "spotlightModalViewMode": "grid",
@@ -508,33 +519,37 @@
       "position": 0,
       "rightWidgets": [
         {
-          "enabled": true,
-          "id": "colorPicker"
+          "id": "colorPicker",
+          "enabled": true
         },
         {
-          "enabled": true,
-          "id": "clipboard"
+          "id": "clipboard",
+          "enabled": true
         },
         {
-          "enabled": true,
-          "id": "notificationButton"
+          "id": "notificationButton",
+          "enabled": true
         },
         {
-          "enabled": true,
-          "id": "systemTray"
+          "id": "easyEffects",
+          "enabled": true
         },
         {
-          "enabled": true,
-          "id": "controlCenterButton"
+          "id": "systemTray",
+          "enabled": true
         },
         {
-          "clockCompactMode": false,
-          "enabled": true,
-          "id": "clock"
+          "id": "controlCenterButton",
+          "enabled": true
         },
         {
+          "id": "clock",
           "enabled": true,
-          "id": "powerMenuButton"
+          "clockCompactMode": false
+        },
+        {
+          "id": "powerMenuButton",
+          "enabled": true
         }
       ],
       "screenPreferences": [
