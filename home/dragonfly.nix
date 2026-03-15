@@ -3,6 +3,7 @@
     ./default.nix
     ./terminal
     ./theme
+    ./services
     ./cli
     ./workspace/dms
     ./workspace/gtk.nix
