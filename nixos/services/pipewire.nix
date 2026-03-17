@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.rnnoise-plugin
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      rnnoise-plugin
+      pwvucontrol
+      easyeffects
+      ;
+  };
   security.rtkit.enable = true;
   services = {
     pulseaudio.enable = false;
