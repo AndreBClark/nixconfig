@@ -1,10 +1,6 @@
 { pkgs, ... }:
-let
-  inherit (pkgs) starsector beyond-all-reason;
-in
 {
-  home.packages = [
-    starsector
-    beyond-all-reason
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs) heroic starsector beyond-all-reason;
+  };
 }
