@@ -15,6 +15,9 @@
       include "layout.kdl"
       include "laptop-output.kdl"
 
+      debug {
+        skip-cursor-only-updates-during-vrr
+      }
       prefer-no-csd
 
       output "DP-2" {

@@ -24,6 +24,8 @@
 
     window-rule {
       match app-id=r#"steam_app_\d+"#
+      open-floating true
+      open-maximized true
       open-on-output "DP-2"
       open-on-workspace "2"
     }
