@@ -4,7 +4,19 @@
     inlayHints.enable = true;
     servers = {
       ts_ls.enable = true;
-      biome.enable = true;
+      biome = {
+        enable = true;
+        config = {
+          linter = {
+            enabled = true;
+            rules.recommended = true;
+          };
+          assist = {
+            enabled = true;
+            actions.source.organizeImports = "on";
+          };
+        };
+      };
       cssls.enable = true; # CSS
       tailwindcss.enable = true;
       html.enable = true; # HTML
@@ -53,7 +65,9 @@
         };
         code_actions = {
           refactoring.enable = true;
+          gitsigns.enable = true;
           statix.enable = true;
+          biome.enable = true;
         };
       };
     };
