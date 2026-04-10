@@ -1,6 +1,5 @@
 {
   imports = [
-    ./kde
     ./niri
     ./dms
     ./gtk.nix
