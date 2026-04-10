@@ -1,28 +1,26 @@
 {
   inputs,
   config,
-  pkgs,
   ...
 }:
 {
-  imports = builtins.attrValues {
-    inherit (inputs.hardware.nixosModules)
-      common-cpu-intel
-      common-pc-ssd
-      common-gpu-nvidia-nonprime
-      ;
-  };
+  imports =
+    builtins.attrValues {
+      inherit (inputs.hardware.nixosModules)
+        common-cpu-intel
+        common-pc-ssd
+        common-gpu-nvidia-nonprime
+        ;
+    }
+    ++ [
+      "${inputs.hardware}/common/gpu/nvidia/pascal"
+    ];
 
-  security.rtkit.enable = true;
   services = {
     xserver = {
       enable = true;
       videoDrivers = [ "nvidia" ];
     };
-    # Enable CUPS to print documents.
-    printing.enable = true;
-    gvfs.enable = true;
-    udisks2.enable = true;
   };
 
   boot.kernelParams = [

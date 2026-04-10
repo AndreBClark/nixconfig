@@ -1,13 +1,11 @@
 { pkgs, ... }:
 let
-  portals =
-    builtins.attrValues {
-      inherit (pkgs)
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
-        ;
-    }
-    ++ [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  portals = builtins.attrValues {
+    inherit (pkgs)
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+      ;
+  };
 in
 {
   xdg.portal = {

@@ -1,5 +1,9 @@
 {
-    imports = [
-        ./pipewire.nix
-    ];
+  imports = [
+    ./pipewire.nix
+  ];
+  services = {
+    gvfs.enable = true;
+    udisks2.enable = true;
+  };
 }
