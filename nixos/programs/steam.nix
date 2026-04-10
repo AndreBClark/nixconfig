@@ -33,20 +33,19 @@
       package = pkgs.millennium-steam;
       remotePlay.openFirewall = true;
       protontricks.enable = true;
+      extest.enable = true;
       localNetworkGameTransfers.openFirewall = true;
-      extraPackages =
-        builtins.attrValues {
-          inherit (pkgs)
-            gamescope
-            mangohud
-            lsfg-vk
-            winetricks
-            volantes-cursors
-            ;
-        }
-        ++ [
-          pkgs.winePackages.wayland
-        ];
+      extraPackages = builtins.attrValues {
+        inherit (pkgs)
+          gamescope
+          mangohud
+          winetricks
+          faudio
+          dxvk
+          lsfg-vk
+          volantes-cursors
+          ;
+      };
       extraCompatPackages = builtins.attrValues {
         inherit (pkgs)
           proton-ge-bin
@@ -54,7 +53,6 @@
           steam-play-none
           ;
       };
-      gamescopeSession.enable = lib.mkDefault false;
     };
     gamescope.enable = true;
     xwayland.enable = true;
