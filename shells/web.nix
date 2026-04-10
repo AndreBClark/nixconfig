@@ -28,9 +28,9 @@ pkgs.mkShellNoCC {
   ];
   NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   BIOME_BINARY = "${pkgs.biome}/bin/biome";
+  NODE_PACKAGE_MANAGER = "pnpm";
   shellHook = ''
     export PATH="$PWD/node_modules/.bin/:$PATH"
-    alias run='pnpm run'
-    alias serve='netlify dev:exec'
+    export NODE_VERSION=$(node --version)
   '';
 }
