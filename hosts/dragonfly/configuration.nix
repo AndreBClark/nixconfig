@@ -12,7 +12,7 @@
 {
   imports = [
     ../../nixos
-    ../../display/niri.nix
+    ../../nixos/display/niri.nix
     ./home.nix
     ./hardware.nix
     ./hardware-configuration.nix
@@ -27,9 +27,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

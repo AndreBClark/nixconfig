@@ -3,8 +3,7 @@
   imports = [
     ../../nixos
     ./programs.nix
-    ../../display/niri.nix
-    ../../display/plasma.nix
+    ../../nixos/display/niri.nix
   ];
 
   networking.hostName = hostName; # Define your hostname.
