@@ -1,6 +1,6 @@
 {
-    imports = [
-        ../../nixos/programs/steam.nix
-        ../../nixos/programs/nix-ld.nix
-    ];
+  imports = [
+    ../../nixos/programs/nix-ld.nix
+    ../../nixos/programs/steam.nix
+  ];
 }
