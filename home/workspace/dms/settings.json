@@ -4,6 +4,7 @@
   "customThemeFile": "/home/andrec/.config/DankMaterialShell/themes/tokyoNight/theme.json",
   "registryThemeVariants": {},
   "matugenScheme": "scheme-vibrant",
+  "matugenContrast": 0,
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 0.9,
@@ -23,6 +24,7 @@
   "mangoLayoutRadiusOverride": -1,
   "mangoLayoutBorderSize": -1,
   "firstDayOfWeek": 2,
+  "showWeekNumber": false,
   "use24HourClock": true,
   "showSeconds": false,
   "padHours12Hour": false,
@@ -46,6 +48,10 @@
   "modalElevationEnabled": true,
   "popoutElevationEnabled": true,
   "barElevationEnabled": false,
+  "blurEnabled": false,
+  "blurBorderColor": "outline",
+  "blurBorderCustomColor": "#ffffff",
+  "blurBorderOpacity": 1,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": true,
@@ -123,6 +129,7 @@
   "showOccupiedWorkspacesOnly": false,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
+  "workspaceActiveAppHighlightEnabled": false,
   "workspaceColorMode": "default",
   "workspaceOccupiedColorMode": "none",
   "workspaceUnfocusedColorMode": "default",
@@ -203,6 +210,7 @@
   "sortAppsAlphabetically": false,
   "appLauncherGridColumns": 5,
   "spotlightCloseNiriOverview": true,
+  "rememberLastQuery": false,
   "spotlightSectionViewModes": {
     "apps": "grid"
   },
@@ -253,6 +261,7 @@
   "notepadLastCustomTransparency": 0.7,
   "soundsEnabled": false,
   "useSystemSoundTheme": false,
+  "soundLogin": false,
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
@@ -285,6 +294,10 @@
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
   "terminalsAlwaysDark": false,
+  "muxType": "tmux",
+  "muxUseCustomCommand": false,
+  "muxCustomCommand": "",
+  "muxSessionFilter": "",
   "runDmsMatugenTemplates": true,
   "matugenTemplateGtk": true,
   "matugenTemplateNiri": true,
@@ -307,10 +320,23 @@
   "matugenTemplateKcolorscheme": true,
   "matugenTemplateVscode": true,
   "matugenTemplateEmacs": false,
+  "matugenTemplateZed": true,
+  "matugenTemplateNeovimSettings": {
+    "dark": {
+      "baseTheme": "github_dark",
+      "harmony": 0.5
+    },
+    "light": {
+      "baseTheme": "github_light",
+      "harmony": 0.5
+    }
+  },
+  "matugenTemplateNeovimSetBackground": true,
   "showDock": true,
   "dockAutoHide": false,
   "dockSmartAutoHide": false,
   "dockGroupByApp": true,
+  "dockRestoreSpecialWorkspaceOnClick": false,
   "dockOpenOnOverview": true,
   "dockPosition": 2,
   "dockSpacing": 8,
@@ -371,6 +397,7 @@
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
   "notificationRules": [],
+  "notificationFocusedMonitor": false,
   "osdAlwaysShowValue": true,
   "osdPosition": 5,
   "osdVolumeEnabled": true,
@@ -484,10 +511,6 @@
           "enabled": true,
           "id": "memUsage",
           "showSwap": false
-        },
-        {
-          "enabled": true,
-          "id": "network_speed_monitor"
         }
       ],
       "enabled": true,
@@ -531,15 +554,15 @@
           "enabled": true
         },
         {
-          "id": "easyEffects",
-          "enabled": true
-        },
-        {
           "id": "systemTray",
           "enabled": true
         },
         {
           "id": "controlCenterButton",
+          "enabled": true
+        },
+        {
+          "id": "battery",
           "enabled": true
         },
         {
@@ -652,5 +675,5 @@
   "clipboardEnterToPaste": false,
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
-  "configVersion": 6
+  "configVersion": 5
 }
