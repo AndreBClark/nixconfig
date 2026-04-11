@@ -13,6 +13,9 @@
     ./obsidian-md.nix
   ];
   plugins = {
+    fzf-lua = {
+      enable = true;
+    };
     bufdelete.enable = true;
     dashboard.enable = true;
     illuminate.enable = true;

@@ -58,9 +58,9 @@
     {
       mode = "n";
       key = "<C-p>";
-      action = "<cmd>FZF<CR>";
+      action = "<cmd>FzfLua files<CR>";
       options = {
-        desc = "FZF search";
+        desc = "FZF file search";
         silent = true;
       };
     }
