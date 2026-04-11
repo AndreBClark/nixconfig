@@ -10,6 +10,7 @@
     variables.NIXOS_OZONE_WL = "1";
     systemPackages = builtins.attrValues {
       inherit (pkgs)
+        nautilus
         wl-clipboard
         wayland-utils
         libsecret
