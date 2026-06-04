@@ -24,10 +24,10 @@
     mini-surround.enable = true;
     nix-develop.enable = true;
     notify.enable = true;
-    nvim-ufo.enable = true;
+    # nvim-ufo.enable = true;
     render-markdown.enable = lib.mkDefault true;
     smart-splits.enable = true;
-    hmts.enable = true;
+    # hmts.enable = true;
     tmux-navigator.enable = true;
     kitty-navigator.enable = true;
     trouble.enable = true;
@@ -75,7 +75,7 @@
                   vim.notify("Dashboard error: " .. tostring(err), vim.log.levels.ERROR)
                 end
               end
-            end, 100)  -- Delay by 100ms
+            end, 100)
           end
         end
       '';
