@@ -13,15 +13,17 @@ let
       sha256 = "1nadjcyx357md29mj02cx1f62g1v1b5jhcyfxr3g5v9ji822fdix";
     };
   };
+  opacity = 0.900;
 in
 {
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme.colorscheme}-${theme.variant}.yaml";
     opacity = {
-      desktop = 1.0;
-      popups = 1.0;
-      applications = 1.0;
+      desktop = opacity;
+      popups = opacity;
+      applications = opacity;
+      terminal = opacity;
     };
     icons = {
       enable = true;

@@ -7,6 +7,7 @@ in
     kitty = {
       enable = true;
       settings = {
+        background_blur = 1;
         tab_title_template = "[{index}] {tab.active_wd}{activity_symbol}";
         tab_title_max_length = 0;
         tab_bar_edge = "top";
