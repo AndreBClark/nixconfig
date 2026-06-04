@@ -17,6 +17,8 @@
 
       debug {
         skip-cursor-only-updates-during-vrr
+        disable-cursor-plane
+        keep-max-bpc-unchanged
       }
       prefer-no-csd
 
