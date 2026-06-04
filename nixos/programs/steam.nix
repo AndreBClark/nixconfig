@@ -33,7 +33,6 @@
       package = pkgs.millennium-steam;
       remotePlay.openFirewall = true;
       protontricks.enable = true;
-      extest.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       extraPackages = builtins.attrValues {
         inherit (pkgs)
@@ -54,7 +53,26 @@
           ;
       };
     };
-    gamescope.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+      args = [
+        "--force-windows-fullscreen"
+
+        # Resolution and display
+        "-w 2560"
+        "-h 1440" # Set your native resolution
+        "--fullscreen" # Force fullscreen
+        "--borderless" # Borderless windowed mode
+
+        # Performance optimizations
+        "--rt" # Real-time scheduling
+
+        # Wayland/Niri compatibility
+        "--disable-xres" # Disable X resource extension
+      ];
+
+    };
     xwayland.enable = true;
     gamemode.enable = true;
   };
