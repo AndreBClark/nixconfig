@@ -20,6 +20,7 @@
   "hyprlandLayoutGapsOverride": -1,
   "hyprlandLayoutRadiusOverride": -1,
   "hyprlandLayoutBorderSize": -1,
+  "hyprlandResizeOnBorder": false,
   "mangoLayoutGapsOverride": -1,
   "mangoLayoutRadiusOverride": -1,
   "mangoLayoutBorderSize": -1,
@@ -31,7 +32,7 @@
   "useFahrenheit": true,
   "windSpeedUnit": "kmh",
   "nightModeEnabled": false,
-  "animationSpeed": 2,
+  "animationSpeed": 1,
   "customAnimationDuration": 200,
   "syncComponentAnimationSpeeds": true,
   "popoutAnimationSpeed": 1,
@@ -40,11 +41,11 @@
   "modalCustomAnimationDuration": 150,
   "enableRippleEffects": true,
   "animationVariant": 0,
-  "motionEffect": 0,
-  "m3ElevationEnabled": false,
+  "motionEffect": 1,
+  "m3ElevationEnabled": true,
   "m3ElevationIntensity": 12,
   "m3ElevationOpacity": 30,
-  "m3ElevationColorMode": "default",
+  "m3ElevationColorMode": "surfaceVariant",
   "m3ElevationLightDirection": "top",
   "m3ElevationCustomColor": "#000000",
   "modalElevationEnabled": true,
@@ -72,7 +73,7 @@
   "selectedGpuIndex": 0,
   "enabledGpuPciIds": [],
   "showSystemTray": true,
-  "systemTrayIconTintMode": "primary",
+  "systemTrayIconTintMode": "secondary",
   "systemTrayIconTintSaturation": 50,
   "systemTrayIconTintStrength": 135,
   "showClock": true,
@@ -92,6 +93,8 @@
   "controlCenterShowBatteryIcon": false,
   "controlCenterShowPrinterIcon": false,
   "controlCenterShowScreenSharingIcon": true,
+  "controlCenterShowIdleInhibitorIcon": false,
+  "controlCenterShowDoNotDisturbIcon": false,
   "showPrivacyButton": true,
   "privacyShowMicIcon": false,
   "privacyShowCameraIcon": false,
@@ -132,11 +135,12 @@
   "maxWorkspaceIcons": 3,
   "workspaceAppIconSizeOffset": 4,
   "groupWorkspaceApps": true,
+  "groupActiveWorkspaceApps": false,
   "workspaceFollowFocus": false,
-  "showOccupiedWorkspacesOnly": false,
+  "showOccupiedWorkspacesOnly": true,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
-  "workspaceActiveAppHighlightEnabled": false,
+  "workspaceActiveAppHighlightEnabled": true,
   "workspaceColorMode": "default",
   "workspaceOccupiedColorMode": "none",
   "workspaceUnfocusedColorMode": "default",
@@ -153,6 +157,7 @@
   "audioWheelScrollAmount": 5,
   "clockCompactMode": false,
   "focusedWindowCompactMode": false,
+  "focusedWindowSize": 1,
   "runningAppsCompactMode": true,
   "barMaxVisibleApps": 0,
   "barMaxVisibleRunningApps": 0,
@@ -164,6 +169,7 @@
   "appsDockEnlargePercentage": 125,
   "appsDockIconSizePercentage": 100,
   "keyboardLayoutNameCompactMode": false,
+  "keyboardLayoutNameShowIcon": false,
   "runningAppsCurrentWorkspace": false,
   "runningAppsGroupByApp": true,
   "runningAppsCurrentMonitor": false,
@@ -199,6 +205,7 @@
   "lockDateFormat": "dddd, MMMM d",
   "greeterRememberLastSession": true,
   "greeterRememberLastUser": true,
+  "greeterAutoLogin": false,
   "greeterEnableFprint": false,
   "greeterEnableU2f": false,
   "greeterWallpaperPath": "",
@@ -219,6 +226,7 @@
   "appLauncherGridColumns": 5,
   "spotlightCloseNiriOverview": true,
   "rememberLastQuery": false,
+  "rememberLastMode": true,
   "spotlightSectionViewModes": {
     "apps": "grid"
   },
@@ -232,6 +240,9 @@
   "dankLauncherV2UnloadOnClose": false,
   "dankLauncherV2IncludeFilesInAll": false,
   "dankLauncherV2IncludeFoldersInAll": false,
+  "launcherUseOverlayLayer": true,
+  "launcherStyle": "full",
+  "spotlightBarShowModeChips": true,
   "useAutoLocation": true,
   "weatherEnabled": true,
   "networkPreference": "auto",
@@ -263,6 +274,8 @@
   "monoFontFamily": "JetBrainsMono Nerd Font",
   "fontWeight": 900,
   "fontScale": 1,
+  "textRenderType": 0,
+  "textRenderQuality": 0,
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
   "notepadFontSize": 14,
@@ -315,7 +328,7 @@
   "matugenTemplateNiri": true,
   "matugenTemplateHyprland": false,
   "matugenTemplateMangowc": false,
-  "matugenTemplateQt5ct": false,
+  "matugenTemplateQt5ct": true,
   "matugenTemplateQt6ct": true,
   "matugenTemplateFirefox": false,
   "matugenTemplatePywalfox": false,
@@ -347,13 +360,14 @@
   "matugenTemplateNeovimSetBackground": true,
   "showDock": true,
   "dockAutoHide": false,
-  "dockSmartAutoHide": false,
+  "dockSmartAutoHide": true,
+  "dockUseOverlayLayer": true,
   "dockGroupByApp": true,
   "dockRestoreSpecialWorkspaceOnClick": false,
   "dockOpenOnOverview": true,
   "dockPosition": 2,
   "dockSpacing": 8,
-  "dockBottomGap": -18,
+  "dockBottomGap": 0,
   "dockMargin": 0,
   "dockIconSize": 50,
   "dockIndicatorStyle": "circle",
@@ -369,8 +383,8 @@
   "dockLauncherLogoSizeOffset": 0,
   "dockLauncherLogoBrightness": 0.5,
   "dockLauncherLogoContrast": 1,
-  "dockMaxVisibleApps": 0,
-  "dockMaxVisibleRunningApps": 0,
+  "dockMaxVisibleApps": 20,
+  "dockMaxVisibleRunningApps": 10,
   "dockShowOverflowBadge": true,
   "dockShowTrash": false,
   "dockTrashFileManager": "default",
@@ -403,6 +417,7 @@
   "notificationTimeoutNormal": 8000,
   "notificationTimeoutCritical": 0,
   "notificationCompactMode": false,
+  "notificationDedupeEnabled": true,
   "notificationPopupPosition": 0,
   "notificationAnimationSpeed": 1,
   "notificationCustomAnimationDuration": 400,
@@ -413,7 +428,7 @@
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
   "notificationRules": [],
-  "notificationFocusedMonitor": false,
+  "notificationFocusedMonitor": true,
   "osdAlwaysShowValue": true,
   "osdPosition": 5,
   "osdVolumeEnabled": true,
@@ -443,10 +458,11 @@
   "customPowerActionReboot": "",
   "customPowerActionPowerOff": "",
   "updaterHideWidget": false,
+  "updaterCheckOnStart": false,
   "updaterUseCustomCommand": true,
   "updaterCustomCommand": "nh os switch ~/nixconfig",
   "updaterTerminalAdditionalParams": "",
-  "updaterIntervalSeconds": 1800,
+  "updaterIntervalSeconds": 86400,
   "updaterIncludeFlatpak": true,
   "updaterAllowAUR": true,
   "displayNameMode": "system",
@@ -492,15 +508,23 @@
     "osd": true,
     "toast": true
   },
-  "niriOutputSettings": {},
+  "niriOutputSettings": {
+    "DP-2": {
+      "focusAtStartup": true
+    },
+    "HDMI-A-1": {
+      "disabled": true
+    }
+  },
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
-  "activeDisplayProfile": {},
+  "activeDisplayProfile": {
+    "niri": "profile_1780711633882_2dn7oix"
+  },
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
   "displaySnapToEdge": true,
   "connectedFrameBarStyleBackups": {},
-  "connectedFrameModalDarkenBackup": null,
   "barConfigs": [
     {
       "autoHide": false,
@@ -538,6 +562,7 @@
       "fontScale": 1,
       "gothCornerRadiusOverride": false,
       "gothCornersEnabled": false,
+      "iconScale": 1,
       "id": "default",
       "innerPadding": 4,
       "leftWidgets": [
@@ -555,12 +580,15 @@
           "id": "focusedWindow"
         }
       ],
+      "maximizeWidgetIcons": false,
+      "maximizeWidgetText": false,
       "name": "Main Bar",
       "noBackground": false,
       "openOnOverview": true,
       "popupGapsAuto": true,
       "popupGapsManual": 4,
       "position": 0,
+      "removeWidgetPadding": false,
       "rightWidgets": [
         {
           "enabled": true,
@@ -609,6 +637,7 @@
       "scrollEnabled": true,
       "scrollXBehavior": "column",
       "scrollYBehavior": "workspace",
+      "shadowIntensity": 0,
       "showOnLastDisplay": true,
       "spacing": 0,
       "squareCorners": true,
@@ -618,8 +647,7 @@
       "widgetOutlineEnabled": false,
       "widgetOutlineOpacity": 1,
       "widgetOutlineThickness": 2,
-      "widgetTransparency": 0.5,
-      "shadowIntensity": 0
+      "widgetTransparency": 0.5
     }
   ],
   "desktopClockEnabled": false,
@@ -694,12 +722,19 @@
   "desktopWidgetInstances": [],
   "desktopWidgetGroups": [],
   "builtInPluginSettings": {
+    "dms_clipboard_search": {
+      "trigger": "cb"
+    },
     "dms_settings_search": {
       "trigger": "?"
     }
   },
   "clipboardEnterToPaste": false,
-  "launcherPluginVisibility": {},
+  "launcherPluginVisibility": {
+    "dankObsidian": {
+      "allowWithoutTrigger": false
+    }
+  },
   "launcherPluginOrder": [],
   "frameEnabled": false,
   "frameThickness": 16,
