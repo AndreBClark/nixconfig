@@ -9,7 +9,6 @@
       inherit (pkgs)
         samrewritten
         sgdboop
-        volantes-cursors
         lsfg-vk-ui
         steamtinkerlaunch
         ;
@@ -42,7 +41,6 @@
           faudio
           dxvk
           lsfg-vk
-          volantes-cursors
           ;
       };
       extraCompatPackages = builtins.attrValues {
