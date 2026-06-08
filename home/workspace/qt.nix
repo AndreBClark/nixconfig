@@ -13,7 +13,7 @@ in
     enable = true;
   };
   stylix.targets.qt = {
-    enable = true;
+    enable = false;
     platform = qtPlatform;
   };
 }
