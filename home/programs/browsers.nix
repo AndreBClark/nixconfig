@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs = {
     firefox = {
       package = pkgs.firefox-devedition;
       enable = true;
       profiles.dev-edition-default.extensions.force = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
     };
     vivaldi = {
       enable = true;
