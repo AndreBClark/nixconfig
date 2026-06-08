@@ -16,7 +16,7 @@ in
             skip-at-startup
           }
           cursor {
-            xcursor-theme "rose-pine-cursor"
+            xcursor-theme "BreezeX-RosePine-Linux"
             xcursor-size 48
           }
           debug {

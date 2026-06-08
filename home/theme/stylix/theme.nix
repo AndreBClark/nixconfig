@@ -13,6 +13,7 @@ let
       sha256 = "1nadjcyx357md29mj02cx1f62g1v1b5jhcyfxr3g5v9ji822fdix";
     };
   };
+  iconTheme = "Dracula";
   opacity = 0.900;
 in
 {
@@ -27,12 +28,12 @@ in
     };
     icons = {
       enable = true;
-      dark = lib.mkForce "Dracula";
-      light = config.stylix.icons.dark;
+      dark = iconTheme;
+      light = iconTheme;
       package = pkgs.dracula-icon-theme;
     };
     cursor = {
-      name = "Rose Pine Cursor";
+      name = "BreezeX-RosePine-Linux";
       package = pkgs.rose-pine-cursor;
       size = 24;
     };
