@@ -15,11 +15,6 @@
     };
   };
 
-  xdg.icons.fallbackCursorThemes = lib.mkForce [
-    "rose-pine-cursor"
-    "Default"
-    "breeze_cursors"
-  ];
   programs = {
     steam = {
       enable = true;
