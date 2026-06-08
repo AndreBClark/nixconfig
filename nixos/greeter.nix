@@ -16,7 +16,7 @@ in
             skip-at-startup
           }
           cursor {
-            xcursor-theme "volantes_cursors"
+            xcursor-theme "rose-pine-cursor"
             xcursor-size 48
           }
           debug {

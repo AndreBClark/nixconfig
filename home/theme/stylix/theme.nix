@@ -32,8 +32,8 @@ in
       package = pkgs.dracula-icon-theme;
     };
     cursor = {
-      name = "Volantes Cursors";
-      package = pkgs.volantes-cursors;
+      name = "Rose Pine Cursor";
+      package = pkgs.rose-pine-cursor;
       size = 24;
     };
     image = theme.wallpaper;

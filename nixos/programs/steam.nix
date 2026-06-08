@@ -13,17 +13,11 @@
         steamtinkerlaunch
         ;
     };
-    sessionVariables = {
-      XCURSOR_THEME = "volantes-cursors";
-      XCURSOR_SIZE = "24";
-      # PROTON_NO_FSYNC = "1";
-      # PROTON_NO_ESYNC = "1";
-    };
   };
 
   xdg.icons.fallbackCursorThemes = lib.mkForce [
-    "volantes-cursors"
-    "volantes_cursors"
+    "rose-pine-cursor"
+    "Default"
     "breeze_cursors"
   ];
   programs = {

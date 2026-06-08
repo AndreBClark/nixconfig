@@ -11,5 +11,5 @@
       firefox.profileNames = lib.mkIf config.programs.firefox.enable [ "dev-edition-default" ];
     };
   };
-  environment.systemPackages = [ pkgs.volantes-cursors ];
+  environment.systemPackages = [ pkgs.rose-pine-cursor ];
 }

@@ -22,7 +22,7 @@ in
       wayland
       xwayland
       utterly-round-plasma-style
-      volantes-cursors
+      rose-pine-cursor
       darkly
       ;
     inherit (pkgs.kdePackages)

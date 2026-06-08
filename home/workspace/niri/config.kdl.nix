@@ -5,7 +5,7 @@
 }:
 {
   home.packages = [
-    pkgs.volantes-cursors
+    pkgs.rose-pine-cursor
   ];
   xdg.configFile = {
     "niri/config.kdl".text = /* kdl */ ''

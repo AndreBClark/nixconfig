@@ -19,7 +19,7 @@
     cursor = {
       cursorFeedback = "Static";
       animationTime = 2;
-      theme = "volantes_cursors";
+      theme = config.stylix.cursor.name;
       size = 24;
       taskManagerFeedback = true;
     };
