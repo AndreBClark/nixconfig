@@ -47,7 +47,7 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
       args = [
         "--force-windows-fullscreen"
 
