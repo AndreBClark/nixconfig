@@ -36,8 +36,8 @@
       nixd = {
         enable = true;
         config = {
-          formatting = {
-            command = [ "nixfmt" ];
+         formatting = {
+            command = [ "nixpkgs-fmt" ];  # Use nixpkgs-fmt
           };
         };
       };
@@ -74,12 +74,15 @@
   };
   extraPackages = [
     pkgs.jq
-    pkgs.nixfmt
+    pkgs.nixpkgs-fmt
   ];
   autoCmd = [
     {
       event = "BufWritePre";
       pattern = [
+        "*.nix"
+        "*.css"
+        ".json"
         "*.js"
         "*.jsx"
         "*.ts"
