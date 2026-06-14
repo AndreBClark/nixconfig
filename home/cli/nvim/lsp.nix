@@ -49,10 +49,8 @@
   plugins = {
     lsp.enable = true;
     lspkind.enable = true;
-    lsp-format.enable = true;
     none-ls = {
       enable = true;
-      enableLspFormat = true;
       sources = {
         formatting = {
           nixpkgs_fmt.enable = true;
@@ -70,13 +68,6 @@
         };
       };
     };
-    typescript-tools = {
-      enable = true;
-      settings = {
-        separate_diagnostic_server = true;
-        complete_function_calls = false;
-      };
-    };
     lint.lintersByFt = {
       json = [ "jq" ];
     };
@@ -84,5 +75,24 @@
   extraPackages = [
     pkgs.jq
     pkgs.nixfmt
+  ];
+  autoCmd = [
+    {
+      event = "BufWritePre";
+      pattern = [
+        "*.js"
+        "*.jsx"
+        "*.ts"
+        "*.tsx"
+      ];
+      callback.__raw = ''
+        function()
+          vim.lsp.buf.format({
+            async = false,
+            timeout_ms = 1000,
+          })
+        end
+      '';
+    }
   ];
 }
