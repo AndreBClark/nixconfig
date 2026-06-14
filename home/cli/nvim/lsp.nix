@@ -6,7 +6,7 @@
       ts_ls.enable = true;
       biome = {
         enable = true;
-        config = {
+        settings = {
           linter = {
             enabled = true;
             rules.recommended = true;
@@ -17,17 +17,17 @@
           };
         };
       };
-      cssls.enable = true; # CSS
+      cssls.enable = true;
       tailwindcss.enable = true;
-      html.enable = true; # HTML
-      astro.enable = true; # AstroJS
+      html.enable = true;
+      astro.enable = true;
       jsonls.enable = true;
-      phpactor.enable = true; # PHP
+      phpactor.enable = true;
       svelte.enable = true;
-      pyright.enable = true; # Python
+      pyright.enable = true;
       marksman = {
         enable = true;
-        config = {
+        settings = {
           markdown = {
             preferredLinkStyle = "wiki";
           };
@@ -35,21 +35,41 @@
       };
       nixd = {
         enable = true;
-        config = {
+        settings = {
           formatting = {
-            command = [ "nixfmt" ];
+            command = [ "nixpkgs-fmt" ];
           };
         };
       };
-      dockerls.enable = true; # Docker
-      bashls.enable = true; # Bash
-      yamlls.enable = true; # YAML
+      dockerls.enable = true;
+      bashls.enable = true;
+      yamlls.enable = true;
     };
   };
+
   plugins = {
-    lsp.enable = true;
+    lsp = {
+      enable = true;
+      keymaps = {
+        silent = true;
+        lspBuf = {
+          "gd" = "definition";
+          "gD" = "references";
+          "gt" = "type_definition";
+          "gi" = "implementation";
+          "K" = "hover";
+          "<leader>ca" = "code_action";
+        };
+        diagnostic = {
+          "<leader>k" = "goto_prev";
+          "<leader>j" = "goto_next";
+        };
+      };
+    };
+
     lspkind.enable = true;
     lsp-format.enable = true;
+
     none-ls = {
       enable = true;
       enableLspFormat = true;
@@ -67,9 +87,11 @@
           refactoring.enable = true;
           gitsigns.enable = true;
           statix.enable = true;
+          ts_node_action.enable = true;
         };
       };
     };
+
     typescript-tools = {
       enable = true;
       settings = {
@@ -77,12 +99,14 @@
         complete_function_calls = false;
       };
     };
+
     lint.lintersByFt = {
       json = [ "jq" ];
     };
   };
+
   extraPackages = [
     pkgs.jq
-    pkgs.nixfmt
+    pkgs.nixpkgs-fmt # Changed from nixfmt to nixpkgs-fmt
   ];
 }
