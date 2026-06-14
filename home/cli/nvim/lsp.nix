@@ -67,7 +67,6 @@
           refactoring.enable = true;
           gitsigns.enable = true;
           statix.enable = true;
-          biome.enable = true;
         };
       };
     };
