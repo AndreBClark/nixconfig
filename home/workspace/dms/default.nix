@@ -1,12 +1,11 @@
-{
-  inputs,
-  ...
+{ inputs
+, ...
 }:
 {
   imports = [
     inputs.dms.homeModules.dank-material-shell
     inputs.danksearch.homeModules.dsearch
-    inputs.dms-plugin-registry.modules.default
+    inputs.dms-plugin-registry.homeModules.default
     ./dms.kdl.nix
     ./niri-binds.kdl.nix
     ./stylix-theme.nix
