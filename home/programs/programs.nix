@@ -7,8 +7,8 @@
       pavucontrol
       unzip
       audacity
-      obsidian
       shared-mime-info
+      pandoc
       ;
   };
 }
