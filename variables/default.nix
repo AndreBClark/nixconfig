@@ -4,7 +4,7 @@ let
     username = "andrec";
     keyboard = {
       layout = "us";
-      options = "caps:escape,altwin:swap_alt_win";
+      options = "caps:ctrl_modifier,altwin:swap_alt_win";
       model = "pc105";
     };
     terminal = "kitty";
