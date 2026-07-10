@@ -38,9 +38,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e4be0825f06370d506e4755cfeae97247a18586f",
-      "url": "https://github.com/AvengeMedia/danksearch/archive/e4be0825f06370d506e4755cfeae97247a18586f.tar.gz",
-      "hash": "sha256-53a8H1NhppF1Wte4XRm78AAb23ZVOda2vlmpV4sa90U="
+      "revision": "1269b4688cc94cbd271e1cbbf19a6e7caa2293de",
+      "url": "https://github.com/AvengeMedia/danksearch/archive/1269b4688cc94cbd271e1cbbf19a6e7caa2293de.tar.gz",
+      "hash": "sha256-TnoKATODjWk4e1w3VhRYLWGMdXMJzDyvQF8mtD6WRGA="
     },
     "dgop": {
       "type": "Git",
@@ -51,9 +51,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "06574b54fa4878a93d8605962d50b13e9528a4ca",
-      "url": "https://github.com/AvengeMedia/dgop/archive/06574b54fa4878a93d8605962d50b13e9528a4ca.tar.gz",
-      "hash": "sha256-zoPgnxIlDja91/4TmnCui+Fzc/xU/1jdJFu9bovtOk8="
+      "revision": "15d96577fd8950a39bbb40ee9c3ac266be23f5c3",
+      "url": "https://github.com/AvengeMedia/dgop/archive/15d96577fd8950a39bbb40ee9c3ac266be23f5c3.tar.gz",
+      "hash": "sha256-Ra65IQsez9QqXcFLp0PJ2f2y4+4X4CAkzmH/x/OXkY8="
     },
     "dms": {
       "type": "Git",
@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "59431869dc14ab1cb2d05bbbf81839d95e4724cd",
-      "url": "https://github.com/AvengeMedia/DankMaterialShell/archive/59431869dc14ab1cb2d05bbbf81839d95e4724cd.tar.gz",
-      "hash": "sha256-DngmgE5GUbqFzZnnCrM2Z6lGNDGkSfXvNVUhPZSLjgY="
+      "revision": "0511cd19df814162dfcf6573ff3c61e34ea7825d",
+      "url": "https://github.com/AvengeMedia/DankMaterialShell/archive/0511cd19df814162dfcf6573ff3c61e34ea7825d.tar.gz",
+      "hash": "sha256-P2Br7B6nO827O1KG2lpW9RlEi4GODNAZzRxc5CDtgPE="
     },
     "dms-plugin-registry": {
       "type": "Git",
@@ -77,9 +77,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "46fb030c72c6891682d02dd3553e50bed237674c",
-      "url": "https://github.com/AvengeMedia/dms-plugin-registry/archive/46fb030c72c6891682d02dd3553e50bed237674c.tar.gz",
-      "hash": "sha256-H77gEorGdvt62Exh5L4Nvu4sxV9KhkzJAvFLdA5kYVw="
+      "revision": "d4c6b37ad3f30f94c68a2789c8ae55e01541dde5",
+      "url": "https://github.com/AvengeMedia/dms-plugin-registry/archive/d4c6b37ad3f30f94c68a2789c8ae55e01541dde5.tar.gz",
+      "hash": "sha256-PEF43X0PWrbD2ndtQIbhcy+owqQLO1qHFRtsyHmZUqo="
     },
     "fish-abbreviation-tips": {
       "type": "GitRelease",
@@ -106,9 +106,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
-      "url": "https://github.com/hercules-ci/flake-parts/archive/f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb.tar.gz",
-      "hash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4="
+      "revision": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
+      "url": "https://github.com/hercules-ci/flake-parts/archive/17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e.tar.gz",
+      "hash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA="
     },
     "getopts": {
       "type": "Git",
@@ -132,9 +132,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4ed851c979641e28597a05086332d75cdc9e395f",
-      "url": "https://github.com/NixOS/nixos-hardware/archive/4ed851c979641e28597a05086332d75cdc9e395f.tar.gz",
-      "hash": "sha256-fPBRVf6A5xlACYcOI59shGrjURuvwu0lRsDoSCEXt/I="
+      "revision": "662bd6e312d2c8b212e32cb377abaee190749320",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/662bd6e312d2c8b212e32cb377abaee190749320.tar.gz",
+      "hash": "sha256-E+3MIMvKuo9k+K+qLQ9YXzsBzkgHuyVLnsEbN2DFfuc="
     },
     "home-manager": {
       "type": "Git",
@@ -145,9 +145,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4c5c1e8ba14f1c7475fa31ff11bc1c19cd220974",
-      "url": "https://github.com/nix-community/home-manager/archive/4c5c1e8ba14f1c7475fa31ff11bc1c19cd220974.tar.gz",
-      "hash": "sha256-8KX2hEeOX6KP3hBBJJI8dGWVrzbOOf1rBPmg/GUG24U="
+      "revision": "53ebbdc405acc04acd9bb73ccca462b51ddb8c6d",
+      "url": "https://github.com/nix-community/home-manager/archive/53ebbdc405acc04acd9bb73ccca462b51ddb8c6d.tar.gz",
+      "hash": "sha256-a8whUXG4ThsZNjL92cH4wbl+/dt8CbT/F0zJsfhzFbM="
     },
     "niri": {
       "type": "GitRelease",
@@ -181,8 +181,9 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1009182.ffa10e26ae11/nixexprs.tar.xz",
-      "hash": "sha256-JX05Ms/dk0c+UoW9IqQriB53HNZFckX9Qd3EJqmcqEw="
+      "artifact": "nixexprs.tar.xz",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1028110.f205b5574fd0/nixexprs.tar.xz",
+      "hash": "sha256-2l8yOB5aYd+05Q9V9Y1YhgbSa1j1o5QX+nvYs5FL80A="
     },
     "nixpkgs_2": {
       "type": "Git",
@@ -193,9 +194,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "331800de5053fcebacf6813adb5db9c9dca22a0c",
-      "url": "https://github.com/nixos/nixpkgs/archive/331800de5053fcebacf6813adb5db9c9dca22a0c.tar.gz",
-      "hash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw="
+      "revision": "d407951447dcd00442e97087bf374aad70c04cea",
+      "url": "https://github.com/nixos/nixpkgs/archive/d407951447dcd00442e97087bf374aad70c04cea.tar.gz",
+      "hash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk="
     },
     "nixvim": {
       "type": "Git",
@@ -206,9 +207,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "b7521616f15ad73c6bec458d64ed7f06f4095edb",
-      "url": "https://github.com/nix-community/nixvim/archive/b7521616f15ad73c6bec458d64ed7f06f4095edb.tar.gz",
-      "hash": "sha256-ZRAMRXQE1UKBtpnPwwOqV8teaPDD/fdABvUXMjcyhow="
+      "revision": "4fd45857deecb90d2732c87e0315daa48505515e",
+      "url": "https://github.com/nix-community/nixvim/archive/4fd45857deecb90d2732c87e0315daa48505515e.tar.gz",
+      "hash": "sha256-aYE76ATiGBg7/cQ2dHASRq97WvNum4OOIPgZ8xIK0QI="
     },
     "plasma-manager": {
       "type": "Git",
@@ -219,9 +220,9 @@
       },
       "branch": "trunk",
       "submodules": false,
-      "revision": "a524a6160e6df89f7673ba293cf7d78b559eb1a5",
-      "url": "https://github.com/nix-community/plasma-manager/archive/a524a6160e6df89f7673ba293cf7d78b559eb1a5.tar.gz",
-      "hash": "sha256-b7Mp7P+q2Md5AGt4rjHfMcBykzMumFTen10ST++AuTU="
+      "revision": "1663116ddd23ba7150c2deb3c05ddeb30904bb1f",
+      "url": "https://github.com/nix-community/plasma-manager/archive/1663116ddd23ba7150c2deb3c05ddeb30904bb1f.tar.gz",
+      "hash": "sha256-FnUhS+B9gnLDmy51uAupFq4ewiQPXh5vZbyKhcWz3mU="
     },
     "sortPlay": {
       "type": "Git",
@@ -232,9 +233,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "16f12f50aceb68bd906eab076e471b623710c54c",
-      "url": "https://github.com/hoeci/sort-play/archive/16f12f50aceb68bd906eab076e471b623710c54c.tar.gz",
-      "hash": "sha256-2/D/oXMCrDuCHQwgMawNzwuAd/q6sbYf9BbtLJOOI1w="
+      "revision": "a6cf11797cda9aa74377e083d8030ed2fb507943",
+      "url": "https://github.com/hoeci/sort-play/archive/a6cf11797cda9aa74377e083d8030ed2fb507943.tar.gz",
+      "hash": "sha256-k2gddFLDOx6fjGP3HQ3MEc99eg0OfHEtBGMhfH43Lu8="
     },
     "spicetify-apps": {
       "type": "Git",
@@ -258,9 +259,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "6a329d4aa48929da3c3680ee92fefb89c895ff40",
-      "url": "https://github.com/Konsl/spicetify-extensions/archive/6a329d4aa48929da3c3680ee92fefb89c895ff40.tar.gz",
-      "hash": "sha256-zJ1yoZDJKqJUx0z+DVYl+wTRPduhBu0iDCwrvDUq/tM="
+      "revision": "e1cc51a23875dc8430238c570bfbff4c11383f2a",
+      "url": "https://github.com/Konsl/spicetify-extensions/archive/e1cc51a23875dc8430238c570bfbff4c11383f2a.tar.gz",
+      "hash": "sha256-Zvh0z4nVoWbPz1lHj4xWbp6VnmW1Dh5SYbPqh1GRYwE="
     },
     "spicetify-nix": {
       "type": "Git",
@@ -271,13 +272,14 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a",
-      "url": "https://github.com/Gerg-L/spicetify-nix/archive/8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a.tar.gz",
-      "hash": "sha256-dWGk4SEdI189kQW5cE4Uo1Mc+P+kQEdgMcyMgTtmQOA="
+      "revision": "d9d714243e2f8d10af28db5111f018ec2d77acc9",
+      "url": "https://github.com/Gerg-L/spicetify-nix/archive/d9d714243e2f8d10af28db5111f018ec2d77acc9.tar.gz",
+      "hash": "sha256-d6Zs6wD0kvWQXn7qPU0YsuqoqBhT7zi5+1M365FINt8="
     },
     "spicetify-playlist-maker": {
-      "type": "Tarball",
+      "type": "Url",
       "url": "https://github.com/Pithaya/spicetify-apps-dist/archive/refs/heads/dist/playlist-maker.tar.gz",
+      "unpack": true,
       "hash": "sha256-EKG0UHoocvDzVaTMkmSI1ZJ295VwFAP8fLp6AHaC0NY="
     },
     "spotifyx": {
@@ -302,9 +304,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "525965744b770af79c985ae5c43c65e441dc8b29",
-      "url": "https://github.com/nix-community/stylix/archive/525965744b770af79c985ae5c43c65e441dc8b29.tar.gz",
-      "hash": "sha256-ptk4OrUyr3ubnjZcuqM1qL97L3q7wgnL24oudQEYUno="
+      "revision": "14814ef555d8148ab82eba5054e654cd9eae3a1f",
+      "url": "https://github.com/nix-community/stylix/archive/14814ef555d8148ab82eba5054e654cd9eae3a1f.tar.gz",
+      "hash": "sha256-/F85cBWvU8b2hpawuCog464065ZTJtdMgVPWwJ9yHjE="
     },
     "system": {
       "type": "Git",
@@ -320,5 +322,5 @@
       "hash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw="
     }
   },
-  "version": 7
+  "version": 8
 }
