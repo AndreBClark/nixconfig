@@ -20,7 +20,10 @@
       cssls.enable = true; # CSS
       tailwindcss.enable = true;
       html.enable = true; # HTML
-      astro.enable = true; # AstroJS
+      astro = {
+        enable = true;
+        package = pkgs.astro-language-server;
+      };
       jsonls.enable = true;
       phpactor.enable = true; # PHP
       svelte.enable = true;
@@ -36,8 +39,8 @@
       nixd = {
         enable = true;
         config = {
-         formatting = {
-            command = [ "nixpkgs-fmt" ];  # Use nixpkgs-fmt
+          formatting = {
+            command = [ "nixpkgs-fmt" ];
           };
         };
       };
@@ -47,7 +50,6 @@
     };
   };
   plugins = {
-    lsp.enable = true;
     lspkind.enable = true;
     none-ls = {
       enable = true;
@@ -74,7 +76,6 @@
   };
   extraPackages = [
     pkgs.jq
-    pkgs.nixpkgs-fmt
   ];
   autoCmd = [
     {
@@ -82,7 +83,7 @@
       pattern = [
         "*.nix"
         "*.css"
-        ".json"
+        "*.json"
         "*.js"
         "*.jsx"
         "*.ts"
