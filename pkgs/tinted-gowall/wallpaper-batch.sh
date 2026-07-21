@@ -40,15 +40,13 @@ if [ "$input_count" -eq "$output_count" ] && [ "$input_count" -gt 0 ]; then
   exit 0
 fi
 
-# Resolve theme name to file
-theme_file=$(grep "^$theme_name|" "$TINTED_GOWALL_NAMES" | cut -d'|' -f2 | head -n1)
-
 # Find first image for preview
 first_img=$(find "$input_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" -o -iname "*.avif" \) | head -n1)
 
 if [ -n "$first_img" ]; then
   echo "Previewing theme '$theme_name' on $(basename "$first_img")..."
-  gowall convert "$first_img" -t "$TINTED_GOWALL_THEMES/$theme_file" --preview true
+  # Pass theme name directly - gowall will resolve it from config.yml
+  gowall convert "$first_img" -t "$theme_name" --preview true
 
   read -p -r "Apply this theme to all images? (y/N): " confirm
 
@@ -58,7 +56,7 @@ if [ -n "$first_img" ]; then
   fi
 fi
 
-# Proceed with batch processing (handles subdirectories recursively)
-gowall convert --dir "$input_dir" --output "$output_dir" -t "$TINTED_GOWALL_THEMES/$theme_file" --yes
+# Proceed with batch processing - pass theme name directly
+gowall convert --dir "$input_dir" --output "$output_dir" -t "$theme_name" --yes
 
 echo "Processed images from $input_dir (including subdirectories) to $output_dir"
