@@ -56,6 +56,11 @@
   outputs =
     inputs@{ flake-parts, ... }:
     let
+      system = inputs.system.system or inputs.system.defaultSystem or "x86_64-linux";
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      tinted-gowall = pkgs.callPackage ./pkgs/tinted-gowall/package.nix {
+        inherit (pkgs) gowall jq pngquant;
+      };
       commonModules = [
         ./variables
         inputs.stylix.nixosModules.stylix
@@ -63,11 +68,10 @@
       commonHomeModules = [
         ./variables
         inputs.stylix.homeModules.stylix
-        inputs.plasma-manager.homeModules.plasma-manager
         home/unfree.nix
+        { home.packages = [ tinted-gowall ]; }
       ];
-      system = inputs.system.system or inputs.system.defaultSystem or "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+
       mkHost =
         hostName: modules: extraSpecialArgs:
         inputs.nixpkgs.lib.nixosSystem {
@@ -99,6 +103,7 @@
 
           # Packages
           packages = {
+            inherit tinted-gowall;
             nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
               inherit system;
               extraSpecialArgs = {
@@ -113,7 +118,6 @@
             };
           };
         };
-
       flake = {
         nixosConfigurations = {
           seadragon = mkHost "seadragon" [ ./hosts/seadragon ] { };
@@ -122,9 +126,10 @@
         # Home manager configurations
         homeConfigurations = {
           "andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs tinted-gowall;
+
             };
             modules = commonHomeModules ++ [
               ./home/seadragon.nix
@@ -132,7 +137,7 @@
           };
 
           "andrec@dragonfly" = inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
             extraSpecialArgs = {
               inherit inputs system;
             };
