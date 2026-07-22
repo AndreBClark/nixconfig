@@ -20,24 +20,18 @@ let
   };
 
   tinted-gowall = writeShellScriptBin "tinted-gowall" ''
-    # Set up XDG directories (always runs first)
     : ''${XDG_CONFIG_HOME:=$HOME/.config}
-    : ''${XDG_DATA_HOME:=$HOME/.local/share}
 
-    # Ensure config directory exists
     mkdir -p "$XDG_CONFIG_HOME/gowall"
 
-    # Remove broken symlink if it exists
     if [ -L "$XDG_CONFIG_HOME/gowall/config.yml" ]; then
       rm "$XDG_CONFIG_HOME/gowall/config.yml"
     fi
 
-    # Symlink config if it doesn't exist
     if [ ! -e "$XDG_CONFIG_HOME/gowall/config.yml" ]; then
       ln -s @config@ "$XDG_CONFIG_HOME/gowall/config.yml"
     fi
 
-    # Route to appropriate functionality
     if [ "''${1:-}" = "-w" ] || [ "''${1:-}" = "--wallpaper" ]; then
       shift
       exec ${wallpaper-batch}/bin/wallpaper-batch "$@"
@@ -52,7 +46,6 @@ runCommand "tinted-gowall"
     nativeBuildInputs = [
       makeWrapper
       (python3.withPackages (ps: [ ps.pyyaml ]))
-      yq
     ];
     passthru = { inherit (gowall) meta; };
   }
@@ -68,10 +61,15 @@ runCommand "tinted-gowall"
 
     ln -s $out/bin/tinted-gowall $out/bin/gowall
 
-    # Symlink gowall's completions for both commands
+    # Install wallpaper-batch binary
+    ln -s ${wallpaper-batch}/bin/wallpaper-batch $out/bin/wallpaper-batch
+
+    # Symlink gowall's completions for tinted-gowall and gowall
     mkdir -p $out/share/fish/vendor_completions.d
     ln -s ${gowall}/share/fish/vendor_completions.d/gowall.fish \
           $out/share/fish/vendor_completions.d/tinted-gowall.fish
     ln -s ${gowall}/share/fish/vendor_completions.d/gowall.fish \
           $out/share/fish/vendor_completions.d/gowall.fish
+
+    install -Dm644 ${./wallpaper-batch.fish} $out/share/fish/vendor_completions.d/wallpaper-batch.fish
   ''

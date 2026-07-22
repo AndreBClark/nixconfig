@@ -2,7 +2,13 @@
 import sys
 import yaml
 import pathlib
+import re
 from glob import glob
+
+def to_kebab_case(name):
+    """Convert theme name to kebab-case."""
+    name = re.sub(r'[\s_]+', '-', name)
+    return name.lower()
 
 def convert_base16_to_gowall(themes_dir, output_file):
     themes_dir = pathlib.Path(themes_dir)
@@ -14,10 +20,9 @@ def convert_base16_to_gowall(themes_dir, output_file):
         with open(yaml_file, 'r') as f:
             data = yaml.safe_load(f)
 
-        # Use 'name' field for scheme name
         scheme_name = data.get('name', 'Unknown')
+        scheme_name = to_kebab_case(scheme_name)
 
-        # Access colors from nested 'palette' dict
         palette = data.get('palette', {})
         color_keys = [f'base{i:02X}' for i in range(16)]
         colors = [palette.get(key, '#000000') for key in color_keys]
