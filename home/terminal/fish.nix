@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   sources = import ../../npins;
 in
@@ -58,7 +58,7 @@ in
     yazi.enableFishIntegration = true;
     eza.enableFishIntegration = true;
     direnv.enableFishIntegration = true;
-    tmux.shell = "${pkgs.fish}/bin/fish";
+    tmux.shell = config.shellPath;
   };
   home.packages = [
     pkgs.grc
