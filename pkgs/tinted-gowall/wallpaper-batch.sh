@@ -1,3 +1,4 @@
+#!/bin/bash
 set -euo pipefail
 
 DEFAULT_INPUT_DIR="$HOME/Pictures/Wallpapers"

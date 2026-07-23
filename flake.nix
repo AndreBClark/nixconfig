@@ -59,7 +59,7 @@
       system = inputs.system.system or inputs.system.defaultSystem or "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       tinted-gowall = pkgs.callPackage ./pkgs/tinted-gowall/package.nix {
-        inherit (pkgs) gowall jq pngquant;
+        inherit (pkgs) gowall yq;
       };
       commonModules = [
         ./variables
