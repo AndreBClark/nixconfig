@@ -61,7 +61,7 @@ stdenvNoCC.mkDerivation {
 
     python3 ${./convert-base16.py} ${base16-schemes}/share/themes $out/share/gowall/config.yml
 
-    substitute ${gowall-wrap}/bin/tinted-gowall $out/bin/tinted-gowall \
+    substitute ${gowall-wrap}/bin/gowall-wrap $out/bin/tinted-gowall \
       --subst-var-by config $out/share/gowall/config.yml \
       --subst-var-by gowall ${gowall}/bin/gowall
     chmod +x $out/bin/tinted-gowall
