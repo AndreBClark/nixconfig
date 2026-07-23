@@ -7,6 +7,7 @@ in
     kitty = {
       enable = true;
       settings = {
+        cursor_shape = "block";
         background_blur = 1;
         tab_title_template = "[{index}] {tab.active_wd}{activity_symbol}";
         tab_title_max_length = 0;
@@ -22,7 +23,7 @@ in
         inactive_tab_foreground ${colors.base02}
       '';
     };
-    tmux.terminal = "kitty";
+    tmux.terminal = config.terminal;
   };
 
 }
