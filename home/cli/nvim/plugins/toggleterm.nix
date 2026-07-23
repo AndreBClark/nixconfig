@@ -1,9 +1,10 @@
+{ config, ... }:
 {
   plugins = {
     toggleterm = {
       enable = true;
       settings = {
-        shell = "fish";
+        shell = config.shell;
         size = 20;
         close_on_exit = false;
         shade_terminals = false;

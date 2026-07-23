@@ -1,8 +1,6 @@
-{ pkgs, lib, ... }:
 {
   programs.lazygit = {
     enable = true;
-    enableFishIntegration = lib.mkDefault true;
     settings = {
       gui = {
         mouseEvents = false;
@@ -31,7 +29,4 @@
       };
     };
   };
-  home.packages = [
-    pkgs.delta
-  ];
 }

@@ -1,19 +1,7 @@
 {
-  lib,
-  ...
-}:
-{
-  imports = [
-    ./config.nix
-    ./symlinks.nix
-    ./directories.nix
-    ./releasechecks.nix
-  ];
-
-  programs.git.enable = lib.mkForce true;
-
+  programs.git.enable = true;
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
 
-  home.stateVersion = lib.mkForce "24.05";
+  home.stateVersion = "24.05";
 }

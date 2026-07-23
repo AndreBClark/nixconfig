@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   lsp = {
     inlayHints.enable = true;
@@ -17,17 +20,17 @@
           };
         };
       };
-      cssls.enable = true; # CSS
+      cssls.enable = true;
       tailwindcss.enable = true;
-      html.enable = true; # HTML
+      html.enable = true;
       astro = {
         enable = true;
         package = pkgs.astro-language-server;
       };
       jsonls.enable = true;
-      phpactor.enable = true; # PHP
+      phpactor.enable = true;
       svelte.enable = true;
-      pyright.enable = true; # Python
+      pyright.enable = true;
       marksman = {
         enable = true;
         config = {
@@ -38,18 +41,15 @@
       };
       nixd = {
         enable = true;
-        config = {
-          formatting = {
-            command = [ "nixpkgs-fmt" ];
-          };
-        };
       };
-      dockerls.enable = true; # Docker
-      bashls.enable = true; # Bash
-      yamlls.enable = true; # YAML
+      dockerls.enable = true;
+      bashls.enable = true;
+      yamlls.enable = true;
     };
   };
   plugins = {
+    lspconfig.enable = true;
+    lsp-format.enable = true;
     lspkind.enable = true;
     none-ls = {
       enable = true;
@@ -77,26 +77,26 @@
   extraPackages = [
     pkgs.jq
   ];
-  autoCmd = [
-    {
-      event = "BufWritePre";
-      pattern = [
-        "*.nix"
-        "*.css"
-        "*.json"
-        "*.js"
-        "*.jsx"
-        "*.ts"
-        "*.tsx"
-      ];
-      callback.__raw = ''
-        function()
-          vim.lsp.buf.format({
-            async = false,
-            timeout_ms = 1000,
-          })
-        end
-      '';
-    }
-  ];
+  # autoCmd = [
+  #   {
+  #     event = "BufWritePre";
+  #     pattern = [
+  #       "*.nix"
+  #       "*.css"
+  #       "*.json"
+  #       "*.js"
+  #       "*.jsx"
+  #       "*.ts"
+  #       "*.tsx"
+  #     ];
+  #     callback.__raw = ''
+  #       function()
+  #         vim.lsp.buf.format({
+  #           async = false,
+  #           timeout_ms = 1000,
+  #         })
+  #       end
+  #     '';
+  #   }
+  # ];
 }

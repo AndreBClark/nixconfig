@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = [
     pkgs.devenv
@@ -8,6 +8,5 @@
     enable = true;
     silent = true;
     nix-direnv.enable = true;
-    enableFishIntegration = lib.mkDefault false;
   };
 }

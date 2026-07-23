@@ -7,6 +7,9 @@
     enable = true;
     defaultEditor = true;
     nixpkgs.useGlobalPackages = true;
-    imports = [ ./default.nix ];
+    imports = [
+      ../../../variables
+      ./default.nix
+    ];
   };
 }

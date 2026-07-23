@@ -61,22 +61,28 @@ in
     fzf = {
       enable = true;
       defaultCommand = fdCommand;
-      fileWidgetCommand = fdCommand;
-      fileWidgetOptions = [
-        "--color=border:blue"
-        "--color=prompt:green"
-        "--color=info:bright-black"
-      ];
-      changeDirWidgetCommand = "zoxide query -ls | ${fdDirCommand}";
-      changeDirWidgetOptions = [
-        "--preview='${pkgs.eza}/bin/eza --tree --color=always {}'"
-        "--preview-window=50%,border-rounded"
-      ];
-      historyWidgetOptions = [
-        "--color=header:italic"
-        "--preview-window=hidden"
-        "--scheme=history"
-      ];
+      fileWidget = {
+        command = fdCommand;
+        options = [
+          "--color=border:blue"
+          "--color=prompt:green"
+          "--color=info:bright-black"
+        ];
+      };
+      changeDirWidget = {
+        command = "zoxide query -ls | ${fdDirCommand}";
+        options = [
+          "--preview='${pkgs.eza}/bin/eza --tree --color=always {}'"
+          "--preview-window=50%,border-rounded"
+        ];
+      };
+      historyWidget = {
+        options = [
+          "--color=header:italic"
+          "--preview-window=hidden"
+          "--scheme=history"
+        ];
+      };
       defaultOptions = [
         "--ansi"
         "--style=full"
