@@ -11,6 +11,7 @@
     systemPackages = builtins.attrValues {
       inherit (pkgs)
         nautilus
+        sushi
         wl-clipboard
         wayland-utils
         libsecret
