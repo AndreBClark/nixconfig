@@ -12,10 +12,12 @@
     extraSpecialArgs = {
       inherit inputs system;
     };
+    users.root = import ../home/root.nix;
     sharedModules = [
       ../variables
     ];
     backupFileExtension = lib.mkOverride 100 "hm-backup";
+    overwriteBackup = true;
     useUserPackages = true;
     useGlobalPkgs = true;
   };

@@ -1,8 +1,7 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
+{ config
+, inputs
+, pkgs
+, ...
 }:
 {
   imports = [
@@ -10,16 +9,7 @@
     ../../nixos/home.nix
     ../../home/theme/stylix/theme.nix
   ];
-  environment.systemPackages = [
-    pkgs.dracula-icon-theme
-  ];
-
-  stylix.enableReleaseChecks = false;
   home-manager = {
-    sharedModules = [
-      inputs.plasma-manager.homeModules.plasma-manager
-    ];
-
     users."${config.username}" = import ../../home/dragonfly.nix;
   };
 }
