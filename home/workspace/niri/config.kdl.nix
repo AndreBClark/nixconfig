@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -14,6 +15,16 @@
       include "binds.kdl"
       include "layout.kdl"
       include "laptop-output.kdl"
+
+      input {
+        keyboard {
+          xkb {
+            layout "${config.keyboard.layout}"
+            model "${config.keyboard.model}"
+            options "${config.keyboard.options}"
+          }
+        }
+      }
 
       prefer-no-csd
 
