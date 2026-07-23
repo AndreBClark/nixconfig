@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   inputs,
   config,
@@ -43,49 +42,39 @@ in
     colorScheme = "custom";
     customColorScheme = stylixColorScheme;
     # https://gerg-l.github.io/spicetify-nix/custom-apps.html
-    enabledCustomApps =
-      builtins.attrValues {
-        inherit (spicePkgs.apps)
-          newReleases
-          marketplace
-          lyricsPlus
-          ;
-      }
-      ++ [
-        {
-          src = sources.spicetify-playlist-maker;
-          name = "playlist-maker";
-        }
-      ];
+    enabledCustomApps = builtins.attrValues {
+      inherit (spicePkgs.apps)
+        newReleases
+        marketplace
+        ;
+    };
     # https://gerg-l.github.io/spicetify-nix/extensions.html
     enabledExtensions =
       builtins.attrValues {
         inherit (spicePkgs.extensions)
           allOfArtist
+          coverAmbience
           keyboardShortcut
           fullAppDisplay
           shuffle
           hidePodcasts
-          trashbin
           goToSong
           listPlaylistsWithSong
           skipStats
           songStats
-          powerBar
           aiBandBlocker
           history
+          betterGenres
           playNext
           sectionMarker
           autoSkip
           playingSource
           wikify
+          sortPlay
+          extendedCopy
           ;
       }
       ++ [
-        {
-          src = sources.sortPlay;
-          name = "sort-play.js";
-        }
         {
           src = "${sources.spicetify-extensions}/playback-bar-waveform/dist";
           name = "playback-bar-waveform.js";
