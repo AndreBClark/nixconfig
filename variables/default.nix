@@ -1,16 +1,20 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   userVars = {
     username = "andrec";
     keyboard = {
       layout = "us";
-      options = "caps:ctrl_modifier,altwin:swap_alt_win";
-      model = "pc105";
+      options = lib.strings.concatStringsSep "," [
+        "altwin:menu_win"
+        "ctrl:nocaps"
+      ];
+      model = "pc104";
     };
     terminal = "kitty";
     editor = "nvim";
     browser = "vivaldi";
     shell = "fish";
+    shellPath = "${pkgs.fish}/bin/fish";
   };
 in
 {
@@ -50,6 +54,11 @@ in
       default = userVars.shell;
       description = "The default shell for the user.";
     };
+    shellPath = lib.mkOption {
+      type = lib.types.str;
+      default = userVars.shellPath;
+      description = "The path for the default shell for the user.";
+    };
   };
 
   config = {
@@ -60,6 +69,7 @@ in
       editor
       browser
       shell
+      shellPath
       ;
   };
 }
