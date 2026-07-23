@@ -8,15 +8,14 @@
           name = "AndreBClark";
           email = "andre@cosmicdivision.dev";
         };
-        diff = {
-          colorMoved = "default";
-        };
         delta = {
           diff-so-fancy = true;
           line-numbers = true;
+          navigate = true;
+          side-by-side = true;
         };
-        alias = {
-          delta = "!f() { git diff \"$@\" | delta --side-by-side; }; f";
+        merge = {
+          conflictStyle = "zdiff3";
         };
         push = {
           autoSetupRemote = true;
@@ -42,7 +41,7 @@
       enable = true;
       enableGitIntegration = true;
       options = {
-        syntax-theme = "base16";
+        syntax-theme = "base16-stylix";
       };
     };
     gh = {

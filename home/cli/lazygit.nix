@@ -11,7 +11,7 @@
       };
       git = {
         pagers = [
-          { pager = "delta --paging=never --dark --syntax-theme=base16 --line-numbers --hyperlinks"; }
+          { pager = "delta --paging=never --dark --syntax-theme=base16-stylix --line-numbers --hyperlinks"; }
         ];
         autoFetch = false;
         diffContextSize = 5;

@@ -32,13 +32,16 @@ let
     ".DS_Store"
     "Thumbs.db"
     # Cache and temporary
-    ".cache"
     "tmp"
     "temp"
     "*.tmp"
   ];
-  excludeArgs = patterns: map (p: "--exclude ${lib.escapeShellArg p}") patterns;
-  excludesStr = lib.concatStringsSep " " (excludeArgs excludesList);
+
+  excludesStr = lib.pipe excludesList [
+    (map (p: "--exclude ${lib.escapeShellArg p}"))
+    (lib.concatStringsSep " ")
+  ];
+
   fdFlags = "--hidden --color=always --strip-cwd-prefix " + excludesStr;
   fdCommand = "fd --type f " + fdFlags;
   fdDirCommand = "fd --type d " + fdFlags;
@@ -63,14 +66,9 @@ in
       defaultCommand = fdCommand;
       fileWidget = {
         command = fdCommand;
-        options = [
-          "--color=border:blue"
-          "--color=prompt:green"
-          "--color=info:bright-black"
-        ];
       };
       changeDirWidget = {
-        command = "zoxide query -ls | ${fdDirCommand}";
+        command = "zoxide query -ls | ${fdDirCommand} $HOME";
         options = [
           "--preview='${pkgs.eza}/bin/eza --tree --color=always {}'"
           "--preview-window=50%,border-rounded"
@@ -81,17 +79,27 @@ in
           "--color=header:italic"
           "--preview-window=hidden"
           "--scheme=history"
+          "--wrap"
+          "--wrap-sign=$'\\t↳ '"
+          "--bind=enter:accept-or-print-query"
         ];
       };
       defaultOptions = [
         "--ansi"
         "--style=full"
+        "--filepath-word"
+        "--cycle"
+        "--scroll-off=3"
         "--color=border:blue"
         "--color=prompt:green"
         "--color=info:bright-black"
+        "--tmux=center,50%,60%"
+        "--ghost='Type to filter...'"
         "--preview '${customPreviewScript} {}'"
-        # "--preview='env BAT_THEME=base16 ${pkgs.fzf-preview}/bin/fzf-preview {}'"
-        "--preview-window=60%,border-rounded"
+        "--preview-window='<80(hidden),80%,border-rounded'"
+        "--bind=ctrl-/:toggle-wrap"
+        "--bind=ctrl-p:toggle-preview"
+        "--bind=ctrl-l:toggle-preview-wrap"
       ];
     };
     eza.enable = true;
