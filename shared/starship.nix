@@ -124,6 +124,53 @@
   };
   custom.palette_test = {
     when = true;
-    format = "[00](fg:white bg:base00)[01](fg:white bg:base01)[02](fg:white bg:base02)[03](fg:white bg:base03)[04](fg:white bg:base04)[05](fg:white bg:base05)[06](fg:white bg:base06)[07](fg:white bg:base07)[08](fg:white bg:base08)[09](fg:white bg:base09)[0a](fg:white bg:base0a)[0b](fg:white bg:base0b)[0c](fg:white bg:base0c)[0d](fg:white bg:base0d)[0e](fg:white bg:base0e)[0f](fg:white bg:base0f)[10](fg:white bg:base10)[11](fg:white bg:base11)[12](fg:white bg:base12)[13](fg:white bg:base13)[14](fg:white bg:base14)[15](fg:white bg:base15)[16](fg:white bg:base16)[17](fg:white bg:base17)[black](fg:white bg:black)[blue](fg:white bg:blue)\n[bright-black](fg:white bg:bright-black)\n[bright-blue](fg:white bg:bright-blue)\n[bright-cyan](fg:white bg:bright-cyan)\n[bright-green](fg:white bg:bright-green)\n[bright-magenta](fg:white bg:bright-magenta)\n[bright-purple](fg:white bg:bright-purple)\n[bright-red](fg:white bg:bright-red)\n[bright-white](fg:black bg:bright-white)\n[bright-yellow](fg:white bg:bright-yellow)\n[brown](fg:white bg:brown)\n[cyan](fg:white bg:cyan)\n[green](fg:white bg:green)\n[magenta](fg:white bg:magenta)\n[orange](fg:white bg:orange)\n[purple](fg:white bg:purple)\n[red](fg:white bg:red)\n[white](fg:black bg:white)\n[yellow](fg:white bg:yellow) ";
+    format = lib.concatStrings [
+      "\n"
+      # First row: index with white text
+      (lib.concatStrings (
+        map (
+          i:
+          "[ ${lib.toUpper (lib.fixedWidthString 2 "0" (lib.toHexString i))} ](fg:white bg:base${
+            lib.fixedWidthString 2 "0" (lib.toHexString i)
+          })"
+        ) (lib.range 0 23)
+      ))
+      "\n"
+      # Second row: variable name with black text
+      (lib.concatStrings (
+        map (
+          i:
+          "[${lib.fixedWidthString 2 "0" (lib.toHexString i)}](fg:black bg:base${
+            lib.fixedWidthString 2 "0" (lib.toHexString i)
+          })"
+        ) (lib.range 0 23)
+      ))
+      "\n"
+      # Named colors with 3 repetitions each
+      (lib.concatStringsSep "\n" (
+        map (color: "[${color} ](fg:white bg:${color})[${color}](fg:black bg:${color})") [
+          "black"
+          "blue"
+          "bright-black"
+          "bright-blue"
+          "bright-cyan"
+          "bright-green"
+          "bright-magenta"
+          "bright-purple"
+          "bright-red"
+          "bright-white"
+          "bright-yellow"
+          "brown"
+          "cyan"
+          "green"
+          "magenta"
+          "orange"
+          "purple"
+          "red"
+          "white"
+          "yellow"
+        ]
+      ))
+    ];
   };
 }
