@@ -1,8 +1,9 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   configHome = "/home/${config.username}";
 in
 {
+  environment.systemPackages = [ pkgs.rose-pine-cursor ];
   programs.niri.enable = true;
   services.displayManager = {
     sddm.enable = false;

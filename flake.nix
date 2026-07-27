@@ -58,18 +58,25 @@
     let
       system = inputs.system.system or inputs.system.defaultSystem or "x86_64-linux";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
-      tinted-gowall = pkgs.callPackage ./pkgs/tinted-gowall/package.nix {
-        inherit (pkgs) gowall yq;
+      localpkgs = {
+        tinted-gowall = pkgs.callPackage ./pkgs/tinted-gowall/package.nix {
+          inherit (pkgs) gowall yq;
+        };
       };
       commonModules = [
         ./variables
         inputs.stylix.nixosModules.stylix
+        {
+          environment.systemPackages = [
+            localpkgs.tinted-gowall
+          ];
+        }
       ];
       commonHomeModules = [
         ./variables
         inputs.stylix.homeModules.stylix
         home/unfree.nix
-        { home.packages = [ tinted-gowall ]; }
+        { home.packages = [ localpkgs.tinted-gowall ]; }
       ];
 
       mkHost =
@@ -80,6 +87,7 @@
               inputs
               system
               hostName
+              localpkgs
               ;
           }
           // extraSpecialArgs;
@@ -103,7 +111,7 @@
 
           # Packages
           packages = {
-            inherit tinted-gowall;
+            inherit (localpkgs) tinted-gowall;
             nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
               inherit system;
               extraSpecialArgs = {
@@ -128,7 +136,7 @@
           "andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = inputs.nixpkgs.legacyPackages.${system};
             extraSpecialArgs = {
-              inherit inputs tinted-gowall;
+              inherit inputs localpkgs;
 
             };
             modules = commonHomeModules ++ [

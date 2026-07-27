@@ -8,6 +8,7 @@
     ./theme
     ./services
     ./programs
+    ./shell
     ./terminal
     ./workspace
     ./cli

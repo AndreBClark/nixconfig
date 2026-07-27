@@ -1,6 +1,7 @@
 {
   imports = [
     ./default.nix
+    ./shell
     ./terminal
     ./theme
     ./services

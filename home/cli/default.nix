@@ -4,7 +4,6 @@
     ./git.nix
     ./fzf.nix
     ./nh.nix
-    ./direnv.nix
     ./tmux.nix
     ./zoxide.nix
     ./lazygit.nix
