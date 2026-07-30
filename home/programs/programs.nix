@@ -2,6 +2,8 @@
 {
   home.packages = builtins.attrValues {
     inherit (pkgs)
+      mpv
+      ffmpeg
       discord
       playerctl
       pavucontrol
