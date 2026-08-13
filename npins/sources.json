@@ -16,6 +16,32 @@
       "url": "https://api.github.com/repos/AvengeMedia/DankMaterialShell/tarball/refs/tags/v1.5.2",
       "hash": "sha256-7VjoVZu+8PC41ZDQ3umi/EXsU3sCLNyRfxZrfJKHy+E="
     },
+    "Liquid-Lyrics": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NMWplays",
+        "repo": "Liquid-Lyrics"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "9794c0a1cb648cde1f0bb6967daaf4287cf9d3b8",
+      "url": "https://github.com/NMWplays/Liquid-Lyrics/archive/9794c0a1cb648cde1f0bb6967daaf4287cf9d3b8.tar.gz",
+      "hash": "sha256-3ojfZQJnz+C0mgtblrFdcNgBaGbD1bejKkdxxiGsFgA="
+    },
+    "Liquify": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NMWplays",
+        "repo": "Liquify"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "49b1942f2bdb1f8f774e2758d3c088164f415736",
+      "url": "https://github.com/NMWplays/Liquify/archive/49b1942f2bdb1f8f774e2758d3c088164f415736.tar.gz",
+      "hash": "sha256-G9nu/PNE4XEhLJekicpWC0t+1Isve9wny7slCk3d+hE="
+    },
     "danksearch": {
       "type": "Git",
       "repository": {

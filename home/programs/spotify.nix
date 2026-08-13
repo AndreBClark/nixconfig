@@ -64,7 +64,7 @@ in
           songStats
           aiBandBlocker
           history
-          betterGenres
+          # betterGenres sortPlay provides this functionality
           playNext
           sectionMarker
           autoSkip
@@ -79,6 +79,10 @@ in
           src = "${sources.spicetify-extensions}/playback-bar-waveform/dist";
           name = "playback-bar-waveform.js";
         }
+        {
+          src = "${sources.Liquid-Lyrics}";
+          name = "liquid-lyrics.js";
+        }
       ];
     # View all snippets: https://github.com/spicetify/marketplace/blob/main/resources/snippets.json
     enabledSnippets = [
@@ -90,6 +94,26 @@ in
       "Fix 'DJ' Icon"
       "Fix 'Episodes' Icon"
       "Queue Top Side Panel"
+      # big NPV when song has canvas
+      /* css */ ''
+        .main-nowPlayingView-container {
+            width: 50dvh !important;
+        }
+
+        .main-nowPlayingView-nowPlayingGrid:has(.canvasVideoContainerNPV) .main-nowPlayingView-contextItemInfo {
+            margin-top: 30vh;
+        }
+      ''
+      # hide liquid lyrics npv panel when no lyrics
+      /* css */ ''
+        .main-nowPlayingView-nowPlayingGrid:has(.main-nowPlayingView-canvasVisualEnhancement .canvasVideoContainerNPV, .ll-sidebar-card-body)
+        .main-nowPlayingView-contextItemInfo {
+          margin-top: 5vh !important;
+        }
+        #liquid-lyrics-sidebar-card:has(.ll-sidebar-mini-empty) {
+          display: none;
+        }
+      ''
     ];
   };
 }
