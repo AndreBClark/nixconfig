@@ -14,12 +14,6 @@
     nho = "nh os switch";
     nhh = "nh home switch";
 
-    # File management - using your configured tools
-    cdi = "zoxide query -i";
-
-    # Fzf
-    fzf = "fzf --preview \"bat --color=always {}\"";
-
     # System commands
     df = "df -h";
     du = "du -h";
@@ -28,15 +22,6 @@
     psg = "ps aux | grep -v grep | grep -i";
     hist = "history";
     path = "echo -e $PATH";
-
-    # File operations (with safety flags)
-    cp = "cp -iv";
-    mv = "mv -iv";
-    rm = "rm -iv";
-    mkdir = "mkdir -pv";
-    grep = "grep --color=auto";
-    egrep = "egrep --color=auto";
-    fgrep = "fgrep --color=auto";
 
     # Tool replacements
     cat = "bat";
