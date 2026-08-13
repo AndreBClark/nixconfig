@@ -80,7 +80,10 @@
       ];
 
       mkHost =
-        hostName: modules: extraSpecialArgs:
+        hostName:
+        {
+          extraModules ? [ ],
+        }:
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit
@@ -89,9 +92,30 @@
               hostName
               localpkgs
               ;
+          };
+          modules = commonModules ++ [ ./hosts/${hostName} ] ++ extraModules;
+        };
+
+      mkHosts =
+        hostNames: extraModulesByHost:
+        inputs.nixpkgs.lib.genAttrs hostNames (
+          hostName: mkHost hostName { extraModules = extraModulesByHost.${hostName} or [ ]; }
+        );
+
+      mkHome =
+        hostName: extraModules: extraSpecialArgs:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = {
+            inherit
+              inputs
+              localpkgs
+              system
+              hostName
+              ;
           }
           // extraSpecialArgs;
-          modules = commonModules ++ modules;
+          modules = commonHomeModules ++ [ ./home/${hostName}.nix ] ++ extraModules;
         };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -127,33 +151,11 @@
           };
         };
       flake = {
-        nixosConfigurations = {
-          seadragon = mkHost "seadragon" [ ./hosts/seadragon ] { };
-          dragonfly = mkHost "dragonfly" [ ./hosts/dragonfly ] { };
-        };
+        nixosConfigurations = mkHosts [ "seadragon" "dragonfly" ] { };
         # Home manager configurations
         homeConfigurations = {
-          "andrec@seadragon" = inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${system};
-            extraSpecialArgs = {
-              inherit inputs localpkgs;
-
-            };
-            modules = commonHomeModules ++ [
-              ./home/seadragon.nix
-            ];
-          };
-
-          "andrec@dragonfly" = inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${system};
-            extraSpecialArgs = {
-              inherit inputs system;
-            };
-            modules = commonHomeModules ++ [
-              ./home/unfree.nix
-              ./home/dragonfly.nix
-            ];
-          };
+          "andrec@seadragon" = mkHome "seadragon" [ ] { };
+          "andrec@dragonfly" = mkHome "dragonfly" [ ./home/unfree.nix ] { };
         };
       };
     };
