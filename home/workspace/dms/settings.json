@@ -617,7 +617,8 @@
   },
   "niriOutputSettings": {
     "DP-2": {
-      "focusAtStartup": true
+      "focusAtStartup": true,
+      "vrrOnDemand": true
     },
     "HDMI-A-1": {
       "disabled": true
@@ -755,7 +756,7 @@
       "spacing": 0,
       "squareCorners": true,
       "transparency": 0.5,
-      "useOverlayLayer": true,
+      "useOverlayLayer": false,
       "visible": true,
       "widgetOutlineColor": "primary",
       "widgetOutlineEnabled": false,

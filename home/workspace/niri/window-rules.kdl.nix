@@ -5,6 +5,7 @@
       opacity ${toString config.stylix.opacity.applications}
       background-effect {
         blur true
+        xray true
       }
     }
     window-rule {
