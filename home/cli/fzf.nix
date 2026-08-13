@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -39,9 +38,10 @@ let
     (map (p: "--exclude ${lib.escapeShellArg p}"))
     (lib.concatStringsSep " ")
   ];
+
   fdFlags = "--hidden --color=always " + excludesStr;
   batTheme = "base16-stylix";
-
+  previewWindow = "--preview-window='<80(hidden),80,border-rounded'";
   batWrapped = pkgs.writeShellScript "bat-wrapper" ''
     bat --color=always --style=numbers --theme=${batTheme} "$@"
   '';
@@ -54,9 +54,16 @@ let
     eza --color=always "$@"
   '';
   fdCommand = "${fdWrapped} --type f";
-  fdDirCommand = "zoxide query -ls | ${fdWrapped} --type d";
+  zoxideDirWrapped = pkgs.writeShellScript "zoxide-dir-wrapper" ''
+    zoxide query -l | while read -r dir; do
+      printf '%s\t%s\n' "$(sed "s|^$HOME|~|" <<< "$dir")" "$dir"
+    done
+  '';
   customPreviewScript = pkgs.writeShellScript "kitty-preview.sh" ''
     file=$1
+    if [[ -d "$file" ]]; then
+      exit 0
+    fi
     type=$(file --brief --dereference --mime -- "$file")
 
     if [[ $type =~ image/ ]]; then
@@ -76,12 +83,18 @@ in
       defaultCommand = fdCommand;
       fileWidget = {
         command = fdCommand;
+        options = [
+          previewWindow
+        ];
       };
       changeDirWidget = {
-        command = fdDirCommand;
+        command = "${zoxideDirWrapped}";
         options = [
-          "--preview='${ezaWrapped} --tree {}'"
-          "--preview-window='<80(hidden),80%,border-rounded'"
+          "--delimiter '\t'"
+          "--with-nth=1"
+          "--accept-nth=2"
+          "--preview '${ezaWrapped} --tree {2}'"
+          previewWindow
         ];
       };
       historyWidget = {
@@ -106,15 +119,24 @@ in
         "--tmux=center,50%,60%"
         "--ghost='Type to filter...'"
         "--preview '${customPreviewScript} {}'"
-        "--preview-window='<80(hidden),80%,border-rounded'"
-        "--bind=ctrl-/:toggle-wrap"
-        "--bind=ctrl-l:toggle-preview-wrap"
       ];
     };
+
     eza = {
       enable = true;
+      icons = "auto";
       colors = "always";
+      extraOptions = [
+        "--classify"
+        "--group-directories-first"
+        "--header"
+        "--mounts"
+        "--smart-group"
+        "--no-permissions"
+        "--no-user"
+      ];
     };
+
     zoxide.enable = true;
     bat = {
       enable = true;
