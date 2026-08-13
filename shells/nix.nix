@@ -8,16 +8,13 @@ pkgs.mkShellNoCC {
       nix-direnv
       devenv
       nurl
-      nix-output-monitor
       jq
       nixd
-      cachix
       nixfmt
       statix
       vulnix
       flake-checker
       home-manager
-      fastfetch
       npins
       ;
   };
