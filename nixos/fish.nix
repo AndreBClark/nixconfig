@@ -1,10 +1,13 @@
 { pkgs, ... }:
 {
+  environment.systemPackages = [ pkgs.nix-your-shell ];
   programs.fish = {
     enable = true;
-    promptInit = ''
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+    useBabelfish = true;
+    shellInit = ''
+      nix-your-shell fish | source
     '';
+    vendor.completions.enable = true;
   };
   documentation.man.cache.enable = false;
 }
