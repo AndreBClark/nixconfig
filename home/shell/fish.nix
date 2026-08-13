@@ -9,10 +9,8 @@ let
     "done"
     "sponge"
     "grc"
-    "fifc"
     "bang-bang"
     "colored-man-pages"
-    "fish-you-should-use"
     "git-abbr"
   ];
 in
@@ -21,10 +19,10 @@ in
     fish = {
       enable = true;
       plugins = mkFishPlugins pluginNames;
+      shellAbbrs = config.home.shellAliases;
       interactiveShellInit = ''
         set --export fish_greeting
       '';
-    };
 
     nix-your-shell = {
       enable = true;
