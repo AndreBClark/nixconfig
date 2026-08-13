@@ -39,21 +39,9 @@
 
     {
       mode = "n";
-      key = "zR";
-      action = "<cmd>lua require('ufo').openAllFolds()<cr>";
-      options = {
-        desc = "Open all folds";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "zM";
-      action = "<cmd>lua require('ufo').closeAllFolds()<cr>";
-      options = {
-        desc = "Close all folds";
-        silent = true;
-      };
+      key = "<leader>ca";
+      action.__raw = "function() vim.lsp.buf.code_action({ apply = true }) end";
+      options.desc = "Apply first code action";
     }
     {
       mode = "n";
